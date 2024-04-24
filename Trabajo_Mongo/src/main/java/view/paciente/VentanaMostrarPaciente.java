@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -14,10 +15,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import org.bson.Document;
 
 import controller.Controller_Interfaz;
+import javax.swing.JFormattedTextField;
+import java.awt.Font;
 
 public class VentanaMostrarPaciente extends JFrame {
 
@@ -28,7 +32,6 @@ public class VentanaMostrarPaciente extends JFrame {
 	private JButton btnMostrarPorNombre;
 	private JButton btnMostrarPorDni;
 	private JLabel lblMensaje;
-	private JTextField textFieldEscribirDni;
 	private JButton btnCancelar;
 	private VentanaPrincipalPaciente vp;
 	private JScrollPane scrollPaneMostrar;
@@ -37,6 +40,8 @@ public class VentanaMostrarPaciente extends JFrame {
 	private JTextField textFieldAtributo;
 	private JTextField textFieldValor;
 	private JButton btnBuscarAtributo;
+	MaskFormatter mascara;
+	JFormattedTextField formattedDNI;
 	/**
 	 * Launch the application.
 	 */
@@ -67,15 +72,10 @@ public class VentanaMostrarPaciente extends JFrame {
 		contentPane.setLayout(null);
 
 		lblMensaje = new JLabel("Introduzca el DNI\r\n");
+		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblMensaje.setVisible(false);
-		lblMensaje.setBounds(235, 11, 190, 13);
+		lblMensaje.setBounds(235, 10, 190, 23);
 		contentPane.add(lblMensaje);
-
-		textFieldEscribirDni = new JTextField();
-		textFieldEscribirDni.setVisible(false);
-		textFieldEscribirDni.setBounds(235, 35, 167, 23);
-		contentPane.add(textFieldEscribirDni);
-		textFieldEscribirDni.setColumns(10);
 
 		btnMostrarTodo = new JButton("Mostrar todo");
 		btnMostrarTodo.addActionListener(new ActionListener() {
@@ -99,6 +99,9 @@ public class VentanaMostrarPaciente extends JFrame {
 					textFieldEscribirNombre.setVisible(true);
 					textFieldEscribirNombre.setText("");
 					textAreaMostrar.setText("");
+					formattedDNI.setVisible(false);
+					textFieldAtributo.setVisible(false);
+					textFieldValor.setVisible(false);
 					textFieldEscribirNombre.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
@@ -123,16 +126,19 @@ public class VentanaMostrarPaciente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblMensaje.setText("Introduzca el DNI");
 				lblMensaje.setVisible(true);
-				textFieldEscribirDni.setVisible(true);
-				textFieldEscribirDni.setText("");
+				formattedDNI.setVisible(true);
+				formattedDNI.setText("");
+				textFieldEscribirNombre.setVisible(false);
+				textFieldAtributo.setVisible(false);
+				textFieldValor.setVisible(false);
 				textAreaMostrar.setText("");
-				textFieldEscribirDni.addActionListener(new ActionListener() {
+				formattedDNI.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						String dni = textFieldEscribirDni.getText();
+						String dni = formattedDNI.getText();
 						if (dni.matches("^\\d{8}[A-Z]$")) {
 							lblMensaje.setVisible(false);
-							textFieldEscribirDni.setVisible(false);
+							formattedDNI.setVisible(false);
 							Optional<Document> pacientes = controllerInterfaz.findByDni(dni);
 
 							if (pacientes.isPresent()) {
@@ -195,7 +201,7 @@ public class VentanaMostrarPaciente extends JFrame {
 				lblMensaje.setVisible(true);
 				textFieldAtributo.setText("");
 				textAreaMostrar.setText("");
-				textFieldEscribirDni.setVisible(false);
+				formattedDNI.setVisible(false);
 				textFieldEscribirNombre.setVisible(false);
 				textFieldValor.setVisible(false);
 				textFieldAtributo.setVisible(true);
@@ -231,6 +237,18 @@ public class VentanaMostrarPaciente extends JFrame {
 		});
 		btnBuscarAtributo.setBounds(20, 222, 149, 21);
 		contentPane.add(btnBuscarAtributo);
+		try {
+			mascara = new MaskFormatter("########?");
+			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			formattedDNI = new JFormattedTextField(mascara);
+			formattedDNI.setVisible(false);
+			formattedDNI.setBounds(235, 34, 167, 19);
+			contentPane.add(formattedDNI);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 }

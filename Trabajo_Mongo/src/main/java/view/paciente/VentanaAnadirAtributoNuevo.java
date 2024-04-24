@@ -179,7 +179,7 @@ public class VentanaAnadirAtributoNuevo extends JFrame {
     		
     		lblMensaje = new JLabel("");
     		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-    		lblMensaje.setBounds(20, 309, 467, 21);
+    		lblMensaje.setBounds(39, 298, 428, 32);
     		contentPane.add(lblMensaje);
     		
     		

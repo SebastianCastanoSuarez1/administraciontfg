@@ -175,7 +175,7 @@ public class VentanaAnadirListaMedico extends JFrame {
     		
     		lblMensaje = new JLabel("\r\n");
     		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    		lblMensaje.setBounds(41, 256, 377, 25);
+    		lblMensaje.setBounds(42, 256, 377, 25);
     		contentPane.add(lblMensaje);
     		
     		

@@ -146,6 +146,7 @@ public class VentanaModificarMedico extends JFrame {
 		contentPane.add(btnComprobar);
 
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vm = new VentanaPrincipalMedico();
@@ -153,10 +154,11 @@ public class VentanaModificarMedico extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(118, 237, 85, 21);
+		btnCancelar.setBounds(118, 237, 85, 30);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnAceptar == e.getSource()) {
@@ -193,7 +195,7 @@ public class VentanaModificarMedico extends JFrame {
 						lblMensaje.setText("Medico actualizado correctamente");
 						lblMensaje.setForeground(Color.GREEN);
 						break;
-					case "Año_Experencia":
+					case "Año_Experiencia":
 
 						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
 						lblMensaje.setText("Medico actualizado correctamente");
@@ -213,7 +215,7 @@ public class VentanaModificarMedico extends JFrame {
 			}
 
 		});
-		btnAceptar.setBounds(251, 237, 98, 21);
+		btnAceptar.setBounds(251, 237, 98, 30);
 		contentPane.add(btnAceptar);
 
 		textFieldValorAtributo = new JTextField();
@@ -249,7 +251,7 @@ public class VentanaModificarMedico extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(42, 289, 389, 13);
+		lblMensaje.setBounds(41, 277, 390, 25);
 		contentPane.add(lblMensaje);
 
 	}

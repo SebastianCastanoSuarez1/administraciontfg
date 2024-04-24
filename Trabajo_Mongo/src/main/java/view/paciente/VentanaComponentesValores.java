@@ -144,6 +144,7 @@ public class VentanaComponentesValores extends JFrame {
 		contentPane.add(textFieldValores);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dni = formattedDni.getText();
@@ -203,7 +204,7 @@ public class VentanaComponentesValores extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(10, 301, 446, 19);
+		lblMensaje.setBounds(37, 282, 388, 38);
 		contentPane.add(lblMensaje);
 	}
 }

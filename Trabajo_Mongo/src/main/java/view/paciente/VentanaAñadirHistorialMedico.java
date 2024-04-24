@@ -272,7 +272,7 @@ public class VentanaAñadirHistorialMedico extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(10, 312, 465, 21);
+		lblMensaje.setBounds(39, 297, 393, 36);
 		contentPane.add(lblMensaje);
 
 	}

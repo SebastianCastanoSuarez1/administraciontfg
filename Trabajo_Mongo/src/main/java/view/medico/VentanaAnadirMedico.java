@@ -20,6 +20,7 @@ import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Optional;
 import java.awt.event.ActionEvent;
 
 public class VentanaAnadirMedico extends JFrame {
@@ -95,7 +96,7 @@ public class VentanaAnadirMedico extends JFrame {
 		contentPane.add(lblNombre);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(303, 29, 117, 24);
+		textFieldNombre.setBounds(303, 34, 127, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -115,7 +116,7 @@ public class VentanaAnadirMedico extends JFrame {
 		contentPane.add(lblEspecialidad);
 		
 		textFieldEspecialidad = new JTextField();
-		textFieldEspecialidad.setBounds(334, 95, 111, 19);
+		textFieldEspecialidad.setBounds(334, 95, 117, 19);
 		contentPane.add(textFieldEspecialidad);
 		textFieldEspecialidad.setColumns(10);
 		
@@ -150,14 +151,21 @@ public class VentanaAnadirMedico extends JFrame {
 				String apellidos = textFieldApellidos.getText();
 				String especialidad = textFieldEspecialidad.getText();
 				String anio_experiencia = textField.getText();
-				Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad, anio_experiencia);
-				Boolean anadido = medico.salvarMedico(medicos);
-				if(anadido == true) {
-					lblMensaje.setText("El medico ha sido añadido con exito");
-					lblMensaje.setForeground(Color.GREEN);
-				}else {
-					lblMensaje.setText("El medico no ha sido añadido con exito");
+				Optional<Document> medicoDNI = medico.comprobarDni(dni);
+				if(medicoDNI.isPresent()) {
+					lblMensaje.setText("El medico con DNI " + dni+ " ya esta añadido");
 					lblMensaje.setForeground(Color.RED);
+				}else {
+					Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad, anio_experiencia);
+					Boolean anadido = medico.salvarMedico(medicos);
+					if(anadido == true) {
+						lblMensaje.setText("El medico ha sido añadido con exito");
+						lblMensaje.setForeground(Color.GREEN);
+					}else {
+						lblMensaje.setText("El medico no ha sido añadido con exito");
+						lblMensaje.setForeground(Color.RED);
+					}
+					
 				}
 			}
 		});
@@ -167,7 +175,7 @@ public class VentanaAnadirMedico extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMensaje.setBounds(104, 298, 296, 24);
+		lblMensaje.setBounds(77, 298, 323, 24);
 		contentPane.add(lblMensaje);
 	}
 }

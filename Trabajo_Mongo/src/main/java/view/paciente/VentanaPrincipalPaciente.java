@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import view.VentanaPrincipal;
+import view.VentanaPrincipalAdministrador;
 
 public class VentanaPrincipalPaciente extends JFrame {
 
@@ -27,7 +27,7 @@ public class VentanaPrincipalPaciente extends JFrame {
 	private VentanaModificarPaciente vmop;
 	private VentanaEliminarPaciente vep;
 	private JButton btnCancelar;
-	private VentanaPrincipal vp;
+	private VentanaPrincipalAdministrador vp;
 
 	
 	public static void main(String[] args) {
@@ -121,7 +121,7 @@ public class VentanaPrincipalPaciente extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vp = new VentanaPrincipal();
+				vp = new VentanaPrincipalAdministrador();
 				vp.setVisible(true);
 				dispose();
 			}

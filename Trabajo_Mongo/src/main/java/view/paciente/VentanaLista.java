@@ -171,7 +171,7 @@ public class VentanaLista extends JFrame {
     		
     		lblMensaje = new JLabel("");
     		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-    		lblMensaje.setBounds(10, 273, 465, 21);
+    		lblMensaje.setBounds(39, 254, 415, 40);
     		contentPane.add(lblMensaje);
 
     		

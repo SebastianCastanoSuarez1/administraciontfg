@@ -112,7 +112,7 @@ public class VentanaEliminarPaciente extends JFrame {
 			
 			lblMensaje = new JLabel("\r\n");
 			lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblMensaje.setBounds(49, 220, 300, 19);
+			lblMensaje.setBounds(59, 220, 323, 33);
 			contentPane.add(lblMensaje);
 		} catch (ParseException e) {
 			e.printStackTrace();

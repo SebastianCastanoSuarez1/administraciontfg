@@ -269,7 +269,7 @@ public class VentanaComponentesListasValoresMedico extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(20, 445, 476, 23);
+		lblMensaje.setBounds(57, 445, 412, 23);
 		contentPane.add(lblMensaje);
 	}
 }

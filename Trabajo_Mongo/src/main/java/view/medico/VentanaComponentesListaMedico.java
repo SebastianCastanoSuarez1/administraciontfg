@@ -152,7 +152,7 @@ public class VentanaComponentesListaMedico extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCancelar.setBounds(91, 248, 103, 34);
+		btnCancelar.setBounds(93, 267, 103, 34);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
@@ -179,7 +179,7 @@ public class VentanaComponentesListaMedico extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAceptar.setBounds(246, 248, 103, 34);
+		btnAceptar.setBounds(295, 267, 103, 34);
 		contentPane.add(btnAceptar);
 
 		textArea_Lista_de_listas = new TextArea();
@@ -213,7 +213,7 @@ public class VentanaComponentesListaMedico extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(31, 311, 431, 22);
+		lblMensaje.setBounds(80, 311, 382, 22);
 		contentPane.add(lblMensaje);
 
 	}

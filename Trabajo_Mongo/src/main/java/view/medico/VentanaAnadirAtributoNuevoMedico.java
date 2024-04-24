@@ -74,14 +74,14 @@ public class VentanaAnadirAtributoNuevoMedico extends JFrame {
 		
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(86, 38, 55, 40);
+		lblDNI.setBounds(86, 44, 54, 34);
 		contentPane.add(lblDNI);
 		
 		try {
             mascara = new MaskFormatter("########?");
             mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             formattedDni = new JFormattedTextField(mascara);
-    		formattedDni.setBounds(182, 49, 148, 26);
+    		formattedDni.setBounds(171, 52, 148, 26);
     		contentPane.add(formattedDni);
     		
     		
@@ -134,7 +134,7 @@ public class VentanaAnadirAtributoNuevoMedico extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.setBounds(82, 269, 98, 26);
+		btnCancelar.setBounds(108, 269, 98, 26);
 		contentPane.add(btnCancelar);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -159,12 +159,12 @@ public class VentanaAnadirAtributoNuevoMedico extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(274, 269, 115, 26);
+		btnAceptar.setBounds(315, 269, 115, 26);
 		contentPane.add(btnAceptar);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(41, 316, 329, 26);
+		lblMensaje.setBounds(117, 316, 329, 26);
 		contentPane.add(lblMensaje);
 		
 		btnComprobar = new JButton("Comprobar");
@@ -184,7 +184,7 @@ public class VentanaAnadirAtributoNuevoMedico extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(360, 47, 98, 27);
+		btnComprobar.setBounds(352, 51, 98, 27);
 		contentPane.add(btnComprobar);
 	}
 }

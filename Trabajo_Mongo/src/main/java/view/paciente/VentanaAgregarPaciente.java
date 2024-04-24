@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.Optional;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -284,19 +285,26 @@ public class VentanaAgregarPaciente extends JFrame {
 			private void anadirPaciente(ActionEvent e) {
 				if (btnAceptar == e.getSource()) {
 
-					Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
-							textFieldNombre.getText(), textFieldApellidos.getText(), formattedFechaNacimiento.getText(),
-							comboBoxSexo.getSelectedItem().toString(), textFieldLugarNacimiento.getText(),
-							textFieldAltura.getText(), textFieldPeso.getText(),
-							comboBoxGrupoSanguineo.getSelectedItem().toString(),
-							comboBoxEnfermedad.getSelectedItem().toString(), comboBoxTipo.getSelectedItem().toString());
-					Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
-					if (anadido == true) {
-						lblMensaje.setText("El paciente ha sido añadido con exito");
-						lblMensaje.setForeground(Color.GREEN);
-					} else {
-						lblMensaje.setText("El paciente no ha sido añadido con exito");
+					Optional<Document> medicoDNI = controllerInterfaz.comprobarDni(formattedDni.getText());
+					if(medicoDNI.isPresent()) {
+						lblMensaje.setText("El medico con DNI " + formattedDni.getText()+ " ya esta añadido");
 						lblMensaje.setForeground(Color.RED);
+					}else {
+						Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
+								textFieldNombre.getText(), textFieldApellidos.getText(), formattedFechaNacimiento.getText(),
+								comboBoxSexo.getSelectedItem().toString(), textFieldLugarNacimiento.getText(),
+								textFieldAltura.getText(), textFieldPeso.getText(),
+								comboBoxGrupoSanguineo.getSelectedItem().toString(),
+								comboBoxEnfermedad.getSelectedItem().toString(), comboBoxTipo.getSelectedItem().toString());
+						Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
+						if (anadido == true) {
+							lblMensaje.setText("El paciente ha sido añadido con exito");
+							lblMensaje.setForeground(Color.GREEN);
+						} else {
+							lblMensaje.setText("El paciente no ha sido añadido con exito");
+							lblMensaje.setForeground(Color.RED);
+						}
+						
 					}
 
 				}
@@ -320,7 +328,7 @@ public class VentanaAgregarPaciente extends JFrame {
 
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(26, 285, 465, 23);
+		lblMensaje.setBounds(49, 272, 429, 34);
 		contentPane.add(lblMensaje);
 
 	}

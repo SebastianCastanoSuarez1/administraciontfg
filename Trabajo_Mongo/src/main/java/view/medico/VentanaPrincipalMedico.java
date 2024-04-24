@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import view.VentanaPrincipal;
+import view.VentanaPrincipalAdministrador;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -29,7 +29,7 @@ public class VentanaPrincipalMedico extends JFrame {
 	JButton btnEliminarMedico;
 	JLabel lblTitulo;
 	private JButton btnCancelar;
-	VentanaPrincipal vp;
+	VentanaPrincipalAdministrador vp;
 	/**
 	 * Launch the application.
 	 */
@@ -112,7 +112,7 @@ public class VentanaPrincipalMedico extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vp = new VentanaPrincipal();
+				vp = new VentanaPrincipalAdministrador();
 				vp.setVisible(true);
 				dispose();
 			}

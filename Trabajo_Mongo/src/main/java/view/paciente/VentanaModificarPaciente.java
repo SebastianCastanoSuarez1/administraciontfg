@@ -68,7 +68,7 @@ public class VentanaModificarPaciente extends JFrame {
 	public VentanaModificarPaciente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 488, 349);
+		setBounds(100, 100, 489, 361);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -150,6 +150,7 @@ public class VentanaModificarPaciente extends JFrame {
 		contentPane.add(btnComprobar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vp = new VentanaPrincipalPaciente();
@@ -157,10 +158,11 @@ public class VentanaModificarPaciente extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(118, 237, 85, 21);
+		btnCancelar.setBounds(118, 237, 86, 30);
 		contentPane.add(btnCancelar);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btnAceptar == e.getSource()) {
@@ -278,7 +280,7 @@ public class VentanaModificarPaciente extends JFrame {
 			}
 			
 		});
-		btnAceptar.setBounds(251, 237, 98, 21);
+		btnAceptar.setBounds(251, 237, 91, 30);
 		contentPane.add(btnAceptar);
 		
 		textFieldValorAtributo = new JTextField();
@@ -314,7 +316,7 @@ public class VentanaModificarPaciente extends JFrame {
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(10, 281, 454, 21);
+		lblMensaje.setBounds(49, 277, 391, 37);
 		contentPane.add(lblMensaje);
 		
 		

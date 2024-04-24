@@ -1,24 +1,21 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.medico.VentanaPrincipalMedico;
 import view.paciente.VentanaPrincipalPaciente;
 
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
-
-public class VentanaPrincipal extends JFrame {
+public class VentanaPrincipalAdministrador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,7 +31,7 @@ public class VentanaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
+					VentanaPrincipalAdministrador frame = new VentanaPrincipalAdministrador();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +43,7 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaPrincipal() {
+	public VentanaPrincipalAdministrador() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 468, 329);

@@ -114,7 +114,7 @@ public class VentanaEliminarMedico extends JFrame {
 		
 		lblMensaje = new JLabel("\r\n");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMensaje.setBounds(64, 236, 315, 19);
+		lblMensaje.setBounds(64, 236, 329, 33);
 		contentPane.add(lblMensaje);
 	}
 

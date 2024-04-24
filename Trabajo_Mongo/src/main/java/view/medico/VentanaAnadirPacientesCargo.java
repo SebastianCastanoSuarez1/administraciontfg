@@ -156,7 +156,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		
 		lblMensaje = new JLabel("\r\n");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(91, 270, 290, 28);
+		lblMensaje.setBounds(91, 270, 304, 28);
 		contentPane.add(lblMensaje);
 	}
 }

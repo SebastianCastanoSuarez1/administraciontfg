@@ -204,8 +204,8 @@ public class VentanaMostrarMedico extends JFrame {
 		contentPane.add(btnCancelar);
 		
 		lblMensaje = new JLabel("Introduzca el DNI");
-		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMensaje.setBounds(260, 10, 185, 23);
+		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblMensaje.setBounds(252, 10, 254, 23);
 		contentPane.add(lblMensaje);
 		
 		try {
