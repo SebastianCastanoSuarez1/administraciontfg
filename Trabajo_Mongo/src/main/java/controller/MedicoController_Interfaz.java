@@ -85,12 +85,11 @@ public class MedicoController_Interfaz {
 	}
 	
 	public Boolean crearPacientesCargo(Optional<Document> medicos, String[] dni_Paciente) {
-		Document contenido = new Document();
+		
 		Document pacientes_Cargo = new Document();
 		List<String> DniPacientes_List = Arrays.asList(dni_Paciente);
 		
-		contenido.append("Dni_Pacientes", DniPacientes_List);
-		pacientes_Cargo.append("Pacientes_Cargo", contenido);
+		pacientes_Cargo.append("Pacientes_Cargo", DniPacientes_List);
 		return medicoRepositoryImpl.updatePacientesCargo(medicos, pacientes_Cargo);
 	}
 	
