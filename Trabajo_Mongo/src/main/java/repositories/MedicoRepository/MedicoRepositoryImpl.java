@@ -22,14 +22,14 @@ import com.mongodb.client.result.DeleteResult;
 
 import db.MongoDB;
 
-public class MedicoRepositoryImpl implements MedicoRepository{
+public class MedicoRepositoryImpl implements MedicoRepository {
 
 	MongoClient mongoClient = MongoDB.getClient();
 	MongoDatabase database = mongoClient.getDatabase("TrabajoMongo");
 	MongoCollection<Document> collection = database.getCollection("Medicos");
 	String dni = "Dni", nombre = "Nombre", apellidos = "Apellido", especialidad = "Especialidad",
 			año_experiencia = "Año_Experiencia";
-	
+
 	@Override
 	public List<Document> findAll() {
 		Bson projectionFields = Projections.excludeId();
@@ -48,11 +48,21 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 
 		return documentList;
 	}
+
+	public String findAtributo(String medico, String atributo) {
+	    Bson projectionFields = Projections.fields(Projections.include(atributo), Projections.excludeId());
+	    Bson filter = eq(dni, medico);
+	    Document result = collection.find(filter).projection(projectionFields).first();
+	    String valor = result.getString(atributo);
+	    return valor;
+	}
+
 	public String pretty(String json) {
 		JsonElement je = JsonParser.parseString(json);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(je);
 	}
+
 	public String mostrarMedicos(List<Document> medicos) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String pretty = "";
@@ -67,6 +77,7 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 		}
 		return pretty;
 	}
+
 	public String mostrar(Optional<Document> medicos) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String pretty = "";
@@ -90,6 +101,7 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 			return false;
 		}
 	}
+
 	@Override
 	public Optional<Document> findById(String id) {
 		Bson filter = eq(dni, id);
@@ -99,23 +111,24 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 	}
 
 	public List<Document> findByNombre(String nombre) {
-		
+
 		Bson filter = eq("Nombre", nombre);
 		Bson projectionFields = Projections.excludeId();
-		
+
 		List<Document> results = collection.find(filter).projection(projectionFields).into(new ArrayList<>());
 		return results;
 	}
+
 	@Override
 	public DeleteResult delete(String dni) {
-	    DeleteResult resultado = null;
-	    try {
-	        Bson filter = eq("Dni", dni);
-	        resultado = collection.deleteOne(filter);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return resultado;
+		DeleteResult resultado = null;
+		try {
+			Bson filter = eq("Dni", dni);
+			resultado = collection.deleteOne(filter);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultado;
 	}
 
 	public Boolean update(Optional<Document> medico, String atributo, List<String> valores) {
@@ -133,10 +146,10 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 			return false;
 		}
 	}
-	
+
 	public Boolean update(Optional<Document> medico, String atributo, String valor) {
 		try {
-			
+
 			if (medico.isPresent()) {
 				Document filter = medico.get(); // filtro para seleccionar el documento a actualizar
 				Document update = new Document("$set", new Document(atributo, valor));
@@ -150,11 +163,12 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 			return false;
 		}
 	}
+
 	public Boolean update(Optional<Document> medico, String atributo, Document valores) {
 		try {
 			if (medico.isPresent()) {
 				Document filter = medico.get();
-				Document update = new Document("$set", new Document(atributo ,valores));
+				Document update = new Document("$set", new Document(atributo, valores));
 				collection.updateOne(filter, update);
 				return true;
 			} else {
@@ -181,7 +195,8 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 			e.printStackTrace();
 			return false;
 		}
-	}	
+	}
+
 	public List<Document> findByAttribute(String atributo, String valor) {
 		Bson filter = eq(atributo, valor);
 		Bson projectionFields = Projections.excludeId();
@@ -190,4 +205,3 @@ public class MedicoRepositoryImpl implements MedicoRepository{
 	}
 
 }
-

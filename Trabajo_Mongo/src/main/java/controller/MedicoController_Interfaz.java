@@ -19,7 +19,11 @@ public class MedicoController_Interfaz {
 		return medico;
 		
 	}
-	
+	public String findAtribtuto(String dni, String atrobuto) {
+		
+		String atributo = medicoRepositoryImpl.findAtributo(dni, atrobuto);
+		return atributo;
+	}
 	public String getAllMedicos() {
 		List<Document> medicos = medicoRepositoryImpl.findAll();
 		if (medicos.isEmpty()) {
@@ -52,10 +56,10 @@ public class MedicoController_Interfaz {
 	}
 	
 	public Document anadirMedicoNuevo(String dni, String nombre, String apellidos, String especialidad,
-			String anio_experiencia) {
+			String fecha_incorporacion) {
 		Document paciente;
 		paciente = new Paciente().append("Dni", dni).append("Nombre", nombre).append("Apellidos", apellidos)
-				.append("Especialidad", especialidad).append("Año_Experiencia", anio_experiencia);
+				.append("Especialidad", especialidad).append("Fecha_Incorporacion", fecha_incorporacion);
 				
 
 		return paciente;

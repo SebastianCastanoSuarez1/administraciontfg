@@ -1,27 +1,28 @@
 package view.medico;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Optional;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import org.bson.Document;
 
 import controller.MedicoController_Interfaz;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.util.Optional;
-import java.awt.event.ActionEvent;
 
 public class VentanaAnadirMedico extends JFrame {
 
@@ -30,8 +31,6 @@ public class VentanaAnadirMedico extends JFrame {
 	private JFormattedTextField formattedDni;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellidos;
-	private JTextField textFieldEspecialidad;
-	private JTextField textField;
 	private JLabel lblDNI;
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
@@ -43,7 +42,9 @@ public class VentanaAnadirMedico extends JFrame {
 	private MaskFormatter mascara;
 	private VentanaOpcionAnadirMedico vpm;
 	private MedicoController_Interfaz medico = new MedicoController_Interfaz();
-	
+	JComboBox<String> comboBoxEspecialidades;
+	JFormattedTextField formattedFechaIncorporacion;
+	DateFormat format;
 	/**
 	 * Launch the application.
 	 */
@@ -115,20 +116,31 @@ public class VentanaAnadirMedico extends JFrame {
 		lblEspecialidad.setBounds(245, 98, 79, 15);
 		contentPane.add(lblEspecialidad);
 		
-		textFieldEspecialidad = new JTextField();
-		textFieldEspecialidad.setBounds(334, 95, 117, 19);
-		contentPane.add(textFieldEspecialidad);
-		textFieldEspecialidad.setColumns(10);
+		comboBoxEspecialidades = new JComboBox<String>();
+		comboBoxEspecialidades.setModel(new DefaultComboBoxModel<String>(
+				new String[] { "", "Cirugia", "Medico Familia", "Traumatologia", "Dermatologia", "Oftalmologia", "Pediatria", "Reumatologia", "Neurologia"
+						, "Enfermeria", "Fisioterapia", "Gastroenterologia"}));
+		comboBoxEspecialidades.setBounds(333, 98, 119, 21);
+		contentPane.add(comboBoxEspecialidades);
 		
-		lblAnioExperiencia = new JLabel("Años de experiencia\r\n\r\n");
+		
+		
+		try {
+			mascara = new MaskFormatter("##/##/####");
+			mascara.setValidCharacters("0123456789");
+			formattedFechaIncorporacion = new JFormattedTextField(mascara);
+			formattedFechaIncorporacion.setBounds(230, 164, 138, 19);
+			contentPane.add(formattedFechaIncorporacion);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+	        
+		lblAnioExperiencia = new JLabel("Fecha de incorporacion");
 		lblAnioExperiencia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAnioExperiencia.setBounds(104, 160, 127, 24);
+		lblAnioExperiencia.setBounds(77, 160, 154, 24);
 		contentPane.add(lblAnioExperiencia);
-		
-		textField = new JTextField();
-		textField.setBounds(245, 164, 117, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -139,7 +151,7 @@ public class VentanaAnadirMedico extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(90, 240, 85, 21);
+		btnCancelar.setBounds(122, 240, 85, 21);
 		contentPane.add(btnCancelar);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -149,14 +161,14 @@ public class VentanaAnadirMedico extends JFrame {
 				String dni = formattedDni.getText();
 				String nombre = textFieldNombre.getText();
 				String apellidos = textFieldApellidos.getText();
-				String especialidad = textFieldEspecialidad.getText();
-				String anio_experiencia = textField.getText();
+				String especialidad = comboBoxEspecialidades.getSelectedItem().toString();
+				String fecha_incorporcion = formattedFechaIncorporacion.getText();
 				Optional<Document> medicoDNI = medico.comprobarDni(dni);
 				if(medicoDNI.isPresent()) {
 					lblMensaje.setText("El medico con DNI " + dni+ " ya esta añadido");
 					lblMensaje.setForeground(Color.RED);
 				}else {
-					Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad, anio_experiencia);
+					Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad, fecha_incorporcion);
 					Boolean anadido = medico.salvarMedico(medicos);
 					if(anadido == true) {
 						lblMensaje.setText("El medico ha sido añadido con exito");
@@ -170,12 +182,16 @@ public class VentanaAnadirMedico extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAceptar.setBounds(260, 241, 85, 21);
+		btnAceptar.setBounds(283, 240, 85, 21);
 		contentPane.add(btnAceptar);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMensaje.setBounds(77, 298, 323, 24);
+		lblMensaje.setBounds(93, 296, 310, 24);
 		contentPane.add(lblMensaje);
+		
+		
+		
+	
 	}
 }

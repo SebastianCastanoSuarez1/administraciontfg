@@ -99,7 +99,7 @@ public class VentanaModificarPaciente extends JFrame {
 		comboBoxAtributo.setVisible(false);
 		comboBoxAtributo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBoxAtributo.setModel(
-				new DefaultComboBoxModel<String>(new String[] { "","Dni", "Nombre", "Apellidos", "Fecha_Nacimiento",
+				new DefaultComboBoxModel<String>(new String[] { "", "Nombre", "Apellidos", "Fecha_Nacimiento",
 						"Sexo", "Lugar_Nacimiento", "Altura", "Peso", "Grupo_Sanguineo", "Enfemedad", "Tipo", "Otro" }));
 
 		comboBoxAtributo.setBounds(255, 65, 136, 21);
@@ -170,18 +170,6 @@ public class VentanaModificarPaciente extends JFrame {
 					String atributo = comboBoxAtributo.getSelectedItem().toString();
 					String valor = textFieldValorAtributo.getText();
 			 		switch (atributo) {
-					case "Dni":
-						if(textFieldValorAtributo.getText().matches("^[0-9]{8}[A-Z]$")) {
-							controllerInterfaz.valorAtributoNuevo(dni,atributo,valor);
-							lblMensaje.setText("Paciente actualizado correctamente");
-							lblMensaje.setForeground(Color.GREEN);
-						}else {
-							lblMensaje.setText("El dni debe tener este formato :00000000A");
-							lblMensaje.setForeground(Color.RED);
-
-						}
-						
-						break;
 					case "Nombre":
 						
 						controllerInterfaz.valorAtributoNuevo(dni,atributo,valor);

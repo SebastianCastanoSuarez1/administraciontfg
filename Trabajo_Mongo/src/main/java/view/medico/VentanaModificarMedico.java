@@ -37,13 +37,19 @@ public class VentanaModificarMedico extends JFrame {
 	private JLabel lblDNI;
 	private JLabel lblTexto;
 	private JButton btnCancelar;
-	private JButton btnAceptar;
+	private JButton btnGuardar;
 	private VentanaPrincipalMedico vm;
 	private JLabel lblNombre;
 	private JTextField textFieldValorAtributo;
 	private JTextField textFieldNombre;
 	private JLabel lblMensaje;
-
+	private JTextField textFieldValorAntiguo;
+	JLabel lblValorAntiguoAtributo;
+	String atributo;
+	String dni;
+	String valor;
+	String atributoOtro;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -66,7 +72,7 @@ public class VentanaModificarMedico extends JFrame {
 	public VentanaModificarMedico() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 488, 349);
+		setBounds(100, 100, 575, 432);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,47 +83,54 @@ public class VentanaModificarMedico extends JFrame {
 		lblTexto = new JLabel("Que atributo quiere modificar");
 		lblTexto.setVisible(false);
 		lblTexto.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTexto.setBounds(10, 60, 235, 30);
+		lblTexto.setBounds(10, 92, 235, 30);
 		contentPane.add(lblTexto);
 
 		comboBoxAtributo = new JComboBox<String>();
 		comboBoxAtributo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String otro = comboBoxAtributo.getSelectedItem().toString();
-				if (otro.equals("Otro")) {
+				dni = formattedDni.getText();
+				atributo = comboBoxAtributo.getSelectedItem().toString();
+				String valor = medicoInterfaz.findAtribtuto(dni, atributo);
+				if (atributo.equals("Otro")) {
 					lblNombre.setVisible(true);
 					textFieldNombre.setVisible(true);
+//					lblValorAntiguoAtributo.setVisible(true);
+//					textFieldValorAntiguo.setVisible(true);
+//					textFieldValorAntiguo.setText(valor);
 				} else {
 					lblValor.setVisible(true);
 					textFieldValorAtributo.setVisible(true);
-
+					lblValorAntiguoAtributo.setVisible(true);
+					textFieldValorAntiguo.setVisible(true);
+					textFieldValorAntiguo.setText(valor);
 				}
 			}
 		});
 		comboBoxAtributo.setVisible(false);
 		comboBoxAtributo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBoxAtributo.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "", "Dni", "Nombre", "Apellidos", "Especialidad", "Año_Experencia","Otro"}));
+				new String[] { "", "Nombre", "Apellidos", "Especialidad", "Fecha_Incorporacion","Otro"}));
 
-		comboBoxAtributo.setBounds(255, 65, 136, 21);
+		comboBoxAtributo.setBounds(258, 97, 136, 21);
 		contentPane.add(comboBoxAtributo);
 
 		lblValor = new JLabel("Introduzca el nuevo valor del atributo\r\n");
 		lblValor.setVisible(false);
 		lblValor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValor.setBounds(10, 175, 286, 21);
+		lblValor.setBounds(10, 240, 286, 21);
 		contentPane.add(lblValor);
 
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(57, 10, 55, 40);
+		lblDNI.setBounds(92, 17, 55, 30);
 		contentPane.add(lblDNI);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(136, 24, 148, 26);
+			formattedDni.setBounds(170, 23, 148, 26);
 			contentPane.add(formattedDni);
 
 		} catch (ParseException e) {
@@ -128,7 +141,7 @@ public class VentanaModificarMedico extends JFrame {
 		btnComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnComprobar == e.getSource()) {
-					String dni = formattedDni.getText().toString();
+					dni = formattedDni.getText().toString();
 					Optional<Document> medicos = medicoInterfaz.comprobarDni(dni);
 
 					if (medicos.isPresent()) {
@@ -142,7 +155,7 @@ public class VentanaModificarMedico extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(315, 19, 98, 27);
+		btnComprobar.setBounds(350, 21, 98, 27);
 		contentPane.add(btnComprobar);
 
 		btnCancelar = new JButton("Cancelar");
@@ -154,29 +167,18 @@ public class VentanaModificarMedico extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(118, 237, 85, 30);
+		btnCancelar.setBounds(129, 300, 85, 30);
 		contentPane.add(btnCancelar);
 
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.addActionListener(new ActionListener() {
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnAceptar == e.getSource()) {
-					String dni = formattedDni.getText().toString();
-					String atributo = comboBoxAtributo.getSelectedItem().toString();
-					String valor = textFieldValorAtributo.getText();
+				if (btnGuardar == e.getSource()) {
+					dni = formattedDni.getText().toString();
+					atributo = comboBoxAtributo.getSelectedItem().toString();
+					valor = textFieldValorAtributo.getText();
 					switch (atributo) {
-					case "Dni":
-						if (textFieldValorAtributo.getText().matches("^[0-9]{8}[A-Z]$")) {
-							medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
-							lblMensaje.setText("Medico actualizado correctamente");
-							lblMensaje.setForeground(Color.GREEN);
-						} else {
-							lblMensaje.setText("El dni debe tener este formato :00000000A");
-							lblMensaje.setForeground(Color.RED);
-						}
-
-						break;
 					case "Nombre":
 
 						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
@@ -195,7 +197,7 @@ public class VentanaModificarMedico extends JFrame {
 						lblMensaje.setText("Medico actualizado correctamente");
 						lblMensaje.setForeground(Color.GREEN);
 						break;
-					case "Año_Experiencia":
+					case "Fecha_Incorporacion":
 
 						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
 						lblMensaje.setText("Medico actualizado correctamente");
@@ -215,26 +217,26 @@ public class VentanaModificarMedico extends JFrame {
 			}
 
 		});
-		btnAceptar.setBounds(251, 237, 98, 30);
-		contentPane.add(btnAceptar);
+		btnGuardar.setBounds(273, 300, 98, 30);
+		contentPane.add(btnGuardar);
 
 		textFieldValorAtributo = new JTextField();
 		textFieldValorAtributo.setVisible(false);
-		textFieldValorAtributo.setBounds(10, 207, 258, 19);
+		textFieldValorAtributo.setBounds(10, 271, 258, 19);
 		contentPane.add(textFieldValorAtributo);
 		textFieldValorAtributo.setColumns(10);
 
 		lblNombre = new JLabel("Introduzca el nombre de atributo\r\n");
 		lblNombre.setVisible(false);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNombre.setBounds(10, 121, 258, 13);
+		lblNombre.setBounds(10, 188, 258, 13);
 		contentPane.add(lblNombre);
 
 		textFieldNombre = new JTextField();
 		textFieldNombre.setVisible(false);
 		textFieldNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String atributoOtro = textFieldNombre.getText();
+				atributoOtro = textFieldNombre.getText();
 
 				if (!atributoOtro.equals("")) {
 					lblValor.setVisible(true);
@@ -245,14 +247,28 @@ public class VentanaModificarMedico extends JFrame {
 				}
 			}
 		});
-		textFieldNombre.setBounds(10, 145, 235, 19);
+		textFieldNombre.setBounds(10, 211, 258, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(41, 277, 390, 25);
+		lblMensaje.setBounds(92, 340, 337, 25);
 		contentPane.add(lblMensaje);
+		
+		
+		lblValorAntiguoAtributo = new JLabel("Valor antiguo del atributo seleccionado");
+		lblValorAntiguoAtributo.setVisible(false);
+		lblValorAntiguoAtributo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblValorAntiguoAtributo.setBounds(10, 125, 286, 30);
+		contentPane.add(lblValorAntiguoAtributo);
+		
+		textFieldValorAntiguo = new JTextField();
+		textFieldValorAntiguo.setVisible(false);
+		
+		textFieldValorAntiguo.setBounds(10, 159, 258, 19);
+		contentPane.add(textFieldValorAntiguo);
+		textFieldValorAntiguo.setColumns(10);
 
 	}
 }
