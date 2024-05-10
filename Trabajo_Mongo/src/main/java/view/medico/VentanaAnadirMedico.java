@@ -32,11 +32,10 @@ public class VentanaAnadirMedico extends JFrame {
 	private JLabel lblDNI, lblNombre, lblApellidos, lblEspecialidad, lblAnioExperiencia, lblMensaje;
 	private JButton btnCancelar, btnAceptar;
 	private MaskFormatter mascara;
-	private VentanaOpcionAnadirMedico vpm;
 	private MedicoController_Interfaz medico = new MedicoController_Interfaz();
 	JComboBox<String> comboBoxEspecialidades;
 	JFormattedTextField formattedFechaIncorporacion;
-	
+	VentanaPrincipalMedico principal;
 	/**
 	 * Launch the application.
 	 */
@@ -137,8 +136,8 @@ public class VentanaAnadirMedico extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vpm = new VentanaOpcionAnadirMedico();
-				vpm.setVisible(true);
+				principal = new VentanaPrincipalMedico();
+				principal.setVisible(true);
 				dispose();
 			}
 		});

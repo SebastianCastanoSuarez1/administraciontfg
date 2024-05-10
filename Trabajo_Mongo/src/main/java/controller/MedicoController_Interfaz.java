@@ -19,10 +19,79 @@ public class MedicoController_Interfaz {
 
 	}
 
-	public String findAtribtuto(String dni, String atrobuto) {
+	public String findDniPorNombre(String nombre) {
+		String medico = medicoRepositoryImpl.findDniPorNombre(nombre);
+		return medico;
+	}
 
-		String atributo = medicoRepositoryImpl.findAtributo(dni, atrobuto);
-		return atributo;
+	public String findNombrePorNombre(String nombre) {
+		String medico = medicoRepositoryImpl.findNombrePorNombre(nombre);
+		return medico;
+	}
+
+	public String findApellidosPorNombre(String nombre) {
+		String medico = medicoRepositoryImpl.findApellidosPorNombre(nombre);
+		return medico;
+	}
+
+	public String findEspecialidadPorNombre(String nombre) {
+		String medico = medicoRepositoryImpl.findEspecialidadPorNombre(nombre);
+		return medico;
+	}
+
+	public String findFechaIncorporacionPorNombre(String nombre) {
+		String medico = medicoRepositoryImpl.findFechaIncorporacionPorNombre(nombre);
+		return medico;
+	}
+
+	public String findDniPorDni(String nombre) {
+		String medico = medicoRepositoryImpl.findDniPorDni(nombre);
+		return medico;
+	}
+
+	public String findNombrePorDni(String nombre) {
+		String medico = medicoRepositoryImpl.findNombrePordni(nombre);
+		return medico;
+	}
+
+	public String findApellidosPorDni(String nombre) {
+		String medico = medicoRepositoryImpl.findApellidosPordni(nombre);
+		return medico;
+	}
+
+	public String findEspecialidadPorDni(String nombre) {
+		String medico = medicoRepositoryImpl.findEspecialidadPordni(nombre);
+		return medico;
+	}
+
+	public String findFechaIncoporacionPorDni(String nombre) {
+		String medico = medicoRepositoryImpl.findFechaIncorporacionPordni(nombre);
+		return medico;
+	}
+
+	public String findDniPorAtributo(String atributo, String valor) {
+		String medico = medicoRepositoryImpl.findDniPorAtributo(atributo, valor);
+		return medico;
+	}
+
+	public String findNombrePorAtributo(String atributo, String valor) {
+		String medico = medicoRepositoryImpl.findNombrePorAtributo(atributo, valor);
+		return medico;
+	}
+
+	public String findApellidosPorAtributo(String atributo, String valor) {
+		String medico = medicoRepositoryImpl.findApellidosPorAtributo(atributo, valor);
+		return medico;
+	}
+
+	public String findEspcialidadPorAtributo(String atributo, String valor) {
+		String medico = medicoRepositoryImpl.findEspecialidadPorAtributo(atributo, valor);
+		return medico;
+	}
+
+	public String findFechaIncorporacionPorAtributo(String atributo, String valor) {
+		String medico = medicoRepositoryImpl.findFechaIncorporacionPorAtributo(atributo, valor);
+		return medico;
 	}
 
 	public String getAllMedicos() {
@@ -32,12 +101,6 @@ public class MedicoController_Interfaz {
 		} else {
 			return medicoRepositoryImpl.mostrarMedicos(medicos);
 		}
-	}
-
-	public String findMedicoByNombre(String nombre) {
-		List<Document> medico = medicoRepositoryImpl.findByNombre(nombre);
-		return medicoRepositoryImpl.mostrarMedicos(medico);
-
 	}
 
 	public Optional<Document> comprobarDni(String dni) {
@@ -67,11 +130,6 @@ public class MedicoController_Interfaz {
 
 	public Boolean salvarMedico(Document medico) {
 		return medicoRepositoryImpl.save(medico);
-	}
-
-	public String findMedicoByAttribute(String atributo, String valor) {
-		List<Document> medicos = medicoRepositoryImpl.findByAttribute(atributo, valor);
-		return medicoRepositoryImpl.mostrarMedicos(medicos);
 	}
 
 	public String mostrar(List<Document> medicos) {

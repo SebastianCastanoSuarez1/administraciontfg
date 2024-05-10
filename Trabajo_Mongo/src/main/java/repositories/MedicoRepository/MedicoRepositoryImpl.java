@@ -29,7 +29,7 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 	MongoDatabase database = mongoClient.getDatabase("TrabajoMongo");
 	MongoCollection<Document> collection = database.getCollection("Medicos");
 	String dni = "Dni", nombre = "Nombre", apellidos = "Apellido", especialidad = "Especialidad",
-			año_experiencia = "Año_Experiencia";
+			fecha_incorporacion = "Fecha_Incorporacion";
 
 	@Override
 	public List<Document> findAll() {
@@ -50,12 +50,126 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		return documentList;
 	}
 
-	public String findAtributo(String medico, String atributo) {
-	    Bson projectionFields = Projections.fields(Projections.include(atributo), Projections.excludeId());
-	    Bson filter = eq(dni, medico);
-	    Document result = collection.find(filter).projection(projectionFields).first();
-	    String valor = result.getString(atributo);
-	    return valor;
+	public String findDniPorNombre(String paciente) {
+		Bson filter = eq(nombre, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(dni);
+		return (String) dniList;
+
+	}
+
+	public String findNombrePorNombre(String paciente) {
+		Bson filter = eq(nombre, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(nombre);
+		return (String) dniList;
+
+	}
+
+	public String findApellidosPorNombre(String paciente) {
+		Bson filter = eq(nombre, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(apellidos);
+		return (String) dniList;
+
+	}
+
+	public String findEspecialidadPorNombre(String paciente) {
+		Bson filter = eq(nombre, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(especialidad);
+		return (String) dniList;
+
+	}
+
+	public String findFechaIncorporacionPorNombre(String paciente) {
+		Bson filter = eq(nombre, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(fecha_incorporacion);
+		return (String) dniList;
+
+	}
+
+	public String findDniPorDni(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(dni);
+		return (String) dniList;
+
+	}
+
+	public String findNombrePordni(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(nombre);
+		return (String) dniList;
+
+	}
+
+	public String findApellidosPordni(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(apellidos);
+		return (String) dniList;
+
+	}
+
+	public String findEspecialidadPordni(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(especialidad);
+		return (String) dniList;
+
+	}
+
+	public String findFechaIncorporacionPordni(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(fecha_incorporacion);
+		return (String) dniList;
+
+	}
+
+	public String findDniPorAtributo(String atributo, String valor) {
+		Bson filter = eq(atributo, valor);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(dni);
+		return (String) dniList;
+
+	}
+
+	public String findNombrePorAtributo(String atributo, String valor) {
+		Bson filter = eq(atributo, valor);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(nombre);
+		return (String) dniList;
+
+	}
+
+	public String findApellidosPorAtributo(String atributo, String valor) {
+		Bson filter = eq(atributo, valor);
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(apellidos);
+		return (String) dniList;
+
+	}
+
+	public String findEspecialidadPorAtributo(String atributo, String valor) {
+		Bson filter = eq(atributo, valor);
+
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(especialidad);
+		return (String) dniList;
+
+	}
+
+	public String findFechaIncorporacionPorAtributo(String atributo, String valor) {
+		Bson filter = eq(atributo, valor);
+
+		Document result = collection.find(filter).first();
+		Object dniList = result.get(fecha_incorporacion);
+		return (String) dniList;
+
 	}
 
 	public String pretty(String json) {
@@ -109,15 +223,6 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		Bson projectionFields = Projections.excludeId();
 		Document result = collection.find(filter).projection(projectionFields).first();
 		return Optional.ofNullable(result);
-	}
-
-	public List<Document> findByNombre(String nombre) {
-
-		Bson filter = eq("Nombre", nombre);
-		Bson projectionFields = Projections.excludeId();
-
-		List<Document> results = collection.find(filter).projection(projectionFields).into(new ArrayList<>());
-		return results;
 	}
 
 	@Override
@@ -186,7 +291,7 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 
 			if (medico.isPresent()) {
 				Document filter = medico.get(); // filtro para seleccionar el documento a actualizar
-	            collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pushEach(atributo, valor));
+				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pushEach(atributo, valor));
 				return true;
 			} else {
 				return false;
@@ -197,11 +302,5 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		}
 	}
 
-	public List<Document> findByAttribute(String atributo, String valor) {
-		Bson filter = eq(atributo, valor);
-		Bson projectionFields = Projections.excludeId();
-		List<Document> results = collection.find(filter).projection(projectionFields).into(new ArrayList<>());
-		return results;
-	}
 
 }

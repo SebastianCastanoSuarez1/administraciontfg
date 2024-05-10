@@ -83,7 +83,7 @@ public class VentanaModificarMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dni = formattedDni.getText();
 				atributo = comboBoxAtributo.getSelectedItem().toString();
-				valor = medicoInterfaz.findAtribtuto(dni, atributo);
+				//valor = medicoInterfaz.findAtribtuto(dni, atributo);
 				if (atributo.equals("Otro")) {
 					lblNombre.setVisible(true);
 					textFieldNombre.setVisible(true);

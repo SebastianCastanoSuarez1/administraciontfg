@@ -36,6 +36,7 @@ public class VentanaAñadirHistorialMedico extends JFrame {
 	private VentanaEnfermedades ven;
 	private JButton btnComprobar, btnAceptarEnfermedades, btnAceptar, btnCancelar;
 	private JTextField textFieldMedicamentos, textFieldAlergenos;
+	VentanaPrincipalPaciente vp;
 	/**
 	 * Launch the application.
 	 */
@@ -249,8 +250,8 @@ public class VentanaAñadirHistorialMedico extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btnCancelar == e.getSource()) {
-					VentanaOpcionAnadirPaciente voa = new VentanaOpcionAnadirPaciente();
-					voa.setVisible(true);
+					vp = new VentanaPrincipalPaciente();
+					vp.setVisible(true);
 					dispose();
 				}
 			}

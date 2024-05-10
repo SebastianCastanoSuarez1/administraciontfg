@@ -30,15 +30,14 @@ public class VentanaAgregarPaciente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblDNI, lblNombre, lblApellidos, lblFechaDeNacimiento, lblSexo, lblLugarDeNacimiento, lblAltura,
-			lblPeso, lblGrupoSanguineo, lblEnfermedad, lblTipo, lblMensaje;
+			lblPeso, lblGrupoSanguineo, lblMensaje;
 	private MaskFormatter mascara;
 	private JFormattedTextField formattedDni;
 	private JTextField textFieldNombre, textFieldApellidos, textFieldLugarNacimiento, textFieldAltura, textFieldPeso;
 	private JFormattedTextField formattedFechaNacimiento;
-	private JComboBox<String> comboBoxSexo, comboBoxGrupoSanguineo, comboBoxEnfermedad, comboBoxTipo;
+	private JComboBox<String> comboBoxSexo, comboBoxGrupoSanguineo;
 	private JButton btnAceptar, btnCancelar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	VentanaOpcionAnadirPaciente voa;
 	VentanaPrincipalPaciente vp;
 
 	/**
@@ -116,16 +115,6 @@ public class VentanaAgregarPaciente extends JFrame {
 		lblGrupoSanguineo.setBounds(10, 134, 138, 21);
 		contentPane.add(lblGrupoSanguineo);
 
-		lblEnfermedad = new JLabel("Enfermedad");
-		lblEnfermedad.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEnfermedad.setBounds(234, 134, 89, 21);
-		contentPane.add(lblEnfermedad);
-
-		lblTipo = new JLabel("Tipo");
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipo.setBounds(234, 165, 49, 21);
-		contentPane.add(lblTipo);
-
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -200,63 +189,6 @@ public class VentanaAgregarPaciente extends JFrame {
 				new String[] { "", "A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-" }));
 		comboBoxGrupoSanguineo.setBounds(125, 135, 95, 21);
 		contentPane.add(comboBoxGrupoSanguineo);
-
-		comboBoxEnfermedad = new JComboBox<String>();
-		comboBoxEnfermedad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enfermedad = comboBoxEnfermedad.getSelectedItem().toString();
-				switch (enfermedad) {
-				case "Mental":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] { "Depresion", "Ansiedad",
-							"Tourette", "Estres postraumatico", "Trastorno obsesivo-compulsivo", "Ictus" }));
-					break;
-				case "Hormonal":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] { "Diabetes", "Hipertiroidismo",
-							"Hipotiroidismo", "Síndrome del ovario poliquístico", "Enfermedad de Addison",
-							"Enfermedad de Graves" }));
-					break;
-				case "Respiratoria":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] { "Tuberculosis", "Asma",
-							"Asbestosis", "Bronquiolitis", "Bronquitis", "Enfisema", "Empiema" }));
-					break;
-				case "Cancer":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] { "Pulmon", "Piel", "Prostata",
-							"Higado", "Pancreas", "Mama", "Celebral", "Oseo" }));
-					break;
-				case "Dermatologica":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] { "Dermatitis atopica",
-							"Psoriasis", "Acne", "Onicomicosis", "Vitíligo", "Queratosis actínica" }));
-					break;
-				case "Digestiva":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(
-							new String[] { "Dispepsia", "Enfermedad por reflujo gastroesofágico", "Enfermedad celiaca",
-									"Síndrome del intestino irritable", "Colitis ulcerosa", "Gastritis", "Ulceras" }));
-					break;
-				case "Oftalmologica":
-					comboBoxTipo.setModel(
-							new DefaultComboBoxModel<String>(new String[] { "Ambliopía", "Astigmatismo", "Cataratas",
-									"Daltonismo", "Retinopatía diabética", "Síndrome del ojo seco", "Miodesopsias" }));
-					break;
-				case "Cardiocirculatoria":
-					comboBoxTipo.setModel(new DefaultComboBoxModel<String>(
-							new String[] { "Anemia", "Hemofilia", "Leucemia", "Infarto de miocardio", "Angina de pecho",
-									"Insuficiencia cardiaca", "Trastornos del ritmo cardiaco" }));
-					break;
-				default:
-					break;
-
-				}
-			}
-		});
-		comboBoxEnfermedad.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Mental", "Hormonal",
-				"Respiratoria", "Cancer", "Dermatologica", "Digestiva", "Oftalmologica", "Cardiocirculatoria" }));
-		comboBoxEnfermedad.setBounds(312, 135, 119, 21);
-		contentPane.add(comboBoxEnfermedad);
-
-		comboBoxTipo = new JComboBox<String>();
-
-		comboBoxTipo.setBounds(316, 165, 115, 21);
-		contentPane.add(comboBoxTipo);
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -275,9 +207,7 @@ public class VentanaAgregarPaciente extends JFrame {
 								textFieldNombre.getText(), textFieldApellidos.getText(),
 								formattedFechaNacimiento.getText(), comboBoxSexo.getSelectedItem().toString(),
 								textFieldLugarNacimiento.getText(), textFieldAltura.getText(), textFieldPeso.getText(),
-								comboBoxGrupoSanguineo.getSelectedItem().toString(),
-								comboBoxEnfermedad.getSelectedItem().toString(),
-								comboBoxTipo.getSelectedItem().toString());
+								comboBoxGrupoSanguineo.getSelectedItem().toString());
 						Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
 						if (anadido == true) {
 							lblMensaje.setText("El paciente ha sido añadido con exito");
@@ -299,8 +229,8 @@ public class VentanaAgregarPaciente extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				voa = new VentanaOpcionAnadirPaciente();
-				voa.setVisible(true);
+				vp = new VentanaPrincipalPaciente();
+				vp.setVisible(true);
 				dispose();
 			}
 		});

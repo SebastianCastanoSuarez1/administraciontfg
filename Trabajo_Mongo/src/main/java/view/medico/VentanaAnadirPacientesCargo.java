@@ -32,7 +32,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	JButton btnComprobar, btnCancelar, btnAceptar;
 	JLabel lblDNI, lblDniPacientes, lblMensaje, lblFormato;
 	MaskFormatter mascara;
-	VentanaOpcionAnadirMedico voam;
+	VentanaPrincipalMedico principal;
 	MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
 	Controller_Interfaz pacienteController = new Controller_Interfaz();
 
@@ -116,8 +116,8 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				voam = new VentanaOpcionAnadirMedico();
-				voam.setVisible(true);
+				principal = new VentanaPrincipalMedico();
+				principal.setVisible(true);
 				dispose();
 			}
 		});
