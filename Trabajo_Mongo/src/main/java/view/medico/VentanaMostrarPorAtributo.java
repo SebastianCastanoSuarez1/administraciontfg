@@ -15,23 +15,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import controller.Controller_Interfaz;
+import controller.MedicoController_Interfaz;
 
 public class VentanaMostrarPorAtributo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldFechaNacimiento, textFieldSexo;
-	JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
-	private Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private JLabel lblLugarDeNacimiento;
-	private JTextField textFieldLugarNacimiento;
-	private JLabel lblAltura;
-	private JTextField textFieldAltura;
-	private JLabel lblPeso;
-	private JTextField textFieldPeso;
-	private JLabel lblGrupoSanguineo;
-	private JTextField textFieldGrupoSanguineo;
+	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldEspecialidad, textFieldFechaIncorporacion;
+	JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private MedicoController_Interfaz controllerInterfaz = new MedicoController_Interfaz();
 	private MaskFormatter mascara;
 	private JTextField textFieldAtributo;
 	private JTextField textFieldValor;
@@ -87,15 +79,15 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		lblApellidos.setBounds(95, 194, 62, 22);
 		contentPane.add(lblApellidos);
 
-		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
-		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaNacimiento.setBounds(95, 226, 119, 22);
-		contentPane.add(lblFechaNacimiento);
+		lblEspecialidad = new JLabel("Especialidad:");
+		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEspecialidad.setBounds(95, 226, 119, 22);
+		contentPane.add(lblEspecialidad);
 
-		lblSexo = new JLabel("Sexo:");
-		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSexo.setBounds(95, 258, 119, 19);
-		contentPane.add(lblSexo);
+		lblFechaIncorporacion = new JLabel("Fecha incorporacion:");
+		lblFechaIncorporacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblFechaIncorporacion.setBounds(95, 258, 119, 19);
+		contentPane.add(lblFechaIncorporacion);
 
 		try {
 			mascara = new MaskFormatter("########?");
@@ -125,63 +117,19 @@ public class VentanaMostrarPorAtributo extends JFrame {
 
 		contentPane.add(textFieldApellidos);
 
-		textFieldFechaNacimiento = new JTextField();
-		textFieldFechaNacimiento.setEditable(false);
-		textFieldFechaNacimiento.setColumns(10);
-		textFieldFechaNacimiento.setBounds(233, 229, 180, 19);
+		textFieldEspecialidad = new JTextField();
+		textFieldEspecialidad.setEditable(false);
+		textFieldEspecialidad.setColumns(10);
+		textFieldEspecialidad.setBounds(233, 229, 180, 19);
 
-		contentPane.add(textFieldFechaNacimiento);
+		contentPane.add(textFieldEspecialidad);
 
-		textFieldSexo = new JTextField();
-		textFieldSexo.setEditable(false);
-		textFieldSexo.setColumns(10);
-		textFieldSexo.setBounds(233, 259, 180, 19);
+		textFieldFechaIncorporacion = new JTextField();
+		textFieldFechaIncorporacion.setEditable(false);
+		textFieldFechaIncorporacion.setColumns(10);
+		textFieldFechaIncorporacion.setBounds(233, 259, 180, 19);
 
-		contentPane.add(textFieldSexo);
-
-		lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento:");
-		lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblLugarDeNacimiento.setBounds(95, 287, 119, 19);
-		contentPane.add(lblLugarDeNacimiento);
-
-		textFieldLugarNacimiento = new JTextField();
-		textFieldLugarNacimiento.setEditable(false);
-		textFieldLugarNacimiento.setColumns(10);
-		textFieldLugarNacimiento.setBounds(233, 288, 180, 19);
-		contentPane.add(textFieldLugarNacimiento);
-
-		lblAltura = new JLabel("Altura:");
-		lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAltura.setBounds(95, 322, 119, 19);
-		contentPane.add(lblAltura);
-
-		textFieldAltura = new JTextField();
-		textFieldAltura.setEditable(false);
-		textFieldAltura.setColumns(10);
-		textFieldAltura.setBounds(233, 323, 180, 19);
-		contentPane.add(textFieldAltura);
-
-		lblPeso = new JLabel("Peso:");
-		lblPeso.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblPeso.setBounds(95, 351, 119, 19);
-		contentPane.add(lblPeso);
-
-		textFieldPeso = new JTextField();
-		textFieldPeso.setEditable(false);
-		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(233, 352, 180, 19);
-		contentPane.add(textFieldPeso);
-
-		lblGrupoSanguineo = new JLabel("Grupo sanguineo:");
-		lblGrupoSanguineo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblGrupoSanguineo.setBounds(95, 382, 119, 19);
-		contentPane.add(lblGrupoSanguineo);
-
-		textFieldGrupoSanguineo = new JTextField();
-		textFieldGrupoSanguineo.setEditable(false);
-		textFieldGrupoSanguineo.setColumns(10);
-		textFieldGrupoSanguineo.setBounds(233, 383, 180, 19);
-		contentPane.add(textFieldGrupoSanguineo);
+		contentPane.add(textFieldFechaIncorporacion);
 		
 		textFieldAtributo = new JTextField();
 		textFieldAtributo.addActionListener(new ActionListener() {
@@ -205,12 +153,9 @@ public class VentanaMostrarPorAtributo extends JFrame {
 				textFieldDni.setText(controllerInterfaz.findDniPorAtributo(atributo,valor));
 				textFieldNombre.setText(controllerInterfaz.findNombrePorAtributo(atributo,valor));
 				textFieldApellidos.setText(controllerInterfaz.findApellidosPorAtributo(atributo,valor));
-				textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorAtributo(atributo,valor));
-				textFieldSexo.setText(controllerInterfaz.findSexoPorAtributo(atributo,valor));
-				textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorAtributo(atributo,valor));
-				textFieldAltura.setText(controllerInterfaz.findAlturaPorAtributo(atributo,valor)+"");
-				textFieldPeso.setText(controllerInterfaz.findPesoPorAtributo(atributo,valor)+"");
-				textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorAtributo(atributo,valor));
+				textFieldEspecialidad.setText(controllerInterfaz.findEspcialidadPorAtributo(atributo,valor));
+				textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncorporacionPorAtributo(atributo,valor));
+				
 			}
 		});
 		textFieldValor.setVisible(false);

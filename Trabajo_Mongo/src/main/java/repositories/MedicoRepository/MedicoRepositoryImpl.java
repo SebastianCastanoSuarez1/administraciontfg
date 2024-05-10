@@ -28,7 +28,7 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 	MongoClient mongoClient = MongoDB.getClient();
 	MongoDatabase database = mongoClient.getDatabase("TrabajoMongo");
 	MongoCollection<Document> collection = database.getCollection("Medicos");
-	String dni = "Dni", nombre = "Nombre", apellidos = "Apellido", especialidad = "Especialidad",
+	String dni = "Dni", nombre = "Nombre", apellidos = "Apellidos", especialidad = "Especialidad",
 			fecha_incorporacion = "Fecha_Incorporacion";
 
 	@Override

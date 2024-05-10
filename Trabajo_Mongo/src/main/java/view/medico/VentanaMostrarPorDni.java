@@ -1,39 +1,30 @@
 package view.medico;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import controller.Controller_Interfaz;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JButton;
+import controller.MedicoController_Interfaz;
 
 public class VentanaMostrarPorDni extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldFechaNacimiento, textFieldSexo;
-	JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
-	private Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private JLabel lblLugarDeNacimiento;
-	private JTextField textFieldLugarNacimiento;
-	private JLabel lblAltura;
-	private JTextField textFieldAltura;
-	private JLabel lblPeso;
-	private JTextField textFieldPeso;
-	private JLabel lblGrupoSanguineo;
-	private JTextField textFieldGrupoSanguineo;
+	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldEspecialidad, textFieldFechaIncorporacion;
+	JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private MedicoController_Interfaz controllerInterfaz = new MedicoController_Interfaz();
 	JFormattedTextField formattedTextFieldDni;
 	private MaskFormatter mascara;
 	JButton btnVolver;
@@ -88,15 +79,15 @@ public class VentanaMostrarPorDni extends JFrame {
 		lblApellidos.setBounds(93, 184, 62, 22);
 		contentPane.add(lblApellidos);
 
-		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
-		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaNacimiento.setBounds(93, 216, 119, 22);
-		contentPane.add(lblFechaNacimiento);
+		lblEspecialidad = new JLabel("Especialdad:");
+		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEspecialidad.setBounds(93, 216, 119, 22);
+		contentPane.add(lblEspecialidad);
 
-		lblSexo = new JLabel("Sexo:");
-		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSexo.setBounds(93, 248, 119, 19);
-		contentPane.add(lblSexo);
+		lblFechaIncorporacion = new JLabel("Fecha incorporacion:");
+		lblFechaIncorporacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblFechaIncorporacion.setBounds(93, 248, 119, 19);
+		contentPane.add(lblFechaIncorporacion);
 
 		try {
 			mascara = new MaskFormatter("########?");
@@ -108,12 +99,8 @@ public class VentanaMostrarPorDni extends JFrame {
 					textFieldDni.setText(controllerInterfaz.findDniPorDni(nombre));
 					textFieldNombre.setText(controllerInterfaz.findNombrePorDni(nombre));
 					textFieldApellidos.setText(controllerInterfaz.findApellidosPorDni(nombre));
-					textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorDni(nombre));
-					textFieldSexo.setText(controllerInterfaz.findSexoPorDni(nombre));
-					textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorDni(nombre));
-					textFieldAltura.setText(controllerInterfaz.findAlturaPorDni(nombre)+"");
-					textFieldPeso.setText(controllerInterfaz.findPesoPorDni(nombre)+"");
-					textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorDni(nombre));
+					textFieldEspecialidad.setText(controllerInterfaz.findEspecialidadPorDni(nombre));
+					textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncoporacionPorDni(nombre));
 					
 				}
 			});
@@ -144,63 +131,19 @@ public class VentanaMostrarPorDni extends JFrame {
 
 		contentPane.add(textFieldApellidos);
 
-		textFieldFechaNacimiento = new JTextField();
-		textFieldFechaNacimiento.setEditable(false);
-		textFieldFechaNacimiento.setColumns(10);
-		textFieldFechaNacimiento.setBounds(231, 219, 180, 19);
+		textFieldEspecialidad = new JTextField();
+		textFieldEspecialidad.setEditable(false);
+		textFieldEspecialidad.setColumns(10);
+		textFieldEspecialidad.setBounds(231, 219, 180, 19);
 
-		contentPane.add(textFieldFechaNacimiento);
+		contentPane.add(textFieldEspecialidad);
 
-		textFieldSexo = new JTextField();
-		textFieldSexo.setEditable(false);
-		textFieldSexo.setColumns(10);
-		textFieldSexo.setBounds(231, 249, 180, 19);
+		textFieldFechaIncorporacion = new JTextField();
+		textFieldFechaIncorporacion.setEditable(false);
+		textFieldFechaIncorporacion.setColumns(10);
+		textFieldFechaIncorporacion.setBounds(231, 249, 180, 19);
 
-		contentPane.add(textFieldSexo);
-
-		lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento:");
-		lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblLugarDeNacimiento.setBounds(93, 277, 119, 19);
-		contentPane.add(lblLugarDeNacimiento);
-
-		textFieldLugarNacimiento = new JTextField();
-		textFieldLugarNacimiento.setEditable(false);
-		textFieldLugarNacimiento.setColumns(10);
-		textFieldLugarNacimiento.setBounds(231, 278, 180, 19);
-		contentPane.add(textFieldLugarNacimiento);
-
-		lblAltura = new JLabel("Altura:");
-		lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAltura.setBounds(93, 312, 119, 19);
-		contentPane.add(lblAltura);
-
-		textFieldAltura = new JTextField();
-		textFieldAltura.setEditable(false);
-		textFieldAltura.setColumns(10);
-		textFieldAltura.setBounds(231, 313, 180, 19);
-		contentPane.add(textFieldAltura);
-
-		lblPeso = new JLabel("Peso:");
-		lblPeso.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblPeso.setBounds(93, 341, 119, 19);
-		contentPane.add(lblPeso);
-
-		textFieldPeso = new JTextField();
-		textFieldPeso.setEditable(false);
-		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(231, 342, 180, 19);
-		contentPane.add(textFieldPeso);
-
-		lblGrupoSanguineo = new JLabel("Grupo sanguineo:");
-		lblGrupoSanguineo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblGrupoSanguineo.setBounds(93, 372, 119, 19);
-		contentPane.add(lblGrupoSanguineo);
-
-		textFieldGrupoSanguineo = new JTextField();
-		textFieldGrupoSanguineo.setEditable(false);
-		textFieldGrupoSanguineo.setColumns(10);
-		textFieldGrupoSanguineo.setBounds(231, 373, 180, 19);
-		contentPane.add(textFieldGrupoSanguineo);
+		contentPane.add(textFieldFechaIncorporacion);
 		
 		btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
