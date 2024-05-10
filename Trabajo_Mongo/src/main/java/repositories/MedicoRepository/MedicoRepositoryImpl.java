@@ -18,6 +18,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 
 import db.MongoDB;
@@ -180,13 +181,12 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		}
 	}
 
-	public Boolean updatePacientesCargo(Optional<Document> medico, Document historial) {
+	public Boolean updatePacientesCargo(Optional<Document> medico, String atributo, List<String> valor) {
 		try {
 
 			if (medico.isPresent()) {
 				Document filter = medico.get(); // filtro para seleccionar el documento a actualizar
-				Document update = new Document("$set", new Document(historial));
-				collection.updateOne(filter, update);
+	            collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pushEach(atributo, valor));
 				return true;
 			} else {
 				return false;

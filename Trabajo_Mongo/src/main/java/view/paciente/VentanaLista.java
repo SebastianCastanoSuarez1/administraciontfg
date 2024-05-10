@@ -24,18 +24,12 @@ public class VentanaLista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private MaskFormatter mascara;
-	private JLabel lblDNI;
-	private JButton btnComprobar;
 	private JFormattedTextField formattedDni;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private JLabel lblNombreAtributo;
-	private JTextField textFieldNombreAtributo;
-	private JTextField textFieldLista;
-	private JLabel lblLista;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
+	private JLabel lblDNI, lblNombreAtributo, lblLista, lblMensaje, lblFormato;
+	private JTextField textFieldNombreAtributo, textFieldLista;
+	private JButton btnComprobar, btnCancelar, btnAceptar;
 	private VentanaOpcionAnadirPaciente voa;
-	private JLabel lblMensaje;
 	/**
 	 * Launch the application.
 	 */
@@ -58,7 +52,7 @@ public class VentanaLista extends JFrame {
 	public VentanaLista() {
 		setBackground(new Color(230, 230, 250));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 489, 341);
+		setBounds(100, 100, 492, 337);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,20 +112,20 @@ public class VentanaLista extends JFrame {
     			}
     		});
     		textFieldNombreAtributo.setVisible(false);
-    		textFieldNombreAtributo.setBounds(233, 75, 182, 34);
+    		textFieldNombreAtributo.setBounds(259, 75, 182, 34);
     		contentPane.add(textFieldNombreAtributo);
     		textFieldNombreAtributo.setColumns(10);
     		
     		lblLista = new JLabel("Introduzca la lista de los valores\r\n");
     		lblLista.setVisible(false);
     		lblLista.setFont(new Font("Tahoma", Font.PLAIN, 14));
-    		lblLista.setBounds(10, 133, 213, 27);
+    		lblLista.setBounds(10, 142, 213, 27);
     		contentPane.add(lblLista);
     		
     		textFieldLista = new JTextField();
     		textFieldLista.setVisible(false);
     		textFieldLista.setColumns(10);
-    		textFieldLista.setBounds(233, 132, 182, 34);
+    		textFieldLista.setBounds(259, 141, 182, 34);
     		contentPane.add(textFieldLista);
     		
     		btnCancelar = new JButton("Cancelar\r\n");
@@ -143,7 +137,7 @@ public class VentanaLista extends JFrame {
     			}
     		});
     		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-    		btnCancelar.setBounds(98, 196, 103, 34);
+    		btnCancelar.setBounds(102, 219, 103, 34);
     		contentPane.add(btnCancelar);
     		
     		btnAceptar = new JButton("Aceptar");
@@ -166,13 +160,18 @@ public class VentanaLista extends JFrame {
     			}
     		});
     		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-    		btnAceptar.setBounds(245, 196, 103, 34);
+    		btnAceptar.setBounds(249, 219, 103, 34);
     		contentPane.add(btnAceptar);
     		
     		lblMensaje = new JLabel("");
     		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-    		lblMensaje.setBounds(39, 254, 415, 40);
+    		lblMensaje.setBounds(26, 263, 415, 27);
     		contentPane.add(lblMensaje);
+    		
+    		lblFormato = new JLabel("De esta forma \"valor\" espacio \"valor\"");
+    		lblFormato.setFont(new Font("Tahoma", Font.PLAIN, 12));
+    		lblFormato.setBounds(10, 166, 213, 15);
+    		contentPane.add(lblFormato);
 
     		
     		

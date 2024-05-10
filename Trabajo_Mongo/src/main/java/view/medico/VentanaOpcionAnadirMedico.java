@@ -18,12 +18,7 @@ public class VentanaOpcionAnadirMedico extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	JLabel lblNewLabel;
-	JButton btnAadirNuevoMedico;
-	JButton btnAnadirAtributo;
-	JButton btnAadirPacientesA;
-	JButton btnSalir;
-	JButton btnAadirComponete;
-	JButton btnAnadirLista;
+	JButton btnAadirNuevoMedico, btnAnadirAtributo, btnAadirPacientesA, btnSalir, btnAadirComponete, btnAnadirLista;
 	VentanaPrincipalMedico vpm;
 	VentanaAnadirMedico vam;
 	VentanaAnadirAtributoNuevoMedico vaanm;

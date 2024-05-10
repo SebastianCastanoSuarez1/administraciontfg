@@ -18,15 +18,11 @@ public class VentanaPrincipalPaciente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnAgregar;
-	private JButton btnEliminarPaciente;
-	private JButton btnModificar;
-	private JButton btnMostrar;
+	private JButton btnAgregar, btnEliminarPaciente, btnModificar, btnMostrar, btnCancelar;
 	private VentanaOpcionAnadirPaciente voa;
 	private VentanaMostrarPaciente vmp;
 	private VentanaModificarPaciente vmop;
 	private VentanaEliminarPaciente vep;
-	private JButton btnCancelar;
 	private VentanaPrincipalAdministrador vp;
 
 	

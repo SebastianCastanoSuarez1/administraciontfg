@@ -27,21 +27,12 @@ public class VentanaEnfermedades extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel lblEnfermedad;
-	private JTextField textFieldEnfermedad;
-	private JLabel lblFecha;
-	private JLabel lblDetalles;
 	private JComboBox<String> comboBoxDetalles;
 	private MaskFormatter mascara;
 	private JFormattedTextField formattedFecha;
-	private JButton btnCancelar;
-	private JButton btnAcepatr;
-	private JLabel lblTratamiento;
-	private JTextField textFieldTratamiento;
-	private JLabel lblMedicamentos;
-	private JTextField textFieldMedicamentos;
-	private JTextField textFieldinforme;
-	private JLabel lblInforme;
+	private JButton btnCancelar, btnAcepatr;
+	private JLabel lblEnfermedad, lblFecha, lblDetalles, lblTratamiento, lblMedicamentos, lblInforme;
+	private JTextField textFieldEnfermedad, textFieldTratamiento, textFieldMedicamentos, textFieldinforme;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaAñadirHistorialMedico vah = new VentanaAñadirHistorialMedico();
 

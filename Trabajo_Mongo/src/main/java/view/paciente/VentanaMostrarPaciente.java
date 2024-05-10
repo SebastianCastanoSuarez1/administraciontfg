@@ -28,18 +28,12 @@ public class VentanaMostrarPaciente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private JButton btnMostrarTodo;
-	private JButton btnMostrarPorNombre;
-	private JButton btnMostrarPorDni;
+	private JButton btnMostrarTodo, btnMostrarPorNombre, btnMostrarPorDni, btnCancelar, btnBuscarAtributo;
 	private JLabel lblMensaje;
-	private JButton btnCancelar;
 	private VentanaPrincipalPaciente vp;
 	private JScrollPane scrollPaneMostrar;
 	private JTextArea textAreaMostrar;
-	private JTextField textFieldEscribirNombre;
-	private JTextField textFieldAtributo;
-	private JTextField textFieldValor;
-	private JButton btnBuscarAtributo;
+	private JTextField textFieldEscribirNombre, textFieldAtributo, textFieldValor;
 	MaskFormatter mascara;
 	JFormattedTextField formattedDNI;
 	/**
@@ -94,7 +88,6 @@ public class VentanaMostrarPaciente extends JFrame {
 		btnMostrarPorNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btnMostrarPorNombre == e.getSource()) {
-					lblMensaje.setText("Introduzca el nombre");
 					lblMensaje.setVisible(true);
 					textFieldEscribirNombre.setVisible(true);
 					textFieldEscribirNombre.setText("");

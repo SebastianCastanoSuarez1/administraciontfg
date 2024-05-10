@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Optional;
 
@@ -29,22 +28,15 @@ public class VentanaAnadirMedico extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFormattedTextField formattedDni;
-	private JTextField textFieldNombre;
-	private JTextField textFieldApellidos;
-	private JLabel lblDNI;
-	private JLabel lblNombre;
-	private JLabel lblApellidos;
-	private JLabel lblEspecialidad;
-	private JLabel lblAnioExperiencia;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
-	private JLabel lblMensaje;
+	private JTextField textFieldNombre, textFieldApellidos;
+	private JLabel lblDNI, lblNombre, lblApellidos, lblEspecialidad, lblAnioExperiencia, lblMensaje;
+	private JButton btnCancelar, btnAceptar;
 	private MaskFormatter mascara;
 	private VentanaOpcionAnadirMedico vpm;
 	private MedicoController_Interfaz medico = new MedicoController_Interfaz();
 	JComboBox<String> comboBoxEspecialidades;
 	JFormattedTextField formattedFechaIncorporacion;
-	DateFormat format;
+	
 	/**
 	 * Launch the application.
 	 */

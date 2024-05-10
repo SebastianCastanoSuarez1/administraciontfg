@@ -28,17 +28,14 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDniPacientes;
-	JLabel lblDNI;
 	JFormattedTextField formattedDni;
-	JButton btnComprobar;
-	JLabel lblDniPacientes;
-	JButton btnCancelar;
-	JButton btnAceptar;
-	JLabel lblMensaje;
+	JButton btnComprobar, btnCancelar, btnAceptar;
+	JLabel lblDNI, lblDniPacientes, lblMensaje, lblFormato;
 	MaskFormatter mascara;
 	VentanaOpcionAnadirMedico voam;
 	MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
 	Controller_Interfaz pacienteController = new Controller_Interfaz();
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,19 +57,19 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	 */
 	public VentanaAnadirPacientesCargo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 513, 345);
+		setBounds(100, 100, 534, 363);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblDNI.setBounds(57, 37, 34, 21);
 		contentPane.add(lblDNI);
-		
+
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -82,7 +79,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		btnComprobar = new JButton("Comprobar");
 		btnComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,8 +87,9 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 
 				if (medicos.isPresent()) {
 					lblDniPacientes.setVisible(true);
+					lblFormato.setVisible(true);
 					textFieldDniPacientes.setVisible(true);
-					
+
 				} else {
 					String mensaje = "El medico con DNI " + formattedDni.getText() + " no existe ";
 					JOptionPane.showMessageDialog(null, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -101,19 +99,19 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnComprobar.setBounds(335, 37, 113, 25);
 		contentPane.add(btnComprobar);
-		
+
 		lblDniPacientes = new JLabel("Introduzca los DNI de los pacientes\r\n");
 		lblDniPacientes.setVisible(false);
 		lblDniPacientes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDniPacientes.setBounds(29, 120, 210, 21);
+		lblDniPacientes.setBounds(35, 120, 210, 21);
 		contentPane.add(lblDniPacientes);
-		
+
 		textFieldDniPacientes = new JTextField();
 		textFieldDniPacientes.setVisible(false);
-		textFieldDniPacientes.setBounds(269, 120, 150, 21);
+		textFieldDniPacientes.setBounds(298, 121, 150, 21);
 		contentPane.add(textFieldDniPacientes);
 		textFieldDniPacientes.setColumns(10);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCancelar.addActionListener(new ActionListener() {
@@ -123,40 +121,45 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(91, 214, 95, 28);
+		btnCancelar.setBounds(144, 216, 95, 28);
 		contentPane.add(btnCancelar);
-		
+
 		btnAceptar = new JButton("Aceptar\r\n");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Optional<Document> medico = medicoController.findByDni(formattedDni.getText());
 				String dniMedico = formattedDni.getText();
-		        String pacientes = textFieldDniPacientes.getText();
-		        String[] pacientesCargo = pacientes.split(" "); 
-		        pacienteController.anadirDniMedico(pacientesCargo, dniMedico);
+				String pacientes = textFieldDniPacientes.getText();
+				String[] pacientesCargo = pacientes.split(" ");
+				pacienteController.anadirDniMedico(pacientesCargo, dniMedico);
 
-		        
-		        if(btnAceptar == e.getSource()) {
-		            Boolean anadido = medicoController.crearPacientesCargo(medico, pacientesCargo);
-		           
-		            if(anadido == true) {
+				if (btnAceptar == e.getSource()) {
+					Boolean anadido = medicoController.crearPacientesCargo(medico, pacientesCargo);
+
+					if (anadido == true) {
 						lblMensaje.setText("El medico ha sido actualizado con exito");
 						lblMensaje.setForeground(Color.GREEN);
-					}else {
+					} else {
 						lblMensaje.setText("El medico no ha sido actualizado con exito");
 						lblMensaje.setForeground(Color.RED);
 					}
 
-		        }
+				}
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(268, 214, 95, 28);
+		btnAceptar.setBounds(303, 216, 95, 28);
 		contentPane.add(btnAceptar);
-		
+
 		lblMensaje = new JLabel("\r\n");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(91, 270, 304, 28);
+		lblMensaje.setBounds(115, 273, 304, 28);
 		contentPane.add(lblMensaje);
+		
+		lblFormato = new JLabel("en este formato DNI espacio DNI");
+		lblFormato.setVisible(false);
+		lblFormato.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblFormato.setBounds(35, 140, 210, 13);
+		contentPane.add(lblFormato);
 	}
 }

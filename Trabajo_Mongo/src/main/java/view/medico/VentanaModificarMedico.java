@@ -23,32 +23,24 @@ import javax.swing.text.MaskFormatter;
 import org.bson.Document;
 
 import controller.MedicoController_Interfaz;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class VentanaModificarMedico extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> comboBoxAtributo;
-	private JLabel lblValor;
 	private JFormattedTextField formattedDni;
-	private JButton btnComprobar;
 	private final MedicoController_Interfaz medicoInterfaz = new MedicoController_Interfaz();
 	private MaskFormatter mascara;
-	private JLabel lblDNI;
-	private JLabel lblTexto;
-	private JButton btnCancelar;
-	private JButton btnGuardar;
+	private JLabel lblNombre, lblMensaje, lblDNI, lblTexto, lblValor;
+	private JButton btnCancelar, btnGuardar, btnComprobar;
+	private JTextField textFieldValorAtributo, textFieldNombre;
+	String atributo, dni, valor,atributoOtro;
+	JScrollPane scrollPaneMostrar;
+	JTextArea textAreaMostrar;
 	private VentanaPrincipalMedico vm;
-	private JLabel lblNombre;
-	private JTextField textFieldValorAtributo;
-	private JTextField textFieldNombre;
-	private JLabel lblMensaje;
-	private JTextField textFieldValorAntiguo;
-	JLabel lblValorAntiguoAtributo;
-	String atributo;
-	String dni;
-	String valor;
-	String atributoOtro;
 	
 	/**
 	 * Launch the application.
@@ -72,7 +64,7 @@ public class VentanaModificarMedico extends JFrame {
 	public VentanaModificarMedico() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 575, 432);
+		setBounds(100, 100, 705, 432);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,19 +83,15 @@ public class VentanaModificarMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dni = formattedDni.getText();
 				atributo = comboBoxAtributo.getSelectedItem().toString();
-				String valor = medicoInterfaz.findAtribtuto(dni, atributo);
+				valor = medicoInterfaz.findAtribtuto(dni, atributo);
 				if (atributo.equals("Otro")) {
 					lblNombre.setVisible(true);
 					textFieldNombre.setVisible(true);
-//					lblValorAntiguoAtributo.setVisible(true);
-//					textFieldValorAntiguo.setVisible(true);
-//					textFieldValorAntiguo.setText(valor);
+
 				} else {
 					lblValor.setVisible(true);
 					textFieldValorAtributo.setVisible(true);
-					lblValorAntiguoAtributo.setVisible(true);
-					textFieldValorAntiguo.setVisible(true);
-					textFieldValorAntiguo.setText(valor);
+					
 				}
 			}
 		});
@@ -112,13 +100,13 @@ public class VentanaModificarMedico extends JFrame {
 		comboBoxAtributo.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "", "Nombre", "Apellidos", "Especialidad", "Fecha_Incorporacion","Otro"}));
 
-		comboBoxAtributo.setBounds(258, 97, 136, 21);
+		comboBoxAtributo.setBounds(255, 97, 136, 21);
 		contentPane.add(comboBoxAtributo);
 
 		lblValor = new JLabel("Introduzca el nuevo valor del atributo\r\n");
 		lblValor.setVisible(false);
 		lblValor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValor.setBounds(10, 240, 286, 21);
+		lblValor.setBounds(10, 209, 286, 21);
 		contentPane.add(lblValor);
 
 		lblDNI = new JLabel("DNI");
@@ -147,6 +135,9 @@ public class VentanaModificarMedico extends JFrame {
 					if (medicos.isPresent()) {
 						lblTexto.setVisible(true);
 						comboBoxAtributo.setVisible(true);
+						scrollPaneMostrar.setVisible(true);
+						textAreaMostrar.setVisible(true);
+						textAreaMostrar.setText(medicoInterfaz.mostrar(medicos));
 					} else {
 						String mensaje = "El medico con DNI " + formattedDni.getText() + " no existe ";
 						JOptionPane.showMessageDialog(null, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -167,7 +158,7 @@ public class VentanaModificarMedico extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(129, 300, 85, 30);
+		btnCancelar.setBounds(145, 300, 85, 30);
 		contentPane.add(btnCancelar);
 
 		btnGuardar = new JButton("Guardar");
@@ -217,19 +208,19 @@ public class VentanaModificarMedico extends JFrame {
 			}
 
 		});
-		btnGuardar.setBounds(273, 300, 98, 30);
+		btnGuardar.setBounds(296, 300, 98, 30);
 		contentPane.add(btnGuardar);
 
 		textFieldValorAtributo = new JTextField();
 		textFieldValorAtributo.setVisible(false);
-		textFieldValorAtributo.setBounds(10, 271, 258, 19);
+		textFieldValorAtributo.setBounds(10, 240, 258, 19);
 		contentPane.add(textFieldValorAtributo);
 		textFieldValorAtributo.setColumns(10);
 
 		lblNombre = new JLabel("Introduzca el nombre de atributo\r\n");
 		lblNombre.setVisible(false);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNombre.setBounds(10, 188, 258, 13);
+		lblNombre.setBounds(10, 146, 258, 13);
 		contentPane.add(lblNombre);
 
 		textFieldNombre = new JTextField();
@@ -247,7 +238,7 @@ public class VentanaModificarMedico extends JFrame {
 				}
 			}
 		});
-		textFieldNombre.setBounds(10, 211, 258, 19);
+		textFieldNombre.setBounds(10, 169, 258, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -256,19 +247,14 @@ public class VentanaModificarMedico extends JFrame {
 		lblMensaje.setBounds(92, 340, 337, 25);
 		contentPane.add(lblMensaje);
 		
+		scrollPaneMostrar = new JScrollPane();
+		scrollPaneMostrar.setVisible(false);
+		scrollPaneMostrar.setBounds(404, 97, 276, 288);
+		contentPane.add(scrollPaneMostrar);
 		
-		lblValorAntiguoAtributo = new JLabel("Valor antiguo del atributo seleccionado");
-		lblValorAntiguoAtributo.setVisible(false);
-		lblValorAntiguoAtributo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValorAntiguoAtributo.setBounds(10, 125, 286, 30);
-		contentPane.add(lblValorAntiguoAtributo);
-		
-		textFieldValorAntiguo = new JTextField();
-		textFieldValorAntiguo.setVisible(false);
-		
-		textFieldValorAntiguo.setBounds(10, 159, 258, 19);
-		contentPane.add(textFieldValorAntiguo);
-		textFieldValorAntiguo.setColumns(10);
+		textAreaMostrar = new JTextArea();
+		textAreaMostrar.setVisible(false);
+		scrollPaneMostrar.setViewportView(textAreaMostrar);
 
 	}
 }

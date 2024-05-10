@@ -24,14 +24,11 @@ public class VentanaEliminarPaciente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-
 	private JFormattedTextField formattedDNI;
-	private JLabel lblDNI;
+	private JLabel lblDNI,lblMensaje;
 	private MaskFormatter mascara;
-	private JButton btnEliminar;
-	private JButton btnCancelar;
+	private JButton btnEliminar, btnCancelar;
 	private VentanaPrincipalPaciente vp;
-	private JLabel lblMensaje;
 
 	/**
 	 * Launch the application.

@@ -29,36 +29,17 @@ public class VentanaAgregarPaciente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel lblDNI;
-	private JLabel lblNombre;
-	private JLabel lblApellidos;
-	private JLabel lblFechaDeNacimiento;
-	private JLabel lblSexo;
-	private JLabel lblLugarDeNacimiento;
-	private JLabel lblAltura;
+	private JLabel lblDNI, lblNombre, lblApellidos, lblFechaDeNacimiento, lblSexo, lblLugarDeNacimiento, lblAltura,
+			lblPeso, lblGrupoSanguineo, lblEnfermedad, lblTipo, lblMensaje;
 	private MaskFormatter mascara;
 	private JFormattedTextField formattedDni;
-	private JTextField textFieldNombre;
-	private JTextField textFieldApellidos;
-	private JLabel lblPeso;
-	private JLabel lblGrupoSanguineo;
-	private JLabel lblEnfermedad;
-	private JLabel lblTipo;
+	private JTextField textFieldNombre, textFieldApellidos, textFieldLugarNacimiento, textFieldAltura, textFieldPeso;
 	private JFormattedTextField formattedFechaNacimiento;
-	private JComboBox<String> comboBoxSexo;
-	private JTextField textFieldLugarNacimiento;
-	private JTextField textFieldAltura;
-	private JTextField textFieldPeso;
-	private JComboBox<String> comboBoxGrupoSanguineo;
-	private JComboBox<String> comboBoxEnfermedad;
-	private JComboBox<String> comboBoxTipo;
-	private JButton btnAceptar;
-	private JButton btnCancelar;
-
+	private JComboBox<String> comboBoxSexo, comboBoxGrupoSanguineo, comboBoxEnfermedad, comboBoxTipo;
+	private JButton btnAceptar, btnCancelar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaOpcionAnadirPaciente voa;
 	VentanaPrincipalPaciente vp;
-	private JLabel lblMensaje;
 
 	/**
 	 * Launch the application.
@@ -286,16 +267,17 @@ public class VentanaAgregarPaciente extends JFrame {
 				if (btnAceptar == e.getSource()) {
 
 					Optional<Document> medicoDNI = controllerInterfaz.comprobarDni(formattedDni.getText());
-					if(medicoDNI.isPresent()) {
-						lblMensaje.setText("El medico con DNI " + formattedDni.getText()+ " ya esta añadido");
+					if (medicoDNI.isPresent()) {
+						lblMensaje.setText("El medico con DNI " + formattedDni.getText() + " ya esta añadido");
 						lblMensaje.setForeground(Color.RED);
-					}else {
+					} else {
 						Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
-								textFieldNombre.getText(), textFieldApellidos.getText(), formattedFechaNacimiento.getText(),
-								comboBoxSexo.getSelectedItem().toString(), textFieldLugarNacimiento.getText(),
-								textFieldAltura.getText(), textFieldPeso.getText(),
+								textFieldNombre.getText(), textFieldApellidos.getText(),
+								formattedFechaNacimiento.getText(), comboBoxSexo.getSelectedItem().toString(),
+								textFieldLugarNacimiento.getText(), textFieldAltura.getText(), textFieldPeso.getText(),
 								comboBoxGrupoSanguineo.getSelectedItem().toString(),
-								comboBoxEnfermedad.getSelectedItem().toString(), comboBoxTipo.getSelectedItem().toString());
+								comboBoxEnfermedad.getSelectedItem().toString(),
+								comboBoxTipo.getSelectedItem().toString());
 						Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
 						if (anadido == true) {
 							lblMensaje.setText("El paciente ha sido añadido con exito");
@@ -304,7 +286,7 @@ public class VentanaAgregarPaciente extends JFrame {
 							lblMensaje.setText("El paciente no ha sido añadido con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
-						
+
 					}
 
 				}

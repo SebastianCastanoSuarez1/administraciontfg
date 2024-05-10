@@ -17,14 +17,10 @@ public class VentanaOpcionAnadirPaciente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
-	private JButton btnAnadirPaciente;
-	private JButton btnAnadirAtributo;
-	private JButton btnAnadirHistorialMedico;
+	private JButton btnAnadirPaciente, btnAnadirAtributo,btnAnadirHistorialMedico, btnSalir, btnAadirComponete;
 	private VentanaAgregarPaciente vap;
 	private VentanaAnadirAtributoNuevo van;
 	private VentanaPrincipalPaciente vp;
-	private JButton btnSalir;
-	private JButton btnAadirComponete;
 	private VentanaLista vl;
 
 	/**

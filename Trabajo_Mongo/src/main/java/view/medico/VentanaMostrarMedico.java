@@ -30,14 +30,8 @@ public class VentanaMostrarMedico extends JFrame {
 	private JPanel contentPane;
 	JFormattedTextField formattedDni;
 	MaskFormatter mascara;
-	private JTextField textFieldNombre;
-	private JTextField textFieldAtributo;
-	private JTextField textFieldValor;
-	JButton btnMostrarTodo;
-	JButton btnDNI;
-	JButton btnNombre;
-	JButton btnAtributo;
-	JButton btnCancelar;
+	private JTextField textFieldNombre, textFieldAtributo,textFieldValor;
+	JButton btnMostrarTodo, btnDNI, btnNombre, btnAtributo, btnCancelar;
 	JLabel lblMensaje;
 	JScrollPane scrollPaneMostrar;
 	VentanaPrincipalMedico vpm;

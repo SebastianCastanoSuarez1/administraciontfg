@@ -30,24 +30,12 @@ public class VentanaAñadirHistorialMedico extends JFrame {
 	private JPanel contentPane;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private MaskFormatter mascara;
-	private JLabel lblDNI;
 	JFormattedTextField formattedDni;
-	private JButton btnComprobar;
-	private JComboBox<String> comboBoxAlergenos;
-	private JLabel lblAlergenos;
-	private JTextField textFieldAlergenos;
-	private JLabel lblElFormatoEs;
-	private JLabel lblQuieresAadirEnfermedades;
-	private JComboBox<String> comboBoxEnfermedades;
-	private JComboBox<String> comboBoxMedicamentos;
+	private JLabel lblDNI, lblAlergenos, lblElFormatoEs,lblQuieresAadirEnfermedades, lblMedicamentos, lblMensaje;
+	private JComboBox<String> comboBoxAlergenos,comboBoxEnfermedades, comboBoxMedicamentos;
 	private VentanaEnfermedades ven;
-	private JButton btnAceptarEnfermedades;
-	private JLabel lblMedicamentos;
-	private JTextField textFieldMedicamentos;
-	private JButton btnAceptar;
-	private JButton btnCancelar;
-	private JLabel lblMensaje;
-
+	private JButton btnComprobar, btnAceptarEnfermedades, btnAceptar, btnCancelar;
+	private JTextField textFieldMedicamentos, textFieldAlergenos;
 	/**
 	 * Launch the application.
 	 */

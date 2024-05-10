@@ -17,11 +17,8 @@ public class VentanaAnadirComponenteMedico extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btn_List;
-	private JButton btn_Valor;
-	private JButton btn_List_Valor;
+	private JButton btn_List, btn_Valor, btn_List_Valor, btnCancelar;
 	private JLabel lblNewLabelTitle;
-	private JButton btnCancelar;
 	private VentanaOpcionAnadirMedico voam;
 	private VentanaComponentesListaMedico vclm;
 	private VentanaComponentesValoresMedico vcvm;

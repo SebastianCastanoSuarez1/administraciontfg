@@ -25,12 +25,10 @@ public class VentanaEliminarMedico extends JFrame {
 	private JPanel contentPane;
 	private MedicoController_Interfaz medico = new MedicoController_Interfaz();
 	private JFormattedTextField formattedDNI;
-	private JLabel lblDNI;
+	private JLabel lblDNI, lblMensaje;
 	private MaskFormatter mascara;
-	private JButton btnEliminar;
-	private JButton btnCancelar;
+	private JButton btnEliminar, btnCancelar;
 	private VentanaPrincipalMedico vpm;
-	private JLabel lblMensaje;
 	/**
 	 * Launch the application.
 	 */

@@ -28,19 +28,13 @@ public class VentanaAnadirAtributoNuevo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldNombreAtributo;
-	private JTextField textFieldValorAtributo;
-	private JLabel lblAtributoANadir;
-	private JLabel lblValor;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
+	private JTextField textFieldNombreAtributo,textFieldValorAtributo;
+	private JLabel lblAtributoANadir, lblValor, lblDNI, lblMensaje;
+	private JButton btnCancelar, btnAceptar, btnComprobar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private JLabel lblDNI;
 	private JFormattedTextField formattedDni;
-	private JButton btnComprobar;
 	private MaskFormatter mascara;
 	private VentanaOpcionAnadirPaciente voa;
-	private JLabel lblMensaje;
 
 	/**
 	 * Launch the application.
@@ -64,7 +58,7 @@ public class VentanaAnadirAtributoNuevo extends JFrame {
 	public VentanaAnadirAtributoNuevo() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 511, 377);
+		setBounds(100, 100, 518, 377);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,7 +69,7 @@ public class VentanaAnadirAtributoNuevo extends JFrame {
 		lblAtributoANadir = new JLabel("Introduzca el nombre del nuevo atributo");
 		lblAtributoANadir.setVisible(false);
 		lblAtributoANadir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAtributoANadir.setBounds(0, 96, 279, 41);
+		lblAtributoANadir.setBounds(10, 96, 279, 41);
 		contentPane.add(lblAtributoANadir);
 		
 		textFieldNombreAtributo = new JTextField();
@@ -93,19 +87,19 @@ public class VentanaAnadirAtributoNuevo extends JFrame {
 				}
 			}
 		});
-		textFieldNombreAtributo.setBounds(261, 103, 206, 32);
+		textFieldNombreAtributo.setBounds(271, 103, 206, 32);
 		contentPane.add(textFieldNombreAtributo);
 		
 		lblValor = new JLabel("Introduzca el valor del nuevo atributo");
 		lblValor.setVisible(false);
 		lblValor.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblValor.setBounds(0, 163, 243, 32);
+		lblValor.setBounds(10, 163, 243, 32);
 		contentPane.add(lblValor);
 		
 		textFieldValorAtributo = new JTextField();
 		textFieldValorAtributo.setVisible(false);
 		textFieldValorAtributo.setColumns(10);
-		textFieldValorAtributo.setBounds(261, 166, 206, 32);
+		textFieldValorAtributo.setBounds(271, 166, 206, 32);
 		contentPane.add(textFieldValorAtributo);
 		
 		btnCancelar = new JButton("Cancelar");

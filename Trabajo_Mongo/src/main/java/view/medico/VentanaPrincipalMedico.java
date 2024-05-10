@@ -23,12 +23,8 @@ public class VentanaPrincipalMedico extends JFrame {
 	VentanaOpcionAnadirMedico voam;
 	VentanaMostrarMedico vmm;
 	VentanaModificarMedico vmod;
-	JButton btnAgregarMedico;
-	JButton btnMostrarMedico;
-	JButton btnModificarMedico;
-	JButton btnEliminarMedico;
+	JButton btnAgregarMedico, btnMostrarMedico, btnModificarMedico, btnEliminarMedico, btnCancelar;
 	JLabel lblTitulo;
-	private JButton btnCancelar;
 	VentanaPrincipalAdministrador vp;
 	/**
 	 * Launch the application.

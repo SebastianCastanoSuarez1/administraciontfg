@@ -26,20 +26,13 @@ public class VentanaAnadirListaMedico extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
-	private JLabel lblDNI;
 	private JFormattedTextField formattedDni;
-	private JButton btnComprobar;
-	private JLabel lblNombre;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
+	private JLabel lblDNI, lblNombre, lbLista, lblMensaje,lblFormato;
+	private JButton btnComprobar, btnCancelar, btnAceptar;
 	private VentanaOpcionAnadirMedico voam;
 	private MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
 	private MaskFormatter mascara;
-	private JLabel lbLista;
-	private JTextField textFieldLista;
-	private JTextField textFieldNombre;
-	private JLabel lblMensaje;
+	private JTextField textFieldLista, textFieldNombre;
 
 	/**
 	 * Launch the application.
@@ -62,7 +55,7 @@ public class VentanaAnadirListaMedico extends JFrame {
 	 */
 	public VentanaAnadirListaMedico() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 471, 328);
+		setBounds(100, 100, 484, 343);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -123,7 +116,7 @@ public class VentanaAnadirListaMedico extends JFrame {
     			}
     		});
     		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-    		btnCancelar.setBounds(98, 196, 103, 34);
+    		btnCancelar.setBounds(105, 210, 103, 34);
     		contentPane.add(btnCancelar);
     		
     		btnAceptar = new JButton("Aceptar");
@@ -146,7 +139,7 @@ public class VentanaAnadirListaMedico extends JFrame {
 					}
     		});
     		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-    		btnAceptar.setBounds(245, 196, 103, 34);
+    		btnAceptar.setBounds(259, 210, 103, 34);
     		contentPane.add(btnAceptar);
     		
     		lbLista = new JLabel("Introduzca la lista de los valores\r\n");
@@ -161,9 +154,11 @@ public class VentanaAnadirListaMedico extends JFrame {
     				String atributo = textFieldNombre.getText().toString();
     				if(!atributo.equals("")) {
     					lbLista.setVisible(true);
+    					lblFormato.setVisible(true);
     					textFieldLista.setVisible(true);
     				}else {
     					lbLista.setVisible(false);
+    					lblFormato.setVisible(false);
     					textFieldLista.setVisible(false);
     				}
     			}
@@ -175,8 +170,14 @@ public class VentanaAnadirListaMedico extends JFrame {
     		
     		lblMensaje = new JLabel("\r\n");
     		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    		lblMensaje.setBounds(42, 256, 377, 25);
+    		lblMensaje.setBounds(42, 272, 377, 25);
     		contentPane.add(lblMensaje);
+    		
+    		lblFormato = new JLabel("De esta forma \"valor\" espacio \"valor\"");
+    		lblFormato.setVisible(false);
+    		lblFormato.setFont(new Font("Tahoma", Font.PLAIN, 12));
+    		lblFormato.setBounds(10, 160, 213, 15);
+    		contentPane.add(lblFormato);
     		
     		
 
@@ -187,5 +188,4 @@ public class VentanaAnadirListaMedico extends JFrame {
         }
 		
 	}
-
 }

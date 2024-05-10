@@ -24,26 +24,23 @@ import javax.swing.text.MaskFormatter;
 import org.bson.Document;
 
 import controller.Controller_Interfaz;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class VentanaModificarPaciente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> comboBoxAtributo;
-	private JLabel lblValor;
 	private JFormattedTextField formattedDni;
-	private JButton btnComprobar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private MaskFormatter mascara;
-	private JLabel lblDNI;
-	private JLabel lblTexto;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
+	private JButton btnComprobar, btnCancelar, btnGuardar;
+	private JTextField textFieldValorAtributo,textFieldNombre;
+	private JLabel lblValor, lblDNI, lblTexto, lblNombre,lblMensaje;
 	private VentanaPrincipalPaciente vp;
-	private JLabel lblNombre;
-	private JTextField textFieldValorAtributo;
-	private JTextField textFieldNombre;
-	private JLabel lblMensaje;
+	private JScrollPane scrollPaneMostrar;
+	private JTextArea textAreaMostrar;
 	
 
 	/**
@@ -68,7 +65,7 @@ public class VentanaModificarPaciente extends JFrame {
 	public VentanaModificarPaciente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 489, 361);
+		setBounds(100, 100, 705, 432);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,7 +76,7 @@ public class VentanaModificarPaciente extends JFrame {
 		lblTexto = new JLabel("Que atributo quiere modificar");
 		lblTexto.setVisible(false);
 		lblTexto.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTexto.setBounds(10, 60, 235, 30);
+		lblTexto.setBounds(10, 83, 235, 30);
 		contentPane.add(lblTexto);
 		
 		comboBoxAtributo = new JComboBox<String>();
@@ -102,25 +99,25 @@ public class VentanaModificarPaciente extends JFrame {
 				new DefaultComboBoxModel<String>(new String[] { "", "Nombre", "Apellidos", "Fecha_Nacimiento",
 						"Sexo", "Lugar_Nacimiento", "Altura", "Peso", "Grupo_Sanguineo", "Enfemedad", "Tipo", "Otro" }));
 
-		comboBoxAtributo.setBounds(255, 65, 136, 21);
+		comboBoxAtributo.setBounds(271, 88, 136, 21);
 		contentPane.add(comboBoxAtributo);
 		
 		lblValor = new JLabel("Introduzca el nuevo valor del atributo\r\n");
 		lblValor.setVisible(false);
 		lblValor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValor.setBounds(10, 175, 286, 21);
+		lblValor.setBounds(10, 207, 286, 21);
 		contentPane.add(lblValor);
 		
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(59, 10, 55, 40);
+		lblDNI.setBounds(71, 23, 44, 30);
 		contentPane.add(lblDNI);
 		
 		try {
             mascara = new MaskFormatter("########?");
             mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             formattedDni = new JFormattedTextField(mascara);
-    		formattedDni.setBounds(143, 21, 148, 26);
+    		formattedDni.setBounds(154, 29, 148, 26);
     		contentPane.add(formattedDni);
     		
     		
@@ -138,6 +135,9 @@ public class VentanaModificarPaciente extends JFrame {
 					if(pacientes.isPresent()) {
 						lblTexto.setVisible(true);
 						comboBoxAtributo.setVisible(true);
+						scrollPaneMostrar.setVisible(true);
+						textAreaMostrar.setVisible(true);
+						textAreaMostrar.setText(controllerInterfaz.mostrar(pacientes));
 					}else{
 						String mensaje = "El paciente con DNI " + formattedDni.getText() + " no existe "; 
 						JOptionPane.showMessageDialog(null, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -146,7 +146,7 @@ public class VentanaModificarPaciente extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(313, 19, 98, 27);
+		btnComprobar.setBounds(347, 27, 98, 27);
 		contentPane.add(btnComprobar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -158,14 +158,14 @@ public class VentanaModificarPaciente extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(118, 237, 86, 30);
+		btnCancelar.setBounds(88, 295, 86, 30);
 		contentPane.add(btnCancelar);
 		
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.addActionListener(new ActionListener() {
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(btnAceptar == e.getSource()) {
+				if(btnGuardar == e.getSource()) {
 					String dni = formattedDni.getText().toString();
 					String atributo = comboBoxAtributo.getSelectedItem().toString();
 					String valor = textFieldValorAtributo.getText();
@@ -268,19 +268,19 @@ public class VentanaModificarPaciente extends JFrame {
 			}
 			
 		});
-		btnAceptar.setBounds(251, 237, 91, 30);
-		contentPane.add(btnAceptar);
+		btnGuardar.setBounds(252, 295, 91, 30);
+		contentPane.add(btnGuardar);
 		
 		textFieldValorAtributo = new JTextField();
 		textFieldValorAtributo.setVisible(false);
-		textFieldValorAtributo.setBounds(10, 207, 258, 19);
+		textFieldValorAtributo.setBounds(10, 238, 258, 19);
 		contentPane.add(textFieldValorAtributo);
 		textFieldValorAtributo.setColumns(10);
 		
 		lblNombre = new JLabel("Introduzca el nombre de atributo\r\n");
 		lblNombre.setVisible(false);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNombre.setBounds(10, 121, 258, 13);
+		lblNombre.setBounds(10, 140, 258, 13);
 		contentPane.add(lblNombre);
 		
 		textFieldNombre = new JTextField();
@@ -298,14 +298,23 @@ public class VentanaModificarPaciente extends JFrame {
 	            }
 	        }
 	    });
-		textFieldNombre.setBounds(10, 145, 235, 19);
+		textFieldNombre.setBounds(10, 164, 235, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(49, 277, 391, 37);
+		lblMensaje.setBounds(40, 350, 342, 30);
 		contentPane.add(lblMensaje);
+		
+		scrollPaneMostrar = new JScrollPane();
+		scrollPaneMostrar.setVisible(false);
+		scrollPaneMostrar.setBounds(430, 83, 251, 302);
+		contentPane.add(scrollPaneMostrar);
+		
+		textAreaMostrar = new JTextArea();
+		textAreaMostrar.setVisible(false);
+		scrollPaneMostrar.setViewportView(textAreaMostrar);
 		
 		
 	}

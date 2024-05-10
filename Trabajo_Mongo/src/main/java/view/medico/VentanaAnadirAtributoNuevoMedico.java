@@ -30,17 +30,11 @@ public class VentanaAnadirAtributoNuevoMedico extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldNombre;
-	private JTextField textFieldValor;
+	private JTextField textFieldNombre, textFieldValor;
 	private MaskFormatter mascara;
-	private JLabel lblDNI;
 	private JFormattedTextField formattedDni;
-	private JLabel lblNombre;
-	private JLabel lblIntroduzcaElValor;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
-	private JLabel lblMensaje;
-	private JButton btnComprobar;
+	private JLabel lblDNI,lblNombre, lblIntroduzcaElValor,lblMensaje;
+	private JButton btnCancelar, btnAceptar, btnComprobar;
 	private MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
 	private VentanaOpcionAnadirMedico voam;
 	/**

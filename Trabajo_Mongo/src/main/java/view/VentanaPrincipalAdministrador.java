@@ -21,12 +21,9 @@ public class VentanaPrincipalAdministrador extends JFrame {
 	private JPanel contentPane;
 	VentanaPrincipalPaciente vpp;
 	VentanaPrincipalMedico vpm;
-	JLabel lblBienvenido;
-	JLabel lblEligaLaOpcion;
-	JButton btnMedico;
-	JButton btnPaciente;/**
-	 * Launch the application.
-	 */
+	JLabel lblBienvenido, lblEligaLaOpcion;
+	JButton btnMedico, btnPaciente;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -58,10 +55,6 @@ public class VentanaPrincipalAdministrador extends JFrame {
 		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblBienvenido.setBounds(170, 37, 108, 26);
 		contentPane.add(lblBienvenido);
-		
-		JLabel labelImagen = new JLabel();
-		labelImagen.setBounds(170, 100, 100, 100); // Ajusta estos valores según necesites
-		contentPane.add(labelImagen);
 		
 		lblEligaLaOpcion = new JLabel("Eliga la opcion de prefiera\r\n");
 		lblEligaLaOpcion.setFont(new Font("Tahoma", Font.BOLD, 18));

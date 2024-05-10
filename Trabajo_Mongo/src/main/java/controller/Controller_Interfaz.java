@@ -98,8 +98,7 @@ public class Controller_Interfaz {
 		return mensaje;
 	}
 
-	public Boolean anadirVariables(Optional<Document> pacientes, String[] alergeno, String[] medicamento,
-			Document enfermedades) {
+	public Boolean anadirVariables(Optional<Document> pacientes, String[] alergeno, String[] medicamento, Document enfermedades) {
 		Document contenido = new Document();
 		Document historialMedico = new Document();
 		List<String> alergenosList = Arrays.asList(alergeno); // Convertir array en lista
@@ -107,9 +106,10 @@ public class Controller_Interfaz {
 		contenido.append("Alergenos", alergenosList);
 		contenido.append("Medicamentos", medicamentosList);
 		contenido.append("Enfermedades", enfermedades);
-		historialMedico.append("Historial_Medico", contenido);
-		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, historialMedico);
+		historialMedico.append("Historial_Medico", Arrays.asList(contenido)); // Convertir el contenido en una lista
+		return pacienteRepositoryImpl.updateHistorialMedico(pacientes,historialMedico);
 	}
+
 
 	public Document crearDocumentoEnfermedades(Optional<Document> pacientes, String enfermedad, String fecha,
 			String[] historialMedicoMedicamentos, String tratamiento, String informe) {
@@ -126,26 +126,6 @@ public class Controller_Interfaz {
 		detalles.append("Informe", informe);
 		enfermedades.append("Detalles", detalles);
 		return enfermedades;
-	}
-
-	public Boolean agregarEnfermedad(Optional<Document> pacientes, Document enfermedades) {
-
-		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, enfermedades);
-
-	}
-
-	public Boolean anadirMedicamentosRecientes(Optional<Document> pacientes, String[] medicamento) {
-		Document medicamentos = new Document();
-		List<String> alergenosList = Arrays.asList(medicamento); // Convertir array en lista
-		medicamentos.append("Alergenos", alergenosList);
-		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, medicamentos);
-	}
-
-	public Boolean anadirAlergenos(Optional<Document> pacientes, String[] alergeno) {
-		Document alergenos = new Document();
-		List<String> alergenosList = Arrays.asList(alergeno); // Convertir array en lista
-		alergenos.append("Alergenos", alergenosList);
-		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, alergenos);
 	}
 
 	public Boolean actualizarPaciente(Optional<Document> pacientes, String nombreAtributo, String valorAtributo) {
