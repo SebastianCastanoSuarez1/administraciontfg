@@ -75,7 +75,7 @@ public class VentanaMostrarPorNombre extends JFrame {
 		lblApellidos.setBounds(92, 160, 62, 22);
 		contentPane.add(lblApellidos);
 
-		lblEspecialidad = new JLabel("Fecha Nacimiento:");
+		lblEspecialidad = new JLabel("Especialidad:\r\n");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEspecialidad.setBounds(92, 192, 119, 22);
 		contentPane.add(lblEspecialidad);
