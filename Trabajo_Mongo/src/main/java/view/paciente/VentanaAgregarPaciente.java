@@ -203,10 +203,14 @@ public class VentanaAgregarPaciente extends JFrame {
 						lblMensaje.setText("El medico con DNI " + formattedDni.getText() + " ya esta añadido");
 						lblMensaje.setForeground(Color.RED);
 					} else {
+						String alturaString = textFieldAltura.getText();
+						Integer altura = Integer.parseInt(alturaString);
+						String pesoString = textFieldPeso.getText();
+						Integer peso = Integer.parseInt(pesoString);
 						Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
 								textFieldNombre.getText(), textFieldApellidos.getText(),
 								formattedFechaNacimiento.getText(), comboBoxSexo.getSelectedItem().toString(),
-								textFieldLugarNacimiento.getText(), textFieldAltura.getText(), textFieldPeso.getText(),
+								textFieldLugarNacimiento.getText(), altura, peso,
 								comboBoxGrupoSanguineo.getSelectedItem().toString());
 						Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
 						if (anadido == true) {

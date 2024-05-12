@@ -87,17 +87,6 @@ public class VentanaMostrarPorDni extends JFrame {
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblApellidos.setBounds(93, 184, 62, 22);
 		contentPane.add(lblApellidos);
-
-		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
-		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaNacimiento.setBounds(93, 216, 119, 22);
-		contentPane.add(lblFechaNacimiento);
-
-		lblSexo = new JLabel("Sexo:");
-		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSexo.setBounds(93, 248, 119, 19);
-		contentPane.add(lblSexo);
-
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -119,10 +108,21 @@ public class VentanaMostrarPorDni extends JFrame {
 			});
 			formattedTextFieldDni.setBounds(360, 34, 138, 19);
 			contentPane.add(formattedTextFieldDni);
-
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
+		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
+		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblFechaNacimiento.setBounds(93, 216, 119, 22);
+		contentPane.add(lblFechaNacimiento);
+
+		lblSexo = new JLabel("Sexo:");
+		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblSexo.setBounds(93, 248, 119, 19);
+		contentPane.add(lblSexo);
+
 		
 		textFieldDni = new JTextField();
 		textFieldDni.setEditable(false);

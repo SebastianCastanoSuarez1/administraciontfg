@@ -197,7 +197,7 @@ public class Controller_Interfaz {
 	}
 
 	public Document anadirPacientenuevo(String dni, String nombre, String apellidos, String fechaNacimiento,
-			String sexo, String lugarNacimiento, String altura, String peso, String grupoSanguineo) {
+			String sexo, String lugarNacimiento, Integer altura, Integer peso, String grupoSanguineo) {
 		Document paciente;
 		paciente = new Paciente().append("Dni", dni).append("Nombre", nombre).append("Apellidos", apellidos)
 				.append("Fecha_Nacimiento", fechaNacimiento).append("Sexo", sexo)
