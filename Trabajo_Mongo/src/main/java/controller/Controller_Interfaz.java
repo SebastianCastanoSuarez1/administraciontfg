@@ -230,7 +230,7 @@ public class Controller_Interfaz {
 		contenido.append("Alergenos", alergenosList);
 		contenido.append("Medicamentos", medicamentosList);
 		contenido.append("Enfermedades", enfermedades);
-		historialMedico.append("Historial_Medico", Arrays.asList(contenido)); // Convertir el contenido en una lista
+		historialMedico.append("Historial_Medico", contenido);
 		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, historialMedico);
 	}
 

@@ -197,4 +197,5 @@ public class VentanaEnfermedades extends JFrame {
 				historialMedicoMedicamentos, tratamiento, informe);
 		return enfermedades;
 	}
+	
 }
