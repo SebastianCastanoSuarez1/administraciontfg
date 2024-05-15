@@ -221,19 +221,25 @@ public class Controller_Interfaz {
 		return mensaje;
 	}
 
-	public Boolean anadirVariables(Optional<Document> pacientes, String[] alergeno, String[] medicamento,
+	public Boolean anadirVariables(Optional<Document> pacientes,
 			Document enfermedades) {
 		Document contenido = new Document();
-		Document historialMedico = new Document();
-		List<String> alergenosList = Arrays.asList(alergeno); // Convertir array en lista
-		List<String> medicamentosList = Arrays.asList(medicamento); // Convertir array en lista
-		contenido.append("Alergenos", alergenosList);
-		contenido.append("Medicamentos", medicamentosList);
 		contenido.append("Enfermedades", enfermedades);
-		historialMedico.append("Historial_Medico", contenido);
-		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, historialMedico);
+		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, contenido);
 	}
 
+	public Boolean anadirAlergenos(Optional<Document> pacientes, String[] alergenos) {
+		List<String> list = Arrays.asList(alergenos);
+		Boolean anadido = pacienteRepositoryImpl.updateAlergenos(pacientes, "Alergenos", list);
+		return anadido;
+		
+	}
+	public Boolean anadirMedicamentos(Optional<Document> pacientes, String[] medicamentos) {
+		List<String> list = Arrays.asList(medicamentos);
+		Boolean anadido = pacienteRepositoryImpl.updateMedicamentos(pacientes, "Medicamentos", list);
+		return anadido;
+		
+	}
 	public Document crearDocumentoEnfermedades(Optional<Document> pacientes, String enfermedad, String fecha,
 			String[] historialMedicoMedicamentos, String tratamiento, String informe) {
 		Document enfermedades = new Document();

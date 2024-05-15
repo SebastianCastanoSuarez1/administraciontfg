@@ -14,6 +14,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 
 import db.MongoDB;
@@ -302,7 +303,6 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 
 	public Boolean updateHistorialMedico(Optional<Document> paciente, Document historial) {
 		try {
-
 			if (paciente.isPresent()) {
 				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
 				Document update = new Document("$push", new Document(historial));
@@ -317,6 +317,35 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		}
 	}
 
+
+	public Boolean updateAlergenos(Optional<Document> paciente, String atributo, List<String> alergenos) {
+		try {
+			if (paciente.isPresent()) {
+				Document filter = paciente.get();
+				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.pushEach(atributo, alergenos));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean updateMedicamentos(Optional<Document> paciente, String atributo, List<String> medicamentos) {
+		try {
+			if (paciente.isPresent()) {
+				Document filter = paciente.get();
+				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.pushEach(atributo, medicamentos));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean update(Optional<Document> paciente, String atributo, List<String> valores) {
 		try {
 			if (paciente.isPresent()) {

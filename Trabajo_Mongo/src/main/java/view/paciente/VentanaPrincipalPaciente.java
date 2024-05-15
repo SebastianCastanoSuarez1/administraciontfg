@@ -24,18 +24,22 @@ public class VentanaPrincipalPaciente extends JFrame {
 	private JPanel contentPane;
 	private JButton btnCancelar;
 	VentanaAgregarPaciente agregar;
-	VentanaAñadirHistorialMedico historial;
 	private VentanaModificarPaciente modificar;
 	private VentanaEliminarPaciente eliminar;
 	private VentanaPrincipalAdministrador principal;
 	VentanaMostrarPorNombre mostrarNombre;
 	private JMenuBar menuBar;
 	JMenu mnAnadirPacientes, mnEliminarPaciente, mnMostrar, mnModificar;
-	JMenuItem mntmAnadirNuevoPaciente, mntmAnadiHistorialMedico, mntmEliminarPaciente, mntmMostrarPaciente,
+	JMenuItem mntmAnadirNuevoPaciente, mntmAnadirEnfermedades, mntmEliminarPaciente, mntmMostrarPaciente,
 			mntmModificarPaciente, mntmMostrarPorDNI, mntmMostrarPorNombre, mntmMostrarPorAtributo;
 	JLabel lblNewLabel;
 	VentanaMostrarPorDni mostrarDni;
 	VentanaMostrarPorAtributo mostrarAtributo;
+	JMenuItem mntmAnadirAlergenos;
+	JMenuItem mntmMedicamentos;
+	VentanaEnfermedades enfermedades;
+	VentanaAnadirAlergenos alergenos;
+	VentanaAnadirMedicamentos medicamentos;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -102,16 +106,38 @@ public class VentanaPrincipalPaciente extends JFrame {
 		});
 		mnAnadirPacientes.add(mntmAnadirNuevoPaciente);
 
-		mntmAnadiHistorialMedico = new JMenuItem("Añadir historial medico");
-		mntmAnadiHistorialMedico.setBorder(new LineBorder(new Color(0, 0, 0)));
-		mntmAnadiHistorialMedico.addActionListener(new ActionListener() {
+		mntmAnadirEnfermedades = new JMenuItem("Añadir enfermedades");
+		mntmAnadirEnfermedades.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mntmAnadirEnfermedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				historial = new VentanaAñadirHistorialMedico();
-				historial.setVisible(true);
+				enfermedades = new VentanaEnfermedades();
+				enfermedades.setVisible(true);
 				dispose();
 			}
 		});
-		mnAnadirPacientes.add(mntmAnadiHistorialMedico);
+		mnAnadirPacientes.add(mntmAnadirEnfermedades);
+		
+		mntmAnadirAlergenos = new JMenuItem("Añadir alergenos");
+		mntmAnadirAlergenos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mntmAnadirAlergenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alergenos = new VentanaAnadirAlergenos();
+				alergenos.setVisible(true);
+				dispose();
+			}
+		});
+		mnAnadirPacientes.add(mntmAnadirAlergenos);
+		
+		mntmMedicamentos = new JMenuItem("Añadir medicamentos");
+		mntmMedicamentos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mntmMedicamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				medicamentos = new VentanaAnadirMedicamentos();
+				medicamentos.setVisible(true);
+				dispose();
+			}
+		});
+		mnAnadirPacientes.add(mntmMedicamentos);
 
 		mnEliminarPaciente = new JMenu("Eliminar paciente");
 		mnEliminarPaciente.setBorder(new LineBorder(new Color(0, 0, 0)));
