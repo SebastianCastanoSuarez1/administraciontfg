@@ -25,6 +25,7 @@ public class VentanaMostrarPorNombre extends JFrame {
 	private MedicoController_Interfaz controllerInterfaz = new MedicoController_Interfaz();
 	JButton btnVolver;
 	VentanaPrincipalMedico principal;
+	private JLabel lblMostrarMedicoPor;
 
 	/**
 	 * Launch the application.
@@ -57,32 +58,32 @@ public class VentanaMostrarPorNombre extends JFrame {
 
 		lblIntroduzcaNombre = new JLabel("Introduzca el nombre del paciente");
 		lblIntroduzcaNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIntroduzcaNombre.setBounds(114, 32, 234, 22);
+		lblIntroduzcaNombre.setBounds(114, 104, 234, 22);
 		contentPane.add(lblIntroduzcaNombre);
 
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDNI.setBounds(92, 91, 50, 22);
+		lblDNI.setBounds(92, 163, 50, 22);
 		contentPane.add(lblDNI);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(92, 128, 50, 22);
+		lblNombre.setBounds(92, 200, 50, 22);
 		contentPane.add(lblNombre);
 
 		lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblApellidos.setBounds(92, 160, 62, 22);
+		lblApellidos.setBounds(92, 232, 62, 22);
 		contentPane.add(lblApellidos);
 
 		lblEspecialidad = new JLabel("Especialidad:\r\n");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEspecialidad.setBounds(92, 192, 119, 22);
+		lblEspecialidad.setBounds(92, 264, 119, 22);
 		contentPane.add(lblEspecialidad);
 
 		lblFechaIncorporacion = new JLabel("Fecha incorporacion:");
 		lblFechaIncorporacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaIncorporacion.setBounds(92, 224, 119, 19);
+		lblFechaIncorporacion.setBounds(92, 296, 119, 19);
 		contentPane.add(lblFechaIncorporacion);
 
 		textFieldEscribirNombre = new JTextField();
@@ -98,41 +99,41 @@ public class VentanaMostrarPorNombre extends JFrame {
 				
 			}
 		});
-		textFieldEscribirNombre.setBounds(348, 35, 167, 19);
+		textFieldEscribirNombre.setBounds(348, 107, 167, 19);
 		contentPane.add(textFieldEscribirNombre);
 		textFieldEscribirNombre.setColumns(10);
 
 		textFieldDni = new JTextField();
 		textFieldDni.setEditable(false);
-		textFieldDni.setBounds(230, 94, 180, 19);
+		textFieldDni.setBounds(230, 166, 180, 19);
 		contentPane.add(textFieldDni);
 		textFieldDni.setColumns(10);
 
 		textFieldNombre = new JTextField();
 		textFieldNombre.setEditable(false);
 		textFieldNombre.setColumns(10);
-		textFieldNombre.setBounds(230, 128, 180, 19);
+		textFieldNombre.setBounds(230, 200, 180, 19);
 
 		contentPane.add(textFieldNombre);
 
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setEditable(false);
 		textFieldApellidos.setColumns(10);
-		textFieldApellidos.setBounds(230, 163, 180, 19);
+		textFieldApellidos.setBounds(230, 235, 180, 19);
 
 		contentPane.add(textFieldApellidos);
 
 		textFieldEspecialidad = new JTextField();
 		textFieldEspecialidad.setEditable(false);
 		textFieldEspecialidad.setColumns(10);
-		textFieldEspecialidad.setBounds(230, 195, 180, 19);
+		textFieldEspecialidad.setBounds(230, 267, 180, 19);
 
 		contentPane.add(textFieldEspecialidad);
 
 		textFieldFechaIncorporacion = new JTextField();
 		textFieldFechaIncorporacion.setEditable(false);
 		textFieldFechaIncorporacion.setColumns(10);
-		textFieldFechaIncorporacion.setBounds(230, 225, 180, 19);
+		textFieldFechaIncorporacion.setBounds(230, 297, 180, 19);
 
 		contentPane.add(textFieldFechaIncorporacion);
 		
@@ -146,7 +147,12 @@ public class VentanaMostrarPorNombre extends JFrame {
 		});
 		btnVolver.setBackground(new Color(240, 240, 240));
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVolver.setBounds(19, 33, 85, 21);
+		btnVolver.setBounds(19, 105, 85, 21);
 		contentPane.add(btnVolver);
+		
+		lblMostrarMedicoPor = new JLabel("Mostrar medico por nombre");
+		lblMostrarMedicoPor.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMostrarMedicoPor.setBounds(140, 29, 234, 22);
+		contentPane.add(lblMostrarMedicoPor);
 	}
 }

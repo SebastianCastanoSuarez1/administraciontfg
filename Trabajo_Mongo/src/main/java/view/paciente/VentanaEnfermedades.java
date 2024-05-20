@@ -40,6 +40,7 @@ public class VentanaEnfermedades extends JFrame {
 	JButton btnComprobar;
 	private JLabel lblMensaje;
 	JFormattedTextField formattedDni;
+	private JLabel lblAadirEnfermedadesAl;
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +63,7 @@ public class VentanaEnfermedades extends JFrame {
 	public VentanaEnfermedades() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 463, 493);
+		setBounds(100, 100, 504, 502);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -73,25 +74,25 @@ public class VentanaEnfermedades extends JFrame {
 		lblEnfermedad = new JLabel("Enfermedad\r\n");
 		lblEnfermedad.setVisible(false);
 		lblEnfermedad.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEnfermedad.setBounds(47, 94, 112, 20);
+		lblEnfermedad.setBounds(78, 124, 112, 20);
 		contentPane.add(lblEnfermedad);
 
 		textFieldEnfermedad = new JTextField();
 		textFieldEnfermedad.setVisible(false);
 		textFieldEnfermedad.setColumns(10);
-		textFieldEnfermedad.setBounds(169, 96, 143, 20);
+		textFieldEnfermedad.setBounds(200, 126, 143, 20);
 		contentPane.add(textFieldEnfermedad);
 
 		lblFecha = new JLabel("Fecha");
 		lblFecha.setVisible(false);
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblFecha.setBounds(47, 138, 77, 20);
+		lblFecha.setBounds(78, 168, 77, 20);
 		contentPane.add(lblFecha);
 
 		lblDetalles = new JLabel("Detalles");
 		lblDetalles.setVisible(false);
 		lblDetalles.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDetalles.setBounds(47, 181, 77, 14);
+		lblDetalles.setBounds(78, 211, 77, 14);
 		contentPane.add(lblDetalles);
 
 		comboBoxDetalles = new JComboBox<String>();
@@ -115,7 +116,7 @@ public class VentanaEnfermedades extends JFrame {
 			}
 		});
 		comboBoxDetalles.setModel(new DefaultComboBoxModel<String>(new String[] { "Si", "No" }));
-		comboBoxDetalles.setBounds(163, 179, 53, 22);
+		comboBoxDetalles.setBounds(194, 209, 53, 22);
 		contentPane.add(comboBoxDetalles);
 
 		btnCancelar = new JButton("Cancelar");
@@ -126,7 +127,7 @@ public class VentanaEnfermedades extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(98, 358, 89, 23);
+		btnCancelar.setBounds(129, 388, 89, 23);
 		contentPane.add(btnCancelar);
 
 		btnAcepatr = new JButton("Aceptar");
@@ -148,50 +149,50 @@ public class VentanaEnfermedades extends JFrame {
 			}
 
 		});
-		btnAcepatr.setBounds(265, 358, 89, 23);
+		btnAcepatr.setBounds(296, 388, 89, 23);
 		contentPane.add(btnAcepatr);
 
 		lblTratamiento = new JLabel("Tratamiento");
 		lblTratamiento.setVisible(false);
 		lblTratamiento.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTratamiento.setBounds(47, 224, 112, 14);
+		lblTratamiento.setBounds(78, 254, 112, 14);
 		contentPane.add(lblTratamiento);
 
 		textFieldTratamiento = new JTextField();
 		textFieldTratamiento.setVisible(false);
 		textFieldTratamiento.setColumns(10);
-		textFieldTratamiento.setBounds(169, 223, 134, 20);
+		textFieldTratamiento.setBounds(200, 253, 134, 20);
 		contentPane.add(textFieldTratamiento);
 
 		lblMedicamentos = new JLabel("Medicamentos");
 		lblMedicamentos.setVisible(false);
 		lblMedicamentos.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMedicamentos.setBounds(47, 255, 112, 14);
+		lblMedicamentos.setBounds(78, 285, 112, 14);
 		contentPane.add(lblMedicamentos);
 
 		textFieldMedicamentos = new JTextField();
 		textFieldMedicamentos.setVisible(false);
 		textFieldMedicamentos.setColumns(10);
-		textFieldMedicamentos.setBounds(169, 254, 134, 20);
+		textFieldMedicamentos.setBounds(200, 284, 134, 20);
 		contentPane.add(textFieldMedicamentos);
 
 		textFieldinforme = new JTextField();
 		textFieldinforme.setVisible(false);
 		textFieldinforme.setColumns(10);
-		textFieldinforme.setBounds(169, 285, 134, 20);
+		textFieldinforme.setBounds(200, 315, 134, 20);
 		contentPane.add(textFieldinforme);
 
 		lblInforme = new JLabel("Informe");
 		lblInforme.setVisible(false);
 		lblInforme.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblInforme.setBounds(47, 288, 94, 14);
+		lblInforme.setBounds(78, 318, 94, 14);
 		contentPane.add(lblInforme);
 		try {
 			mascara = new MaskFormatter("##/##/####");
 			mascara.setValidCharacters("0123456789");
 			formattedFecha = new JFormattedTextField(mascara);
 			formattedFecha.setVisible(false);
-			formattedFecha.setBounds(174, 140, 138, 19);
+			formattedFecha.setBounds(205, 170, 138, 19);
 			contentPane.add(formattedFecha);
 
 		} catch (ParseException e) {
@@ -199,7 +200,7 @@ public class VentanaEnfermedades extends JFrame {
 		}
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(32, 32, 34, 21);
+		lblDNI.setBounds(63, 62, 34, 21);
 		contentPane.add(lblDNI);
 
 		btnComprobar = new JButton("Comprobar");
@@ -224,19 +225,24 @@ public class VentanaEnfermedades extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(301, 28, 113, 25);
+		btnComprobar.setBounds(332, 58, 113, 25);
 		contentPane.add(btnComprobar);
 		
 		lblMensaje = new JLabel("");
-		lblMensaje.setBounds(98, 405, 241, 20);
+		lblMensaje.setBounds(129, 435, 241, 20);
 		contentPane.add(lblMensaje);
 		
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(98, 32, 177, 20);
+			formattedDni.setBounds(129, 62, 177, 20);
 			contentPane.add(formattedDni);
+			
+			lblAadirEnfermedadesAl = new JLabel("Añadir enfermedades al historial medico");
+			lblAadirEnfermedadesAl.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblAadirEnfermedadesAl.setBounds(82, 10, 343, 22);
+			contentPane.add(lblAadirEnfermedadesAl);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

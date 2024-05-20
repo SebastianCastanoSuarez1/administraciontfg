@@ -8,253 +8,228 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.Optional;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import org.bson.Document;
 
 import controller.MedicoController_Interfaz;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class VentanaModificarMedico extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JComboBox<String> comboBoxAtributo;
-	private JFormattedTextField formattedDni;
-	private final MedicoController_Interfaz medicoInterfaz = new MedicoController_Interfaz();
-	private MaskFormatter mascara;
-	private JLabel lblNombre, lblMensaje, lblDNI, lblTexto, lblValor;
-	private JButton btnCancelar, btnGuardar, btnComprobar;
-	private JTextField textFieldValorAtributo, textFieldNombre;
-	String atributo, dni, valor,atributoOtro;
-	JScrollPane scrollPaneMostrar;
-	JTextArea textAreaMostrar;
-	private VentanaPrincipalMedico vm;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaModificarMedico frame = new VentanaModificarMedico();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
+    private JFormattedTextField formattedDni;
+    private JFormattedTextField formattedFechaIncorporacion;
+    private JButton btnComprobar;
+    private final MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
+    private MaskFormatter mascara;
+    private JLabel lblDNI;
+    private VentanaPrincipalMedico vm;
+    private JTextField textFieldNombre;
+    private JTextField textFieldApellidos;
+    private JTextField textFieldEspecialida;
+    private JButton saveButton;
+    private JButton btnCancelar;
+    private JLabel lblModificarMedico;
 
-	/**
-	 * Create the frame.
-	 */
-	public VentanaModificarMedico() {
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 705, 432);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(230, 230, 250));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+   	 EventQueue.invokeLater(new Runnable() {
+   		 public void run() {
+   			 try {
+   				 VentanaModificarMedico frame = new VentanaModificarMedico();
+   				 frame.setVisible(true);
+   			 } catch (Exception e) {
+   				 e.printStackTrace();
+   			 }
+   		 }
+   	 });
+    }
 
-		lblTexto = new JLabel("Que atributo quiere modificar");
-		lblTexto.setVisible(false);
-		lblTexto.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTexto.setBounds(10, 92, 235, 30);
-		contentPane.add(lblTexto);
+    public VentanaModificarMedico() {
+   	 setResizable(false);
+   	 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   	 setBounds(100, 100, 631, 424);
+   	 contentPane = new JPanel();
+   	 contentPane.setBackground(new Color(230, 230, 250));
+   	 contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		comboBoxAtributo = new JComboBox<String>();
-		comboBoxAtributo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dni = formattedDni.getText();
-				atributo = comboBoxAtributo.getSelectedItem().toString();
-				//valor = medicoInterfaz.findAtribtuto(dni, atributo);
-				if (atributo.equals("Otro")) {
-					lblNombre.setVisible(true);
-					textFieldNombre.setVisible(true);
+   	 setContentPane(contentPane);
+   	 contentPane.setLayout(null);
 
-				} else {
-					lblValor.setVisible(true);
-					textFieldValorAtributo.setVisible(true);
-					
-				}
-			}
-		});
-		comboBoxAtributo.setVisible(false);
-		comboBoxAtributo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBoxAtributo.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "", "Nombre", "Apellidos", "Especialidad", "Fecha_Incorporacion","Otro"}));
+   	 lblDNI = new JLabel("DNI");
+   	 lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
+   	 lblDNI.setBounds(145, 82, 55, 40);
+   	 contentPane.add(lblDNI);
 
-		comboBoxAtributo.setBounds(255, 97, 136, 21);
-		contentPane.add(comboBoxAtributo);
+   	 try {
+   		 mascara = new MaskFormatter("########?");
+   		 mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+   		 formattedDni = new JFormattedTextField(mascara);
+   		 formattedDni.setBounds(210, 93, 148, 26);
+   		 contentPane.add(formattedDni);
+   	 } catch (ParseException e) {
+   		 e.printStackTrace();
+   	 }
 
-		lblValor = new JLabel("Introduzca el nuevo valor del atributo\r\n");
-		lblValor.setVisible(false);
-		lblValor.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblValor.setBounds(10, 209, 286, 21);
-		contentPane.add(lblValor);
+   	 btnComprobar = new JButton("Comprobar");
+   	 btnComprobar.addActionListener(new ActionListener() {
+   		 public void actionPerformed(ActionEvent e) {
+   			 if (btnComprobar == e.getSource()) {
+   				 String dni = formattedDni.getText();
+   				 Optional<Document> pacientes = controllerMedico.comprobarDni(dni);
 
-		lblDNI = new JLabel("DNI");
-		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(92, 17, 55, 30);
-		contentPane.add(lblDNI);
+   				 if (pacientes.isPresent()) {
+   					 formattedDni.setEnabled(false);
+   					 habilitarCampos(true);
+   					 cargarDatosDocumento(dni);
+   					 saveButton.setEnabled(true);
+   				 } else {
+   					 String mensaje = "El paciente con DNI " + formattedDni.getText() + " no existe ";
+   					 JOptionPane.showMessageDialog(null, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+   				 }
+   			 }
+   		 }
+   	 });
+   	 btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+   	 btnComprobar.setBounds(380, 91, 98, 27);
+   	 contentPane.add(btnComprobar);
 
-		try {
-			mascara = new MaskFormatter("########?");
-			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(170, 23, 148, 26);
-			contentPane.add(formattedDni);
+   	 textFieldNombre = new JTextField();
+   	 textFieldNombre.setEnabled(false);
+   	 textFieldNombre.setBounds(129, 170, 150, 20);
+   	 contentPane.add(textFieldNombre);
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+   	 JLabel lblNombre = new JLabel("Nombre:");
+   	 lblNombre.setBounds(10, 169, 70, 20);
+   	 contentPane.add(lblNombre);
 
-		btnComprobar = new JButton("Comprobar");
-		btnComprobar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnComprobar == e.getSource()) {
-					dni = formattedDni.getText().toString();
-					Optional<Document> medicos = medicoInterfaz.comprobarDni(dni);
+   	 textFieldApellidos = new JTextField();
+   	 textFieldApellidos.setEnabled(false);
+   	 textFieldApellidos.setBounds(446, 170, 150, 20);
+   	 contentPane.add(textFieldApellidos);
 
-					if (medicos.isPresent()) {
-						lblTexto.setVisible(true);
-						comboBoxAtributo.setVisible(true);
-						scrollPaneMostrar.setVisible(true);
-						textAreaMostrar.setVisible(true);
-						textAreaMostrar.setText(medicoInterfaz.mostrar(medicos));
-					} else {
-						String mensaje = "El medico con DNI " + formattedDni.getText() + " no existe ";
-						JOptionPane.showMessageDialog(null, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-					}
-				}
-			}
-		});
-		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(350, 21, 98, 27);
-		contentPane.add(btnComprobar);
+   	 JLabel lblApellidos = new JLabel("Apellidos:");
+   	 lblApellidos.setBounds(336, 169, 70, 20);
+   	 contentPane.add(lblApellidos);
 
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vm = new VentanaPrincipalMedico();
-				vm.setVisible(true);
-				dispose();
-			}
-		});
-		btnCancelar.setBounds(145, 300, 85, 30);
-		contentPane.add(btnCancelar);
+   	 try {
+   		 MaskFormatter dobMask = new MaskFormatter("##/##/####");
+   		 dobMask.setValidCharacters("0123456789");
+   		 formattedFechaIncorporacion = new JFormattedTextField(dobMask);
+   		 formattedFechaIncorporacion.setBounds(129, 223, 150, 20);
+   		 formattedFechaIncorporacion.setEnabled(false);
+   		 contentPane.add(formattedFechaIncorporacion);
+   	 } catch (ParseException e) {
+   		 e.printStackTrace();
+   	 }
 
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (btnGuardar == e.getSource()) {
-					dni = formattedDni.getText().toString();
-					atributo = comboBoxAtributo.getSelectedItem().toString();
-					valor = textFieldValorAtributo.getText();
-					switch (atributo) {
-					case "Nombre":
+   	 JLabel lblFechaNacimiento = new JLabel("Fecha Incorporacion:");
+   	 lblFechaNacimiento.setBounds(10, 223, 129, 20);
+   	 contentPane.add(lblFechaNacimiento);
 
-						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
-						lblMensaje.setText("Medico actualizado correctamente");
-						lblMensaje.setForeground(Color.GREEN);
-						break;
-					case "Apellidos":
+   	 textFieldEspecialida = new JTextField();
+   	 textFieldEspecialida.setEnabled(false);
+   	 textFieldEspecialida.setColumns(10);
+   	 textFieldEspecialida.setBounds(446, 223, 150, 20);
+   	 contentPane.add(textFieldEspecialida);
 
-						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
-						lblMensaje.setText("Medico actualizado correctamente");
-						lblMensaje.setForeground(Color.GREEN);
-						break;
-					case "Especialidad":
+   	 JLabel alturaLbl = new JLabel("Especialidad:");
+   	 alturaLbl.setBounds(336, 224, 83, 16);
+   	 contentPane.add(alturaLbl);
 
-						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
-						lblMensaje.setText("Medico actualizado correctamente");
-						lblMensaje.setForeground(Color.GREEN);
-						break;
-					case "Fecha_Incorporacion":
+   	 saveButton = new JButton("Aceptar");
+   	 saveButton.setEnabled(false);
+   	 saveButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+   	 saveButton.setBorderPainted(false);
+   	 saveButton.setBackground(new Color(240, 240, 240));
+   	 saveButton.setBounds(334, 307, 122, 36);
+   	 contentPane.add(saveButton);
+   	 
+   	 btnCancelar = new JButton("Cancelar");
+   	 btnCancelar.addActionListener(new ActionListener() {
+   	 	public void actionPerformed(ActionEvent e) {
+   	 		vm = new VentanaPrincipalMedico();
+   	 		vm.setVisible(true);
+   	 		dispose();
+   	 	}
+   	 });
+   	 btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+   	 btnCancelar.setBorderPainted(false);
+   	 btnCancelar.setBackground(UIManager.getColor("Button.background"));
+   	 btnCancelar.setBounds(145, 308, 122, 35);
+   	 contentPane.add(btnCancelar);
+   	 
+   	 lblModificarMedico = new JLabel("Modificar medico");
+   	 lblModificarMedico.setFont(new Font("Tahoma", Font.BOLD, 15));
+   	 lblModificarMedico.setBounds(225, 26, 168, 21);
+   	 contentPane.add(lblModificarMedico);
 
-						medicoInterfaz.valorAtributoNuevo(dni, atributo, valor);
-						lblMensaje.setText("Medico actualizado correctamente");
-						lblMensaje.setForeground(Color.GREEN);
-						break;
-					case "Otro":
-						String atributoOtro = textFieldNombre.getText();
-						medicoInterfaz.valorAtributoNuevo(dni, atributoOtro, valor);
-						lblMensaje.setText("Medico actualizado correctamente");
-						lblMensaje.setForeground(Color.GREEN);
-						break;
+   	 saveButton.addActionListener(new ActionListener() {
+   		 public void actionPerformed(ActionEvent e) {
+   			 if (e.getSource() == saveButton) {
+   				 actualizarPaciente();
+   			 }
+   		 }
+   	 });
+    }
 
-					default:
-						break;
-					}
-				}
-			}
+    private void habilitarCampos(boolean habilitar) {
+   	 textFieldNombre.setEnabled(habilitar);
+   	 textFieldApellidos.setEnabled(habilitar);
+   	 formattedFechaIncorporacion.setEnabled(habilitar);
+   	 textFieldEspecialida.setEnabled(habilitar);
+   
+   	 JLabel[] labels = { new JLabel("Nombre:"), new JLabel("Apellidos:"), new JLabel("Fecha Incorporacion:"),
+   			 new JLabel("Especialidad:")};
 
-		});
-		btnGuardar.setBounds(296, 300, 98, 30);
-		contentPane.add(btnGuardar);
+   	 for (JLabel label : labels) {
+   		 label.setEnabled(habilitar);
+   	 }
+    }
 
-		textFieldValorAtributo = new JTextField();
-		textFieldValorAtributo.setVisible(false);
-		textFieldValorAtributo.setBounds(10, 240, 258, 19);
-		contentPane.add(textFieldValorAtributo);
-		textFieldValorAtributo.setColumns(10);
+    private void cargarDatosDocumento(String dni) {
+   	 Optional<Document> documento = controllerMedico.findByDni(dni);
+   	 documento.ifPresent(usuarioDatos -> {
+   		 textFieldNombre.setText(usuarioDatos.getString("Nombre"));
+   		 textFieldApellidos.setText(usuarioDatos.getString("Apellidos"));
+   		 formattedFechaIncorporacion.setText(usuarioDatos.getString("Fecha_Incorporacion"));
+   		 textFieldEspecialida.setText(usuarioDatos.getString("Especialidad"));
+   	 });
+    }
 
-		lblNombre = new JLabel("Introduzca el nombre de atributo\r\n");
-		lblNombre.setVisible(false);
-		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNombre.setBounds(10, 146, 258, 13);
-		contentPane.add(lblNombre);
+    private void actualizarPaciente() {
+   	 String dni = formattedDni.getText();
+   	 String nombre = textFieldNombre.getText();
+   	 String apellidos = textFieldApellidos.getText();
+   	 String fechaIncorporacion = formattedFechaIncorporacion.getText();
+   	 String especialidad = textFieldEspecialida.getText();
 
-		textFieldNombre = new JTextField();
-		textFieldNombre.setVisible(false);
-		textFieldNombre.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				atributoOtro = textFieldNombre.getText();
+  
+   	 Document paciente = new Document("Dni", dni).append("Nombre", nombre).append("Apellidos", apellidos)
+   			 .append("Fecha_Incorporacion", fechaIncorporacion).append("Especialidad", especialidad);
 
-				if (!atributoOtro.equals("")) {
-					lblValor.setVisible(true);
-					textFieldValorAtributo.setVisible(true);
-				} else {
-					lblValor.setVisible(false);
-					textFieldValorAtributo.setVisible(false);
-				}
-			}
-		});
-		textFieldNombre.setBounds(10, 169, 258, 19);
-		contentPane.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
-		
-		lblMensaje = new JLabel("");
-		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(92, 340, 337, 25);
-		contentPane.add(lblMensaje);
-		
-		scrollPaneMostrar = new JScrollPane();
-		scrollPaneMostrar.setVisible(false);
-		scrollPaneMostrar.setBounds(404, 97, 276, 288);
-		contentPane.add(scrollPaneMostrar);
-		
-		textAreaMostrar = new JTextArea();
-		textAreaMostrar.setVisible(false);
-		scrollPaneMostrar.setViewportView(textAreaMostrar);
+   	 boolean actualizado = controllerMedico.updateData(dni, paciente);
 
-	}
+   	 if (actualizado) {
+   		 JOptionPane.showMessageDialog(this, "Datos del paciente actualizados correctamente.",
+   				 "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+   	 } else {
+   		 JOptionPane.showMessageDialog(this, "Hubo un problema al actualizar los datos del paciente.",
+   				 "Error de actualización", JOptionPane.ERROR_MESSAGE);
+   	 }
+    }
 }

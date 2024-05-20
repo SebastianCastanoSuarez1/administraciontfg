@@ -38,6 +38,7 @@ public class VentanaAnadirAlergenos extends JFrame {
 	JLabel lblMensaje;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaPrincipalPaciente vp;
+	private JLabel lblAadirAlergenos;
 
 
 	/**
@@ -61,7 +62,7 @@ public class VentanaAnadirAlergenos extends JFrame {
 	 */
 	public VentanaAnadirAlergenos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 544, 325);
+		setBounds(100, 100, 544, 360);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,14 +72,14 @@ public class VentanaAnadirAlergenos extends JFrame {
 
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(70, 38, 34, 21);
+		lblDNI.setBounds(70, 73, 34, 21);
 		contentPane.add(lblDNI);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(136, 42, 177, 20);
+			formattedDni.setBounds(136, 77, 177, 20);
 			contentPane.add(formattedDni);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -102,18 +103,18 @@ public class VentanaAnadirAlergenos extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(342, 38, 113, 25);
+		btnComprobar.setBounds(342, 73, 113, 25);
 		contentPane.add(btnComprobar);
 
 		lblAlergeno = new JLabel("Meta alergenos de esta forma: alergeno espacio aleregeno");
 		lblAlergeno.setVisible(false);
 		lblAlergeno.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAlergeno.setBounds(10, 103, 337, 35);
+		lblAlergeno.setBounds(10, 138, 337, 35);
 		contentPane.add(lblAlergeno);
 
 		textFieldAlergeno = new JTextField();
 		textFieldAlergeno.setVisible(false);
-		textFieldAlergeno.setBounds(357, 112, 150, 19);
+		textFieldAlergeno.setBounds(357, 147, 150, 19);
 		contentPane.add(textFieldAlergeno);
 		textFieldAlergeno.setColumns(10);
 
@@ -126,7 +127,7 @@ public class VentanaAnadirAlergenos extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.setBounds(117, 189, 85, 33);
+		btnCancelar.setBounds(133, 224, 85, 33);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
@@ -151,11 +152,16 @@ public class VentanaAnadirAlergenos extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(288, 189, 85, 33);
+		btnAceptar.setBounds(299, 224, 85, 33);
 		contentPane.add(btnAceptar);
 
 		lblMensaje = new JLabel("");
-		lblMensaje.setBounds(136, 248, 259, 21);
+		lblMensaje.setBounds(125, 289, 259, 21);
 		contentPane.add(lblMensaje);
+		
+		lblAadirAlergenos = new JLabel("Añadir alergenos al paciente\r\n");
+		lblAadirAlergenos.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAadirAlergenos.setBounds(159, 20, 225, 22);
+		contentPane.add(lblAadirAlergenos);
 	}
 }

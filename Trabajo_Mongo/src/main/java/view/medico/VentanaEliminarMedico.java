@@ -29,6 +29,7 @@ public class VentanaEliminarMedico extends JFrame {
 	private MaskFormatter mascara;
 	private JButton btnEliminar, btnCancelar;
 	private VentanaPrincipalMedico vpm;
+	private JLabel lblTitulo;
 	/**
 	 * Launch the application.
 	 */
@@ -61,14 +62,14 @@ public class VentanaEliminarMedico extends JFrame {
 		
 		lblDNI = new JLabel("Introduzca DNI del medico\r\n\r\n");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDNI.setBounds(31, 58, 218, 31);
+		lblDNI.setBounds(31, 74, 218, 31);
 		contentPane.add(lblDNI);
 		
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDNI = new JFormattedTextField(mascara);
-			formattedDNI.setBounds(235, 60, 144, 32);
+			formattedDNI.setBounds(249, 76, 144, 32);
 			contentPane.add(formattedDNI);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -114,6 +115,11 @@ public class VentanaEliminarMedico extends JFrame {
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMensaje.setBounds(64, 236, 329, 33);
 		contentPane.add(lblMensaje);
+		
+		lblTitulo = new JLabel("Eliminar medico");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(151, 23, 144, 21);
+		contentPane.add(lblTitulo);
 	}
 
 }

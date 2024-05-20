@@ -38,6 +38,7 @@ public class VentanaAnadirMedicamentos extends JFrame {
 	JLabel lblMensaje;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaPrincipalPaciente vp;
+	private JLabel lblAadirMedicamentos;
 
 
 	/**
@@ -61,7 +62,7 @@ public class VentanaAnadirMedicamentos extends JFrame {
 	 */
 	public VentanaAnadirMedicamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 575, 325);
+		setBounds(100, 100, 584, 402);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,14 +72,14 @@ public class VentanaAnadirMedicamentos extends JFrame {
 
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(70, 38, 34, 21);
+		lblDNI.setBounds(80, 83, 34, 21);
 		contentPane.add(lblDNI);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(136, 42, 177, 20);
+			formattedDni.setBounds(146, 87, 177, 20);
 			contentPane.add(formattedDni);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -102,18 +103,18 @@ public class VentanaAnadirMedicamentos extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(342, 38, 113, 25);
+		btnComprobar.setBounds(352, 83, 113, 25);
 		contentPane.add(btnComprobar);
 
 		lblMedicamento = new JLabel("Meta medicamentos de esta forma: medicamento espacio medicamento\r\n");
 		lblMedicamento.setVisible(false);
 		lblMedicamento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMedicamento.setBounds(0, 103, 401, 35);
+		lblMedicamento.setBounds(2, 149, 401, 35);
 		contentPane.add(lblMedicamento);
 
 		textFieldMedicamento = new JTextField();
 		textFieldMedicamento.setVisible(false);
-		textFieldMedicamento.setBounds(411, 112, 150, 19);
+		textFieldMedicamento.setBounds(413, 158, 150, 19);
 		contentPane.add(textFieldMedicamento);
 		textFieldMedicamento.setColumns(10);
 
@@ -126,7 +127,7 @@ public class VentanaAnadirMedicamentos extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.setBounds(136, 189, 85, 33);
+		btnCancelar.setBounds(146, 234, 85, 33);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
@@ -150,11 +151,16 @@ public class VentanaAnadirMedicamentos extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(308, 189, 85, 33);
+		btnAceptar.setBounds(318, 234, 85, 33);
 		contentPane.add(btnAceptar);
 
 		lblMensaje = new JLabel("");
-		lblMensaje.setBounds(136, 248, 257, 21);
+		lblMensaje.setBounds(146, 293, 257, 21);
 		contentPane.add(lblMensaje);
+		
+		lblAadirMedicamentos = new JLabel("Añadir medicamentos al paciente\r\n");
+		lblAadirMedicamentos.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAadirMedicamentos.setBounds(168, 24, 262, 22);
+		contentPane.add(lblAadirMedicamentos);
 	}
 }

@@ -32,6 +32,12 @@ public class Controller_Interfaz {
 		}
 
 	}
+	
+	public Boolean updateData(String dni, Document newData) {
+    	Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
+    	return paciente.map(p -> pacienteRepositoryImpl.replaceDocument(paciente, newData)).orElse(false);
+    }
+
 
 	public String findDniPorNombre(String nombre) {
 		String medico = pacienteRepositoryImpl.findDniPorNombre(nombre);

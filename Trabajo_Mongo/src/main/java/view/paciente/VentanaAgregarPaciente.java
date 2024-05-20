@@ -39,6 +39,7 @@ public class VentanaAgregarPaciente extends JFrame {
 	private JButton btnAceptar, btnCancelar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaPrincipalPaciente vp;
+	private JLabel lblAadirPaciente;
 
 	/**
 	 * Launch the application.
@@ -62,7 +63,7 @@ public class VentanaAgregarPaciente extends JFrame {
 	public VentanaAgregarPaciente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 527, 353);
+		setBounds(100, 100, 527, 414);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,74 +73,74 @@ public class VentanaAgregarPaciente extends JFrame {
 
 		lblDNI = new JLabel("DNI\r\n");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDNI.setBounds(10, 10, 42, 21);
+		lblDNI.setBounds(10, 71, 42, 21);
 		contentPane.add(lblDNI);
 
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombre.setBounds(234, 10, 60, 21);
+		lblNombre.setBounds(234, 71, 60, 21);
 		contentPane.add(lblNombre);
 
 		lblApellidos = new JLabel("Apellidos");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblApellidos.setBounds(10, 41, 60, 21);
+		lblApellidos.setBounds(10, 102, 60, 21);
 		contentPane.add(lblApellidos);
 
 		lblFechaDeNacimiento = new JLabel("Fecha_Nacimiento");
 		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblFechaDeNacimiento.setBounds(234, 41, 126, 21);
+		lblFechaDeNacimiento.setBounds(234, 102, 126, 21);
 		contentPane.add(lblFechaDeNacimiento);
 
 		lblSexo = new JLabel("Sexo");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSexo.setBounds(10, 72, 89, 21);
+		lblSexo.setBounds(10, 133, 89, 21);
 		contentPane.add(lblSexo);
 
 		lblLugarDeNacimiento = new JLabel("Lugar_Nacimiento");
 		lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLugarDeNacimiento.setBounds(234, 72, 126, 21);
+		lblLugarDeNacimiento.setBounds(234, 133, 126, 21);
 		contentPane.add(lblLugarDeNacimiento);
 
 		lblAltura = new JLabel("Altura");
 		lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAltura.setBounds(10, 103, 60, 21);
+		lblAltura.setBounds(10, 164, 60, 21);
 		contentPane.add(lblAltura);
 
 		lblPeso = new JLabel("Peso\r\n");
 		lblPeso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPeso.setBounds(234, 103, 49, 21);
+		lblPeso.setBounds(234, 164, 49, 21);
 		contentPane.add(lblPeso);
 
 		lblGrupoSanguineo = new JLabel("Grupo_Sanguineo");
 		lblGrupoSanguineo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblGrupoSanguineo.setBounds(10, 134, 138, 21);
+		lblGrupoSanguineo.setBounds(10, 195, 138, 21);
 		contentPane.add(lblGrupoSanguineo);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(62, 12, 138, 19);
+			formattedDni.setBounds(62, 73, 138, 19);
 			contentPane.add(formattedDni);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(304, 12, 140, 19);
+		textFieldNombre.setBounds(304, 73, 140, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setColumns(10);
-		textFieldApellidos.setBounds(80, 43, 140, 19);
+		textFieldApellidos.setBounds(80, 104, 140, 19);
 		contentPane.add(textFieldApellidos);
 
 		try {
 			mascara = new MaskFormatter("##/##/####");
 			mascara.setValidCharacters("0123456789");
 			formattedFechaNacimiento = new JFormattedTextField(mascara);
-			formattedFechaNacimiento.setBounds(365, 43, 138, 19);
+			formattedFechaNacimiento.setBounds(365, 104, 138, 19);
 			contentPane.add(formattedFechaNacimiento);
 
 		} catch (ParseException e) {
@@ -147,11 +148,11 @@ public class VentanaAgregarPaciente extends JFrame {
 		}
 		comboBoxSexo = new JComboBox<String>();
 		comboBoxSexo.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Masculino", "Femenino" }));
-		comboBoxSexo.setBounds(62, 72, 95, 21);
+		comboBoxSexo.setBounds(62, 133, 95, 21);
 		contentPane.add(comboBoxSexo);
 
 		textFieldLugarNacimiento = new JTextField();
-		textFieldLugarNacimiento.setBounds(369, 74, 134, 19);
+		textFieldLugarNacimiento.setBounds(369, 135, 134, 19);
 		contentPane.add(textFieldLugarNacimiento);
 		textFieldLugarNacimiento.setColumns(10);
 
@@ -166,7 +167,7 @@ public class VentanaAgregarPaciente extends JFrame {
 			}
 		});
 		textFieldAltura.setColumns(10);
-		textFieldAltura.setBounds(62, 103, 134, 19);
+		textFieldAltura.setBounds(62, 164, 134, 19);
 		contentPane.add(textFieldAltura);
 
 		textFieldPeso = new JTextField();
@@ -181,13 +182,13 @@ public class VentanaAgregarPaciente extends JFrame {
 		});
 		textFieldPeso.setColumns(10);
 
-		textFieldPeso.setBounds(286, 103, 134, 19);
+		textFieldPeso.setBounds(286, 164, 134, 19);
 		contentPane.add(textFieldPeso);
 
 		comboBoxGrupoSanguineo = new JComboBox<String>();
 		comboBoxGrupoSanguineo.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "", "A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-" }));
-		comboBoxGrupoSanguineo.setBounds(125, 135, 95, 21);
+		comboBoxGrupoSanguineo.setBounds(125, 196, 95, 21);
 		contentPane.add(comboBoxGrupoSanguineo);
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -227,7 +228,7 @@ public class VentanaAgregarPaciente extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAceptar.setBounds(283, 217, 126, 34);
+		btnAceptar.setBounds(283, 278, 126, 34);
 		contentPane.add(btnAceptar);
 
 		btnCancelar = new JButton("Cancelar");
@@ -239,13 +240,18 @@ public class VentanaAgregarPaciente extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(80, 217, 126, 34);
+		btnCancelar.setBounds(80, 278, 126, 34);
 		contentPane.add(btnCancelar);
 
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(49, 272, 429, 34);
+		lblMensaje.setBounds(49, 333, 429, 34);
 		contentPane.add(lblMensaje);
+		
+		lblAadirPaciente = new JLabel("Añadir paciente");
+		lblAadirPaciente.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAadirPaciente.setBounds(184, 22, 201, 22);
+		contentPane.add(lblAadirPaciente);
 
 	}
 }

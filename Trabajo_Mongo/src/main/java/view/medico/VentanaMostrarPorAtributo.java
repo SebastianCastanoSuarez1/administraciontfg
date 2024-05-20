@@ -29,6 +29,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 	private JTextField textFieldValor;
 	JButton btnVolver;
 	VentanaPrincipalMedico principal;
+	private JLabel lblTitulo;
 
 	/**
 	 * Launch the application.
@@ -61,32 +62,32 @@ public class VentanaMostrarPorAtributo extends JFrame {
 
 		lblIntroduzcaNombre = new JLabel("Introduzca el nombre del atributo\r\n");
 		lblIntroduzcaNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIntroduzcaNombre.setBounds(122, 31, 231, 22);
+		lblIntroduzcaNombre.setBounds(123, 70, 231, 22);
 		contentPane.add(lblIntroduzcaNombre);
 
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDNI.setBounds(95, 125, 50, 22);
+		lblDNI.setBounds(96, 164, 50, 22);
 		contentPane.add(lblDNI);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(95, 162, 50, 22);
+		lblNombre.setBounds(96, 201, 50, 22);
 		contentPane.add(lblNombre);
 
 		lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblApellidos.setBounds(95, 194, 62, 22);
+		lblApellidos.setBounds(96, 233, 62, 22);
 		contentPane.add(lblApellidos);
 
 		lblEspecialidad = new JLabel("Especialidad:");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEspecialidad.setBounds(95, 226, 119, 22);
+		lblEspecialidad.setBounds(96, 265, 119, 22);
 		contentPane.add(lblEspecialidad);
 
 		lblFechaIncorporacion = new JLabel("Fecha incorporacion:");
 		lblFechaIncorporacion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaIncorporacion.setBounds(95, 258, 119, 19);
+		lblFechaIncorporacion.setBounds(96, 297, 119, 19);
 		contentPane.add(lblFechaIncorporacion);
 
 		try {
@@ -99,35 +100,35 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		
 		textFieldDni = new JTextField();
 		textFieldDni.setEditable(false);
-		textFieldDni.setBounds(233, 128, 180, 19);
+		textFieldDni.setBounds(234, 167, 180, 19);
 		contentPane.add(textFieldDni);
 		textFieldDni.setColumns(10);
 
 		textFieldNombre = new JTextField();
 		textFieldNombre.setEditable(false);
 		textFieldNombre.setColumns(10);
-		textFieldNombre.setBounds(233, 162, 180, 19);
+		textFieldNombre.setBounds(234, 201, 180, 19);
 
 		contentPane.add(textFieldNombre);
 
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setEditable(false);
 		textFieldApellidos.setColumns(10);
-		textFieldApellidos.setBounds(233, 197, 180, 19);
+		textFieldApellidos.setBounds(234, 236, 180, 19);
 
 		contentPane.add(textFieldApellidos);
 
 		textFieldEspecialidad = new JTextField();
 		textFieldEspecialidad.setEditable(false);
 		textFieldEspecialidad.setColumns(10);
-		textFieldEspecialidad.setBounds(233, 229, 180, 19);
+		textFieldEspecialidad.setBounds(234, 268, 180, 19);
 
 		contentPane.add(textFieldEspecialidad);
 
 		textFieldFechaIncorporacion = new JTextField();
 		textFieldFechaIncorporacion.setEditable(false);
 		textFieldFechaIncorporacion.setColumns(10);
-		textFieldFechaIncorporacion.setBounds(233, 259, 180, 19);
+		textFieldFechaIncorporacion.setBounds(234, 298, 180, 19);
 
 		contentPane.add(textFieldFechaIncorporacion);
 		
@@ -141,7 +142,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 				
 			}
 		});
-		textFieldAtributo.setBounds(363, 34, 138, 19);
+		textFieldAtributo.setBounds(364, 73, 138, 19);
 		contentPane.add(textFieldAtributo);
 		textFieldAtributo.setColumns(10);
 		
@@ -160,7 +161,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		});
 		textFieldValor.setVisible(false);
 		textFieldValor.setColumns(10);
-		textFieldValor.setBounds(363, 34, 138, 19);
+		textFieldValor.setBounds(364, 73, 138, 19);
 		contentPane.add(textFieldValor);
 		
 		btnVolver = new JButton("Volver");
@@ -173,8 +174,13 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		});
 		btnVolver.setBackground(new Color(255, 255, 255));
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVolver.setBounds(27, 32, 85, 21);
+		btnVolver.setBounds(28, 71, 85, 21);
 		contentPane.add(btnVolver);
+		
+		lblTitulo = new JLabel("Mostrar medico por atributo");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(151, 22, 244, 22);
+		contentPane.add(lblTitulo);
 		
 	}
 }

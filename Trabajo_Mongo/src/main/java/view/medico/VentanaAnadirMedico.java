@@ -36,6 +36,7 @@ public class VentanaAnadirMedico extends JFrame {
 	JComboBox<String> comboBoxEspecialidades;
 	JFormattedTextField formattedFechaIncorporacion;
 	VentanaPrincipalMedico principal;
+	private JLabel lblTitulo;
 	/**
 	 * Launch the application.
 	 */
@@ -58,7 +59,7 @@ public class VentanaAnadirMedico extends JFrame {
 	public VentanaAnadirMedico() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 498, 382);
+		setBounds(100, 100, 498, 398);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,14 +69,14 @@ public class VentanaAnadirMedico extends JFrame {
 		
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDNI.setBounds(31, 29, 52, 24);
+		lblDNI.setBounds(28, 68, 52, 24);
 		contentPane.add(lblDNI);
 		
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(77, 33, 138, 19);
+			formattedDni.setBounds(74, 72, 138, 19);
 			contentPane.add(formattedDni);
 
 		} catch (ParseException e) {
@@ -84,34 +85,34 @@ public class VentanaAnadirMedico extends JFrame {
 		
 		lblNombre = new JLabel("Nombre\r\n");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombre.setBounds(230, 29, 63, 24);
+		lblNombre.setBounds(227, 68, 63, 24);
 		contentPane.add(lblNombre);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(303, 34, 127, 19);
+		textFieldNombre.setBounds(300, 73, 127, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		lblApellidos = new JLabel("Apellidos");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblApellidos.setBounds(31, 93, 63, 20);
+		lblApellidos.setBounds(28, 132, 63, 20);
 		contentPane.add(lblApellidos);
 		
 		textFieldApellidos = new JTextField();
-		textFieldApellidos.setBounds(104, 93, 111, 21);
+		textFieldApellidos.setBounds(101, 132, 111, 21);
 		contentPane.add(textFieldApellidos);
 		textFieldApellidos.setColumns(10);
 		
 		lblEspecialidad = new JLabel("Especialidad");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEspecialidad.setBounds(245, 98, 79, 15);
+		lblEspecialidad.setBounds(242, 137, 79, 15);
 		contentPane.add(lblEspecialidad);
 		
 		comboBoxEspecialidades = new JComboBox<String>();
 		comboBoxEspecialidades.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "", "Cirugia", "Medico Familia", "Traumatologia", "Dermatologia", "Oftalmologia", "Pediatria", "Reumatologia", "Neurologia"
 						, "Enfermeria", "Fisioterapia", "Gastroenterologia"}));
-		comboBoxEspecialidades.setBounds(333, 98, 119, 21);
+		comboBoxEspecialidades.setBounds(330, 137, 119, 21);
 		contentPane.add(comboBoxEspecialidades);
 		
 		
@@ -120,7 +121,7 @@ public class VentanaAnadirMedico extends JFrame {
 			mascara = new MaskFormatter("##/##/####");
 			mascara.setValidCharacters("0123456789");
 			formattedFechaIncorporacion = new JFormattedTextField(mascara);
-			formattedFechaIncorporacion.setBounds(230, 164, 138, 19);
+			formattedFechaIncorporacion.setBounds(227, 203, 138, 19);
 			contentPane.add(formattedFechaIncorporacion);
 
 		} catch (ParseException e) {
@@ -130,7 +131,7 @@ public class VentanaAnadirMedico extends JFrame {
 	        
 		lblAnioExperiencia = new JLabel("Fecha de incorporacion");
 		lblAnioExperiencia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAnioExperiencia.setBounds(77, 160, 154, 24);
+		lblAnioExperiencia.setBounds(74, 199, 154, 24);
 		contentPane.add(lblAnioExperiencia);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -142,7 +143,7 @@ public class VentanaAnadirMedico extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelar.setBounds(122, 240, 85, 21);
+		btnCancelar.setBounds(119, 279, 85, 21);
 		contentPane.add(btnCancelar);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -173,13 +174,18 @@ public class VentanaAnadirMedico extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAceptar.setBounds(283, 240, 85, 21);
+		btnAceptar.setBounds(280, 279, 85, 21);
 		contentPane.add(btnAceptar);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMensaje.setBounds(93, 296, 310, 24);
+		lblMensaje.setBounds(90, 327, 310, 24);
 		contentPane.add(lblMensaje);
+		
+		lblTitulo = new JLabel("Añadir medico");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(170, 20, 154, 19);
+		contentPane.add(lblTitulo);
 		
 		
 		

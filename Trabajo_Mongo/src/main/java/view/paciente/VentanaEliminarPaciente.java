@@ -29,6 +29,7 @@ public class VentanaEliminarPaciente extends JFrame {
 	private MaskFormatter mascara;
 	private JButton btnEliminar, btnCancelar;
 	private VentanaPrincipalPaciente vp;
+	private JLabel lblEliminarPacietne;
 
 	/**
 	 * Launch the application.
@@ -52,7 +53,7 @@ public class VentanaEliminarPaciente extends JFrame {
 	public VentanaEliminarPaciente() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 330);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -62,14 +63,14 @@ public class VentanaEliminarPaciente extends JFrame {
 
 		lblDNI = new JLabel("Introduzca DNI del paciente\r\n\r\n");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDNI.setBounds(24, 65, 213, 31);
+		lblDNI.setBounds(36, 74, 213, 31);
 		contentPane.add(lblDNI);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDNI = new JFormattedTextField(mascara);
-			formattedDNI.setBounds(247, 67, 144, 32);
+			formattedDNI.setBounds(259, 76, 144, 32);
 			contentPane.add(formattedDNI);
 
 			btnEliminar = new JButton("Eliminar\r\n");
@@ -92,7 +93,7 @@ public class VentanaEliminarPaciente extends JFrame {
 				}
 			});
 			btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnEliminar.setBounds(220, 169, 119, 39);
+			btnEliminar.setBounds(232, 178, 119, 39);
 			contentPane.add(btnEliminar);
 
 			btnCancelar = new JButton("Cancelar\r\n");
@@ -104,13 +105,18 @@ public class VentanaEliminarPaciente extends JFrame {
 				}
 			});
 			btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnCancelar.setBounds(49, 169, 119, 39);
+			btnCancelar.setBounds(61, 178, 119, 39);
 			contentPane.add(btnCancelar);
 			
 			lblMensaje = new JLabel("\r\n");
 			lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblMensaje.setBounds(59, 220, 323, 33);
+			lblMensaje.setBounds(61, 235, 323, 33);
 			contentPane.add(lblMensaje);
+			
+			lblEliminarPacietne = new JLabel("Eliminar paciente");
+			lblEliminarPacietne.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblEliminarPacietne.setBounds(143, 25, 197, 22);
+			contentPane.add(lblEliminarPacietne);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

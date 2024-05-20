@@ -35,6 +35,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	VentanaPrincipalMedico principal;
 	MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
 	Controller_Interfaz pacienteController = new Controller_Interfaz();
+	private JLabel lblTitulo;
 
 	/**
 	 * Launch the application.
@@ -67,14 +68,14 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblDNI.setBounds(57, 37, 34, 21);
+		lblDNI.setBounds(56, 68, 34, 21);
 		contentPane.add(lblDNI);
 
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
-			formattedDni.setBounds(131, 41, 177, 20);
+			formattedDni.setBounds(130, 72, 177, 20);
 			contentPane.add(formattedDni);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -97,18 +98,18 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 			}
 		});
 		btnComprobar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnComprobar.setBounds(335, 37, 113, 25);
+		btnComprobar.setBounds(334, 68, 113, 25);
 		contentPane.add(btnComprobar);
 
 		lblDniPacientes = new JLabel("Introduzca los DNI de los pacientes\r\n");
 		lblDniPacientes.setVisible(false);
 		lblDniPacientes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDniPacientes.setBounds(35, 120, 210, 21);
+		lblDniPacientes.setBounds(35, 139, 210, 21);
 		contentPane.add(lblDniPacientes);
 
 		textFieldDniPacientes = new JTextField();
 		textFieldDniPacientes.setVisible(false);
-		textFieldDniPacientes.setBounds(298, 121, 150, 21);
+		textFieldDniPacientes.setBounds(298, 140, 150, 21);
 		contentPane.add(textFieldDniPacientes);
 		textFieldDniPacientes.setColumns(10);
 
@@ -121,7 +122,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(144, 216, 95, 28);
+		btnCancelar.setBounds(144, 235, 95, 28);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar\r\n");
@@ -148,7 +149,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(303, 216, 95, 28);
+		btnAceptar.setBounds(303, 235, 95, 28);
 		contentPane.add(btnAceptar);
 
 		lblMensaje = new JLabel("\r\n");
@@ -159,7 +160,12 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		lblFormato = new JLabel("en este formato DNI espacio DNI");
 		lblFormato.setVisible(false);
 		lblFormato.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFormato.setBounds(35, 140, 210, 13);
+		lblFormato.setBounds(35, 159, 210, 13);
 		contentPane.add(lblFormato);
+		
+		lblTitulo = new JLabel("Añadir pacientes a cargo");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitulo.setBounds(158, 23, 239, 21);
+		contentPane.add(lblTitulo);
 	}
 }

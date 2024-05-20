@@ -47,6 +47,29 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 
 		return documentList;
 	}
+	
+	public Boolean replaceDocument(Optional<Document> optionalOldDocument, Document newDocument) {
+	   	 try {
+	   		 if (optionalOldDocument.isPresent()) {
+	   			 Document oldDocument = optionalOldDocument.get();
+
+	   			 for (String key : newDocument.keySet()) {
+	   				 Object newValue = newDocument.get(key);
+	   				 if (oldDocument.containsKey(key)) {
+	   					 oldDocument.put(key, newValue);
+	   				 }
+	   			 }
+	   			 collection.replaceOne(eq("Dni", oldDocument.getString("Dni")), oldDocument);
+	   			 return true;
+	   		 } else {
+	   			 return false;
+	   		 }
+	   	 } catch (Exception e) {
+	   		 e.printStackTrace();
+	   		 return false;
+	   	 }
+	    }
+
 
 	@Override
 	public Boolean save(Document entity) {

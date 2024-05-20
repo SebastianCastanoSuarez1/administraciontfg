@@ -31,7 +31,7 @@ public class VentanaPrincipalMedico extends JFrame {
 	VentanaMostrarPorNombre mostrarNombre;
 	private JMenuBar menuBar;
 	JMenu mnAnadirMedicos, mnEliminarMedico, mnMostrar, mnModificar;
-	JMenuItem mntmAnadirNuevoMedico, mntmAnadirPacientesCargo, mntmEliminarMedico, mntmMostrarMedico,
+	JMenuItem mntmAnadirNuevoMedico, mntmAnadirPacientesCargo, mntmEliminarMedico,
 			mntmModificarPaciente, mntmMostrarPorDNI, mntmMostrarPorNombre, mntmMostrarPorAtributo;
 	JLabel lblNewLabel;
 	VentanaMostrarPorDni mostrarDni;
@@ -131,15 +131,6 @@ public class VentanaPrincipalMedico extends JFrame {
 		mnMostrar = new JMenu("Mostrar medico");
 		mnMostrar.setBorder(new LineBorder(new Color(0, 0, 0)));
 		menuBar.add(mnMostrar);
-
-		mntmMostrarMedico = new JMenuItem("Mostrar todos los medicos");
-		mntmMostrarMedico.setBorder(new LineBorder(new Color(0, 0, 0)));
-		mntmMostrarMedico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		mnMostrar.add(mntmMostrarMedico);
 
 		mntmMostrarPorDNI = new JMenuItem("Mostrar medico por DNI");
 		mntmMostrarPorDNI.setBorder(new LineBorder(new Color(0, 0, 0)));

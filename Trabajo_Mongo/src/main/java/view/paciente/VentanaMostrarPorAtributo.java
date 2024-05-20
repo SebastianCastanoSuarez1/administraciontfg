@@ -37,6 +37,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 	private JTextField textFieldValor;
 	JButton btnVolver;
 	VentanaPrincipalPaciente principal;
+	private JLabel lblMostrarPacientePor;
 
 	/**
 	 * Launch the application.
@@ -59,7 +60,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 	 */
 	public VentanaMostrarPorAtributo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 539, 489);
+		setBounds(100, 100, 539, 531);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,32 +70,32 @@ public class VentanaMostrarPorAtributo extends JFrame {
 
 		lblIntroduzcaNombre = new JLabel("Introduzca el nombre del atributo\r\n");
 		lblIntroduzcaNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIntroduzcaNombre.setBounds(122, 31, 231, 22);
+		lblIntroduzcaNombre.setBounds(124, 77, 231, 22);
 		contentPane.add(lblIntroduzcaNombre);
 
 		lblDNI = new JLabel("DNI:");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDNI.setBounds(95, 125, 50, 22);
+		lblDNI.setBounds(97, 171, 50, 22);
 		contentPane.add(lblDNI);
 
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNombre.setBounds(95, 162, 50, 22);
+		lblNombre.setBounds(97, 208, 50, 22);
 		contentPane.add(lblNombre);
 
 		lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblApellidos.setBounds(95, 194, 62, 22);
+		lblApellidos.setBounds(97, 240, 62, 22);
 		contentPane.add(lblApellidos);
 
 		lblFechaNacimiento = new JLabel("Fecha Nacimiento:");
 		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFechaNacimiento.setBounds(95, 226, 119, 22);
+		lblFechaNacimiento.setBounds(97, 272, 119, 22);
 		contentPane.add(lblFechaNacimiento);
 
 		lblSexo = new JLabel("Sexo:");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSexo.setBounds(95, 258, 119, 19);
+		lblSexo.setBounds(97, 304, 119, 19);
 		contentPane.add(lblSexo);
 
 		try {
@@ -107,80 +108,80 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		
 		textFieldDni = new JTextField();
 		textFieldDni.setEditable(false);
-		textFieldDni.setBounds(233, 128, 180, 19);
+		textFieldDni.setBounds(235, 174, 180, 19);
 		contentPane.add(textFieldDni);
 		textFieldDni.setColumns(10);
 
 		textFieldNombre = new JTextField();
 		textFieldNombre.setEditable(false);
 		textFieldNombre.setColumns(10);
-		textFieldNombre.setBounds(233, 162, 180, 19);
+		textFieldNombre.setBounds(235, 208, 180, 19);
 
 		contentPane.add(textFieldNombre);
 
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setEditable(false);
 		textFieldApellidos.setColumns(10);
-		textFieldApellidos.setBounds(233, 197, 180, 19);
+		textFieldApellidos.setBounds(235, 243, 180, 19);
 
 		contentPane.add(textFieldApellidos);
 
 		textFieldFechaNacimiento = new JTextField();
 		textFieldFechaNacimiento.setEditable(false);
 		textFieldFechaNacimiento.setColumns(10);
-		textFieldFechaNacimiento.setBounds(233, 229, 180, 19);
+		textFieldFechaNacimiento.setBounds(235, 275, 180, 19);
 
 		contentPane.add(textFieldFechaNacimiento);
 
 		textFieldSexo = new JTextField();
 		textFieldSexo.setEditable(false);
 		textFieldSexo.setColumns(10);
-		textFieldSexo.setBounds(233, 259, 180, 19);
+		textFieldSexo.setBounds(235, 305, 180, 19);
 
 		contentPane.add(textFieldSexo);
 
 		lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento:");
 		lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblLugarDeNacimiento.setBounds(95, 287, 119, 19);
+		lblLugarDeNacimiento.setBounds(97, 333, 119, 19);
 		contentPane.add(lblLugarDeNacimiento);
 
 		textFieldLugarNacimiento = new JTextField();
 		textFieldLugarNacimiento.setEditable(false);
 		textFieldLugarNacimiento.setColumns(10);
-		textFieldLugarNacimiento.setBounds(233, 288, 180, 19);
+		textFieldLugarNacimiento.setBounds(235, 334, 180, 19);
 		contentPane.add(textFieldLugarNacimiento);
 
 		lblAltura = new JLabel("Altura:");
 		lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAltura.setBounds(95, 322, 119, 19);
+		lblAltura.setBounds(97, 368, 119, 19);
 		contentPane.add(lblAltura);
 
 		textFieldAltura = new JTextField();
 		textFieldAltura.setEditable(false);
 		textFieldAltura.setColumns(10);
-		textFieldAltura.setBounds(233, 323, 180, 19);
+		textFieldAltura.setBounds(235, 369, 180, 19);
 		contentPane.add(textFieldAltura);
 
 		lblPeso = new JLabel("Peso:");
 		lblPeso.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblPeso.setBounds(95, 351, 119, 19);
+		lblPeso.setBounds(97, 397, 119, 19);
 		contentPane.add(lblPeso);
 
 		textFieldPeso = new JTextField();
 		textFieldPeso.setEditable(false);
 		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(233, 352, 180, 19);
+		textFieldPeso.setBounds(235, 398, 180, 19);
 		contentPane.add(textFieldPeso);
 
 		lblGrupoSanguineo = new JLabel("Grupo sanguineo:");
 		lblGrupoSanguineo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblGrupoSanguineo.setBounds(95, 382, 119, 19);
+		lblGrupoSanguineo.setBounds(97, 428, 119, 19);
 		contentPane.add(lblGrupoSanguineo);
 
 		textFieldGrupoSanguineo = new JTextField();
 		textFieldGrupoSanguineo.setEditable(false);
 		textFieldGrupoSanguineo.setColumns(10);
-		textFieldGrupoSanguineo.setBounds(233, 383, 180, 19);
+		textFieldGrupoSanguineo.setBounds(235, 429, 180, 19);
 		contentPane.add(textFieldGrupoSanguineo);
 		
 		textFieldAtributo = new JTextField();
@@ -193,7 +194,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 				
 			}
 		});
-		textFieldAtributo.setBounds(363, 34, 138, 19);
+		textFieldAtributo.setBounds(365, 80, 138, 19);
 		contentPane.add(textFieldAtributo);
 		textFieldAtributo.setColumns(10);
 		
@@ -215,7 +216,7 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		});
 		textFieldValor.setVisible(false);
 		textFieldValor.setColumns(10);
-		textFieldValor.setBounds(363, 34, 138, 19);
+		textFieldValor.setBounds(365, 80, 138, 19);
 		contentPane.add(textFieldValor);
 		
 		btnVolver = new JButton("Volver");
@@ -228,8 +229,13 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		});
 		btnVolver.setBackground(new Color(255, 255, 255));
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVolver.setBounds(27, 32, 85, 21);
+		btnVolver.setBounds(29, 78, 85, 21);
 		contentPane.add(btnVolver);
+		
+		lblMostrarPacientePor = new JLabel("Mostrar paciente por atributo");
+		lblMostrarPacientePor.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMostrarPacientePor.setBounds(143, 23, 244, 22);
+		contentPane.add(lblMostrarPacientePor);
 		
 	}
 }
