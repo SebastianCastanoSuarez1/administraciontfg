@@ -1,9 +1,12 @@
 package view.paciente;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -27,20 +30,24 @@ public class VentanaAnadirAlergenos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldAlergeno;
 	private MaskFormatter mascara;
 	JFormattedTextField formattedDni;
 	JLabel lblDNI;
 	JButton btnComprobar;
-	JLabel lblAlergeno;
 	JButton btnCancelar;
 	JButton btnAceptar;
 	JLabel lblMensaje;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaPrincipalPaciente vp;
 	private JLabel lblAadirAlergenos;
-
-
+	JButton btnAnadirCampo;
+	JButton btnEliminarCampo;
+	private int textFieldXPosition = 288;
+	private int textFieldYPosition = 135; 
+    private final int textFieldHeight = 20; 
+    private final int textFieldSpacing = 10; 
+    private List<JTextField> textFields = new ArrayList<>();
+    JLabel lblIntroduzcaAlergenos;
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +69,7 @@ public class VentanaAnadirAlergenos extends JFrame {
 	 */
 	public VentanaAnadirAlergenos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 544, 360);
+		setBounds(100, 100, 544, 427);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,8 +99,9 @@ public class VentanaAnadirAlergenos extends JFrame {
 					Optional<Document> pacientes = controllerInterfaz.findByDni(formattedDni.getText());
 
 					if (pacientes.isPresent()) {
-						lblAlergeno.setVisible(true);
-						textFieldAlergeno.setVisible(true);
+						lblIntroduzcaAlergenos.setVisible(true);
+						btnAnadirCampo.setVisible(true);
+						btnEliminarCampo.setVisible(true);
 
 					} else {
 						String mensaje = "El paciente con DNI " + formattedDni.getText() + " no existe ";
@@ -106,18 +114,6 @@ public class VentanaAnadirAlergenos extends JFrame {
 		btnComprobar.setBounds(342, 73, 113, 25);
 		contentPane.add(btnComprobar);
 
-		lblAlergeno = new JLabel("Meta alergenos de esta forma: alergeno espacio aleregeno");
-		lblAlergeno.setVisible(false);
-		lblAlergeno.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAlergeno.setBounds(10, 138, 337, 35);
-		contentPane.add(lblAlergeno);
-
-		textFieldAlergeno = new JTextField();
-		textFieldAlergeno.setVisible(false);
-		textFieldAlergeno.setBounds(357, 147, 150, 19);
-		contentPane.add(textFieldAlergeno);
-		textFieldAlergeno.setColumns(10);
-
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,41 +123,100 @@ public class VentanaAnadirAlergenos extends JFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.setBounds(133, 224, 85, 33);
+		btnCancelar.setBounds(132, 292, 85, 33);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Optional<Document> pacientes = controllerInterfaz.findByDni(formattedDni.getText());
-		        String alergenos = textFieldAlergeno.getText();
-		        String[] alergenosList = alergenos.split(" "); // Dividir en palabras, no en caracteres
-		        
-		        // Dividir en palabras, no en caracteres
-		        if(btnAceptar == e.getSource()) {
-		        	Boolean anadido = controllerInterfaz.anadirAlergenos(pacientes, alergenosList);
-		        	
-		            if(anadido== true) {
-						lblMensaje.setText("El paciente ha sido actualizado con exito");
-						lblMensaje.setForeground(Color.GREEN);
-					}else {
-						lblMensaje.setText("El paciente no ha sido actualizado con exito");
-						lblMensaje.setForeground(Color.RED);
+				if(pacientes.isPresent()) {
+					List<String> medicamentosList = new ArrayList<>();
+					for (JTextField tf : textFields) {
+						medicamentosList.add(tf.getText());
 					}
-		        }
+					String[] listaAlergenos = medicamentosList.toArray(new String[0]);
+					if(btnAceptar == e.getSource()) {
+						Boolean anadido = controllerInterfaz.anadirAlergenos(pacientes, listaAlergenos);
+						
+						if(anadido== true) {
+							lblMensaje.setText("Alergenos añadidos con exito");
+							lblMensaje.setForeground(Color.GREEN);
+						}else {
+							lblMensaje.setText("Alergenos no añadidos con exito");
+							lblMensaje.setForeground(Color.RED);
+						}
+					}
+					
+				}else {
+					lblMensaje.setText("No existe el paciente con el DNI " + formattedDni.getText());
+					lblMensaje.setForeground(Color.RED);
+				}
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(299, 224, 85, 33);
+		btnAceptar.setBounds(298, 292, 85, 33);
 		contentPane.add(btnAceptar);
 
 		lblMensaje = new JLabel("");
-		lblMensaje.setBounds(125, 289, 259, 21);
+		lblMensaje.setBounds(124, 356, 259, 21);
 		contentPane.add(lblMensaje);
 		
 		lblAadirAlergenos = new JLabel("Añadir alergenos al paciente\r\n");
 		lblAadirAlergenos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblAadirAlergenos.setBounds(159, 20, 225, 22);
 		contentPane.add(lblAadirAlergenos);
+		
+		lblIntroduzcaAlergenos = new JLabel("Introduzca los alergenos al paciente");
+		lblIntroduzcaAlergenos.setVisible(false);
+		lblIntroduzcaAlergenos.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIntroduzcaAlergenos.setBounds(20, 134, 293, 21);
+		contentPane.add(lblIntroduzcaAlergenos);
+		
+		btnAnadirCampo = new JButton("Añadir campo");
+		btnAnadirCampo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				anadirCampo();
+			}
+		});
+		btnAnadirCampo.setVisible(false);
+		btnAnadirCampo.setBounds(46, 166, 135, 23);
+		contentPane.add(btnAnadirCampo);
+		
+		btnEliminarCampo = new JButton("Eliminar campo");
+		btnEliminarCampo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarCampo();
+			}
+		});
+		btnEliminarCampo.setVisible(false);
+		btnEliminarCampo.setBounds(46, 200, 135, 23);
+		contentPane.add(btnEliminarCampo);
 	}
+	
+	private void anadirCampo() {
+        JTextField campoNuevo = new JTextField();
+        campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
+        contentPane.add(campoNuevo);
+        textFields.add(campoNuevo); 
+
+        textFieldYPosition += textFieldHeight + textFieldSpacing;
+        
+        contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+        contentPane.revalidate();
+        contentPane.repaint();
+    }
+
+	private void eliminarCampo() {
+        if (!textFields.isEmpty()) {
+            JTextField lastField = textFields.remove(textFields.size() - 1);
+            contentPane.remove(lastField);
+
+            textFieldYPosition -= textFieldHeight + textFieldSpacing;
+
+            contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+            contentPane.revalidate();
+            contentPane.repaint();
+        }
+    }
 }

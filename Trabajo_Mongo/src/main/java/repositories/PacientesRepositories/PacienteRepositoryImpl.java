@@ -345,7 +345,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 			if (paciente.isPresent()) {
 				Document filter = paciente.get();
-				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.pushEach(atributo, alergenos));
+				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.addEachToSet(atributo, alergenos));
 				return true;
 			} else {
 				return false;
@@ -359,7 +359,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 			if (paciente.isPresent()) {
 				Document filter = paciente.get();
-				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.pushEach(atributo, medicamentos));
+				collection.updateOne(eq(dni, filter.getString("Dni")), Updates.addEachToSet(atributo, medicamentos));
 				return true;
 			} else {
 				return false;

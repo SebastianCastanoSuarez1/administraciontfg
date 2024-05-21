@@ -109,7 +109,7 @@ public class VentanaModificarMedico extends JFrame {
 
    	 textFieldNombre = new JTextField();
    	 textFieldNombre.setEnabled(false);
-   	 textFieldNombre.setBounds(129, 170, 150, 20);
+   	 textFieldNombre.setBounds(142, 169, 150, 20);
    	 contentPane.add(textFieldNombre);
 
    	 JLabel lblNombre = new JLabel("Nombre:");
@@ -129,7 +129,7 @@ public class VentanaModificarMedico extends JFrame {
    		 MaskFormatter dobMask = new MaskFormatter("##/##/####");
    		 dobMask.setValidCharacters("0123456789");
    		 formattedFechaIncorporacion = new JFormattedTextField(dobMask);
-   		 formattedFechaIncorporacion.setBounds(129, 223, 150, 20);
+   		 formattedFechaIncorporacion.setBounds(142, 223, 150, 20);
    		 formattedFechaIncorporacion.setEnabled(false);
    		 contentPane.add(formattedFechaIncorporacion);
    	 } catch (ParseException e) {
