@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -90,11 +91,17 @@ public class VentanaMostrarPorNombre extends JFrame {
 		textFieldEscribirNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = textFieldEscribirNombre.getText();
+				try {
+		
 				textFieldDni.setText(controllerInterfaz.findDniPorNombre(nombre));
 				textFieldNombre.setText(controllerInterfaz.findNombrePorNombre(nombre));
 				textFieldApellidos.setText(controllerInterfaz.findApellidosPorNombre(nombre));
 				textFieldEspecialidad.setText(controllerInterfaz.findEspecialidadPorNombre(nombre));
 				textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncorporacionPorNombre(nombre));
+				}catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(VentanaMostrarPorNombre.this,
+							"El paciente con nombre " + nombre + " no existe en la base de datos");
+				}
 				
 				
 			}

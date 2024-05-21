@@ -10,6 +10,7 @@ import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -151,12 +152,17 @@ public class VentanaMostrarPorAtributo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String atributo = textFieldAtributo.getText();
 				String valor = textFieldValor.getText();
+				try {
+				
 				textFieldDni.setText(controllerInterfaz.findDniPorAtributo(atributo,valor));
 				textFieldNombre.setText(controllerInterfaz.findNombrePorAtributo(atributo,valor));
 				textFieldApellidos.setText(controllerInterfaz.findApellidosPorAtributo(atributo,valor));
 				textFieldEspecialidad.setText(controllerInterfaz.findEspcialidadPorAtributo(atributo,valor));
 				textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncorporacionPorAtributo(atributo,valor));
-				
+				}catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(VentanaMostrarPorAtributo.this,
+							"El atributo " + atributo + " y el valor " + valor + " no existen en la base de datos");
+				}
 			}
 		});
 		textFieldValor.setVisible(false);

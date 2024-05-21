@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -96,12 +97,17 @@ public class VentanaMostrarPorDni extends JFrame {
 			formattedTextFieldDni = new JFormattedTextField(mascara);
 			formattedTextFieldDni.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String nombre = formattedTextFieldDni.getText();
-					textFieldDni.setText(controllerInterfaz.findDniPorDni(nombre));
-					textFieldNombre.setText(controllerInterfaz.findNombrePorDni(nombre));
-					textFieldApellidos.setText(controllerInterfaz.findApellidosPorDni(nombre));
-					textFieldEspecialidad.setText(controllerInterfaz.findEspecialidadPorDni(nombre));
-					textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncoporacionPorDni(nombre));
+					String dni = formattedTextFieldDni.getText();
+					try {
+					textFieldDni.setText(controllerInterfaz.findDniPorDni(dni));
+					textFieldNombre.setText(controllerInterfaz.findNombrePorDni(dni));
+					textFieldApellidos.setText(controllerInterfaz.findApellidosPorDni(dni));
+					textFieldEspecialidad.setText(controllerInterfaz.findEspecialidadPorDni(dni));
+					textFieldFechaIncorporacion.setText(controllerInterfaz.findFechaIncoporacionPorDni(dni));
+					}catch (NullPointerException e1) {
+						JOptionPane.showMessageDialog(VentanaMostrarPorDni.this,
+								"El DNI " + dni + " no existe en la base de datos");
+					}
 					
 				}
 			});

@@ -1,23 +1,23 @@
 package view.paciente;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controller.Controller_Interfaz;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JButton;
 
 public class VentanaMostrarPorDni extends JFrame {
 
@@ -94,16 +94,21 @@ public class VentanaMostrarPorDni extends JFrame {
 			formattedTextFieldDni = new JFormattedTextField(mascara);
 			formattedTextFieldDni.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String nombre = formattedTextFieldDni.getText();
-					textFieldDni.setText(controllerInterfaz.findDniPorDni(nombre));
-					textFieldNombre.setText(controllerInterfaz.findNombrePorDni(nombre));
-					textFieldApellidos.setText(controllerInterfaz.findApellidosPorDni(nombre));
-					textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorDni(nombre));
-					textFieldSexo.setText(controllerInterfaz.findSexoPorDni(nombre));
-					textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorDni(nombre));
-					textFieldAltura.setText(controllerInterfaz.findAlturaPorDni(nombre)+"");
-					textFieldPeso.setText(controllerInterfaz.findPesoPorDni(nombre)+"");
-					textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorDni(nombre));
+					String dni = formattedTextFieldDni.getText();
+					try {
+					textFieldDni.setText(controllerInterfaz.findDniPorDni(dni));
+					textFieldNombre.setText(controllerInterfaz.findNombrePorDni(dni));
+					textFieldApellidos.setText(controllerInterfaz.findApellidosPorDni(dni));
+					textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorDni(dni));
+					textFieldSexo.setText(controllerInterfaz.findSexoPorDni(dni));
+					textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorDni(dni));
+					textFieldAltura.setText(controllerInterfaz.findAlturaPorDni(dni)+"");
+					textFieldPeso.setText(controllerInterfaz.findPesoPorDni(dni)+"");
+					textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorDni(dni));
+				}catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(VentanaMostrarPorDni.this,
+							"El DNI " + dni + " no existe en la base de datos");
+				}
 					
 				}
 			});

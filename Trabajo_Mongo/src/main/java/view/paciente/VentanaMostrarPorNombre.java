@@ -11,6 +11,8 @@ import controller.Controller_Interfaz;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -99,6 +101,7 @@ public class VentanaMostrarPorNombre extends JFrame {
 		textFieldEscribirNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = textFieldEscribirNombre.getText();
+				try {
 				textFieldDni.setText(controllerInterfaz.findDniPorNombre(nombre));
 				textFieldNombre.setText(controllerInterfaz.findNombrePorNombre(nombre));
 				textFieldApellidos.setText(controllerInterfaz.findApellidosPorNombre(nombre));
@@ -108,7 +111,10 @@ public class VentanaMostrarPorNombre extends JFrame {
 				textFieldAltura.setText(controllerInterfaz.findAlturaPorNombre(nombre)+"");
 				textFieldPeso.setText(controllerInterfaz.findPesoPorNombre(nombre)+"");
 				textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorNombre(nombre));
-				
+				}catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(VentanaMostrarPorNombre.this,
+							"El paciente con nombre " + nombre + " no existe en la base de datos");
+				}
 			}
 		});
 		textFieldEscribirNombre.setBounds(348, 82, 167, 19);
