@@ -312,8 +312,8 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		try {
 
 			if (medico.isPresent()) {
-				Document filter = medico.get(); // filtro para seleccionar el documento a actualizar
-				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pushEach(atributo, valor));
+				Document filter = medico.get();
+				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.addEachToSet(atributo, valor));
 				return true;
 			} else {
 				return false;
