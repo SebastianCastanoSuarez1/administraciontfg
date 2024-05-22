@@ -1,11 +1,14 @@
 package view.medico;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -27,15 +30,21 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldDniPacientes;
 	JFormattedTextField formattedDni;
 	JButton btnComprobar, btnCancelar, btnAceptar;
-	JLabel lblDNI, lblDniPacientes, lblMensaje, lblFormato;
+	JLabel lblDNI, lblDniPacientes, lblMensaje;
 	MaskFormatter mascara;
 	VentanaPrincipalMedico principal;
 	MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
 	Controller_Interfaz pacienteController = new Controller_Interfaz();
 	private JLabel lblTitulo;
+	JButton btnAnadirCampo;
+	JButton btnEliminarCampo;
+	private int textFieldXPosition = 288;
+	private int textFieldYPosition = 135; 
+    private final int textFieldHeight = 20; 
+    private final int textFieldSpacing = 10; 
+    private List<JTextField> textFields = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -58,7 +67,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	 */
 	public VentanaAnadirPacientesCargo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 534, 363);
+		setBounds(100, 100, 534, 396);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,8 +97,8 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 
 				if (medicos.isPresent()) {
 					lblDniPacientes.setVisible(true);
-					lblFormato.setVisible(true);
-					textFieldDniPacientes.setVisible(true);
+					btnAnadirCampo.setVisible(true);
+					btnEliminarCampo.setVisible(true);
 
 				} else {
 					String mensaje = "El medico con DNI " + formattedDni.getText() + " no existe ";
@@ -104,14 +113,8 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		lblDniPacientes = new JLabel("Introduzca los DNI de los pacientes\r\n");
 		lblDniPacientes.setVisible(false);
 		lblDniPacientes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDniPacientes.setBounds(35, 139, 210, 21);
+		lblDniPacientes.setBounds(31, 126, 210, 21);
 		contentPane.add(lblDniPacientes);
-
-		textFieldDniPacientes = new JTextField();
-		textFieldDniPacientes.setVisible(false);
-		textFieldDniPacientes.setBounds(298, 140, 150, 21);
-		contentPane.add(textFieldDniPacientes);
-		textFieldDniPacientes.setColumns(10);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -122,7 +125,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(144, 235, 95, 28);
+		btnCancelar.setBounds(147, 280, 95, 28);
 		contentPane.add(btnCancelar);
 
 		btnAceptar = new JButton("Aceptar\r\n");
@@ -130,42 +133,88 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Optional<Document> medico = medicoController.findByDni(formattedDni.getText());
 				String dniMedico = formattedDni.getText();
-				String pacientes = textFieldDniPacientes.getText();
-				String[] pacientesCargo = pacientes.split(" ");
-				pacienteController.anadirDniMedico(pacientesCargo, dniMedico);
-
-				if (btnAceptar == e.getSource()) {
-					Boolean anadido = medicoController.crearPacientesCargo(medico, pacientesCargo);
-
-					if (anadido == true) {
-						lblMensaje.setText("El medico ha sido actualizado con exito");
-						lblMensaje.setForeground(Color.GREEN);
-					} else {
-						lblMensaje.setText("El medico no ha sido actualizado con exito");
-						lblMensaje.setForeground(Color.RED);
+				if(medico.isPresent()) {
+					List<String> textFieldList = new ArrayList<>();
+					for (JTextField tf : textFields) {
+						textFieldList.add(tf.getText());
 					}
-
+					String[] dniPacientes = textFieldList.toArray(new String[0]);
+					pacienteController.anadirDniMedico(dniPacientes, dniMedico);
+					if(btnAceptar == e.getSource()) {
+						Boolean anadido = medicoController.crearPacientesCargo(medico, dniPacientes);
+						
+						if(anadido== true) {
+							lblMensaje.setText("Alergenos añadidos con exito");
+							lblMensaje.setForeground(Color.GREEN);
+						}else {
+							lblMensaje.setText("Alergenos no añadidos con exito");
+							lblMensaje.setForeground(Color.RED);
+						}
+					}
+					
+				}else {
+					lblMensaje.setText("No existe el paciente con el DNI " + formattedDni.getText());
+					lblMensaje.setForeground(Color.RED);
 				}
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAceptar.setBounds(303, 235, 95, 28);
+		btnAceptar.setBounds(306, 280, 95, 28);
 		contentPane.add(btnAceptar);
 
 		lblMensaje = new JLabel("\r\n");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMensaje.setBounds(115, 273, 304, 28);
+		lblMensaje.setBounds(118, 318, 304, 28);
 		contentPane.add(lblMensaje);
-		
-		lblFormato = new JLabel("en este formato DNI espacio DNI");
-		lblFormato.setVisible(false);
-		lblFormato.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblFormato.setBounds(35, 159, 210, 13);
-		contentPane.add(lblFormato);
-		
+
 		lblTitulo = new JLabel("Añadir pacientes a cargo");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTitulo.setBounds(158, 23, 239, 21);
 		contentPane.add(lblTitulo);
+		btnAnadirCampo = new JButton("Añadir campo");
+		btnAnadirCampo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				anadirCampo();
+			}
+		});
+		btnAnadirCampo.setVisible(false);
+		btnAnadirCampo.setBounds(41, 158, 135, 23);
+		contentPane.add(btnAnadirCampo);
+
+		btnEliminarCampo = new JButton("Eliminar campo");
+		btnEliminarCampo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarCampo();
+			}
+		});
+		btnEliminarCampo.setVisible(false);
+		btnEliminarCampo.setBounds(41, 192, 135, 23);
+		contentPane.add(btnEliminarCampo);
+	}
+
+	private void anadirCampo() {
+		JTextField campoNuevo = new JTextField();
+		campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
+		contentPane.add(campoNuevo);
+		textFields.add(campoNuevo);
+
+		textFieldYPosition += textFieldHeight + textFieldSpacing;
+
+		contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+		contentPane.revalidate();
+		contentPane.repaint();
+	}
+
+	private void eliminarCampo() {
+		if (!textFields.isEmpty()) {
+			JTextField lastField = textFields.remove(textFields.size() - 1);
+			contentPane.remove(lastField);
+
+			textFieldYPosition -= textFieldHeight + textFieldSpacing;
+
+			contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+			contentPane.revalidate();
+			contentPane.repaint();
+		}
 	}
 }

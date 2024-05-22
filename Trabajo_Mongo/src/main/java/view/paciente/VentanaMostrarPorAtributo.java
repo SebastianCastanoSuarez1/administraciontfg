@@ -201,29 +201,31 @@ public class VentanaMostrarPorAtributo extends JFrame {
 		
 		textFieldValor = new JTextField();
 		textFieldValor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String atributo = textFieldAtributo.getText();
-				String valor = textFieldValor.getText();
-				try {
-				textFieldDni.setText(controllerInterfaz.findDniPorAtributo(atributo,valor));
-				textFieldNombre.setText(controllerInterfaz.findNombrePorAtributo(atributo,valor));
-				textFieldApellidos.setText(controllerInterfaz.findApellidosPorAtributo(atributo,valor));
-				textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorAtributo(atributo,valor));
-				textFieldSexo.setText(controllerInterfaz.findSexoPorAtributo(atributo,valor));
-				textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorAtributo(atributo,valor));
-				textFieldAltura.setText(controllerInterfaz.findAlturaPorAtributo(atributo,valor)+"");
-				textFieldPeso.setText(controllerInterfaz.findPesoPorAtributo(atributo,valor)+"");
-				textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorAtributo(atributo,valor));
-				}catch (NullPointerException e1) {
-					JOptionPane.showMessageDialog(VentanaMostrarPorAtributo.this,
-							"El atributo " + atributo + " y el valor " + valor + " no existen en la base de datos");
-				}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String atributo = textFieldAtributo.getText();
+		        String valor = textFieldValor.getText();
+
+		        try {
+		            textFieldDni.setText(controllerInterfaz.findDniPorAtributo(atributo, valor));
+		            textFieldNombre.setText(controllerInterfaz.findNombrePorAtributo(atributo, valor));
+		            textFieldApellidos.setText(controllerInterfaz.findApellidosPorAtributo(atributo, valor));
+		            textFieldFechaNacimiento.setText(controllerInterfaz.findFechaNacimientoPorAtributo(atributo, valor));
+		            textFieldSexo.setText(controllerInterfaz.findSexoPorAtributo(atributo, valor));
+		            textFieldLugarNacimiento.setText(controllerInterfaz.findLugarNacimientoPorAtributo(atributo, valor));
+		            textFieldAltura.setText(controllerInterfaz.findAlturaPorAtributo(atributo, valor) + "");
+		            textFieldPeso.setText(controllerInterfaz.findPesoPorAtributo(atributo, valor) + "");
+		            textFieldGrupoSanguineo.setText(controllerInterfaz.findGrupoSanguineoPorAtributo(atributo, valor));
+		        } catch (NullPointerException e1) {
+		            JOptionPane.showMessageDialog(VentanaMostrarPorAtributo.this,
+		                    "El atributo " + atributo + " y el valor " + valor + " no existen en la base de datos");
+		        }
+		    }
 		});
 		textFieldValor.setVisible(false);
 		textFieldValor.setColumns(10);
 		textFieldValor.setBounds(365, 80, 138, 19);
 		contentPane.add(textFieldValor);
+
 		
 		btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
