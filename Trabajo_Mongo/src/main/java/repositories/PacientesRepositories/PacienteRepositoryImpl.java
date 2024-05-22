@@ -385,7 +385,39 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		}
 	}
 
-	public Boolean update(Optional<Document> paciente, String atributo, String valor) {
+	public Boolean updateDniMedico(Optional<Document> paciente, String atributo, String valor) {
+		try {
+
+			if (paciente.isPresent()) {
+				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document update = new Document("$set", new Document(atributo, valor));
+				collection.updateOne(filter, update);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean updateNombreMedico(Optional<Document> paciente, String atributo, String valor) {
+		try {
+
+			if (paciente.isPresent()) {
+				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document update = new Document("$set", new Document(atributo, valor));
+				collection.updateOne(filter, update);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean updateApellidosMedico(Optional<Document> paciente, String atributo, String valor) {
 		try {
 
 			if (paciente.isPresent()) {
@@ -402,6 +434,38 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		}
 	}
 
+	public Boolean updateEspecialidadMedico(Optional<Document> paciente, String atributo, String valor) {
+		try {
+
+			if (paciente.isPresent()) {
+				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document update = new Document("$set", new Document(atributo, valor));
+				collection.updateOne(filter, update);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean update(Optional<Document> paciente, String atributo, String valor) {
+		try {
+
+			if (paciente.isPresent()) {
+				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document update = new Document("$set", new Document(atributo, valor));
+				collection.updateOne(filter, update);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean update(Optional<Document> paciente, String atributo, Document valores) {
 		try {
 			if (paciente.isPresent()) {

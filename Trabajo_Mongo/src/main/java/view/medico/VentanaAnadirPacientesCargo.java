@@ -140,6 +140,12 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 					}
 					String[] dniPacientes = textFieldList.toArray(new String[0]);
 					pacienteController.anadirDniMedico(dniPacientes, dniMedico);
+					String nombreMedico = medicoController.findNombrePorDni(dniMedico);
+					pacienteController.anadirNombreMedico(dniPacientes, nombreMedico);
+					String apellidosMedico = medicoController.findApellidosPorDni(dniMedico);
+					pacienteController.anadirApellidosMedico(dniPacientes, apellidosMedico);
+					String especialidadMedico = medicoController.findEspecialidadPorDni(dniMedico);
+					pacienteController.anadirEspecialidadMedico(dniPacientes, especialidadMedico);
 					if(btnAceptar == e.getSource()) {
 						Boolean anadido = medicoController.crearPacientesCargo(medico, dniPacientes);
 						

@@ -183,7 +183,7 @@ public class Controller_Interfaz {
 		for (int i = 0; i < dniPacientes.length; i++) {
 			Optional<Document> paciente = pacienteRepositoryImpl.findById(dniPacientes[i]);
 			if (paciente.isPresent()) {
-				actualizado = pacienteRepositoryImpl.update(paciente, "Dni_Medico", dni);
+				actualizado = pacienteRepositoryImpl.updateDniMedico(paciente, "Dni_Medico", dni);
 				if (!actualizado) {
 					return "El paciente con DNI " + dniPacientes[i] + " no se ha actualizado";
 				}
@@ -194,6 +194,51 @@ public class Controller_Interfaz {
 		return "Todos los pacientes han sido actualizados correctamente";
 	}
 
+	public String anadirNombreMedico(String[] dniPacientes, String dni) {
+		Boolean actualizado = false;
+		for (int i = 0; i < dniPacientes.length; i++) {
+			Optional<Document> paciente = pacienteRepositoryImpl.findById(dniPacientes[i]);
+			if (paciente.isPresent()) {
+				actualizado = pacienteRepositoryImpl.updateNombreMedico(paciente, "Nombre_Medico", dni);
+				if (!actualizado) {
+					return "El paciente con DNI " + dniPacientes[i] + " no se ha actualizado";
+				}
+			} else {
+				return "El paciente con DNI " + dniPacientes[i] + " no se ha encontrado";
+			}
+		}
+		return "Todos los pacientes han sido actualizados correctamente";
+	}
+	public String anadirApellidosMedico(String[] dniPacientes, String dni) {
+		Boolean actualizado = false;
+		for (int i = 0; i < dniPacientes.length; i++) {
+			Optional<Document> paciente = pacienteRepositoryImpl.findById(dniPacientes[i]);
+			if (paciente.isPresent()) {
+				actualizado = pacienteRepositoryImpl.updateApellidosMedico(paciente, "Apellidos_Medico", dni);
+				if (!actualizado) {
+					return "El paciente con DNI " + dniPacientes[i] + " no se ha actualizado";
+				}
+			} else {
+				return "El paciente con DNI " + dniPacientes[i] + " no se ha encontrado";
+			}
+		}
+		return "Todos los pacientes han sido actualizados correctamente";
+	}
+	public String anadirEspecialidadMedico(String[] dniPacientes, String dni) {
+		Boolean actualizado = false;
+		for (int i = 0; i < dniPacientes.length; i++) {
+			Optional<Document> paciente = pacienteRepositoryImpl.findById(dniPacientes[i]);
+			if (paciente.isPresent()) {
+				actualizado = pacienteRepositoryImpl.updateEspecialidadMedico(paciente, "Especialidad_Medico", dni);
+				if (!actualizado) {
+					return "El paciente con DNI " + dniPacientes[i] + " no se ha actualizado";
+				}
+			} else {
+				return "El paciente con DNI " + dniPacientes[i] + " no se ha encontrado";
+			}
+		}
+		return "Todos los pacientes han sido actualizados correctamente";
+	}
 	public String valorAtributoNuevo(String dni, String atributo, String valor) {
 		Optional<Document> pacientes;
 
