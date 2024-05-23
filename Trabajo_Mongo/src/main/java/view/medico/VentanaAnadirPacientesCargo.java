@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -41,10 +40,10 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	JButton btnAnadirCampo;
 	JButton btnEliminarCampo;
 	private int textFieldXPosition = 288;
-	private int textFieldYPosition = 135; 
-    private final int textFieldHeight = 20; 
-    private final int textFieldSpacing = 10; 
-    private List<JTextField> textFields = new ArrayList<>();
+	private int textFieldYPosition = 130;
+	private final int textFieldHeight = 20;
+	private final int textFieldSpacing = 10;
+	private List<JFormattedTextField> formattedTextFields = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -133,9 +132,9 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Optional<Document> medico = medicoController.findByDni(formattedDni.getText());
 				String dniMedico = formattedDni.getText();
-				if(medico.isPresent()) {
+				if (medico.isPresent()) {
 					List<String> textFieldList = new ArrayList<>();
-					for (JTextField tf : textFields) {
+					for (JFormattedTextField tf : formattedTextFields) {
 						textFieldList.add(tf.getText());
 					}
 					String[] dniPacientes = textFieldList.toArray(new String[0]);
@@ -146,19 +145,19 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 					pacienteController.anadirApellidosMedico(dniPacientes, apellidosMedico);
 					String especialidadMedico = medicoController.findEspecialidadPorDni(dniMedico);
 					pacienteController.anadirEspecialidadMedico(dniPacientes, especialidadMedico);
-					if(btnAceptar == e.getSource()) {
+					if (btnAceptar == e.getSource()) {
 						Boolean anadido = medicoController.crearPacientesCargo(medico, dniPacientes);
-						
-						if(anadido== true) {
+
+						if (anadido == true) {
 							lblMensaje.setText("Alergenos añadidos con exito");
 							lblMensaje.setForeground(Color.GREEN);
-						}else {
+						} else {
 							lblMensaje.setText("Alergenos no añadidos con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
 					}
-					
-				}else {
+
+				} else {
 					lblMensaje.setText("No existe el paciente con el DNI " + formattedDni.getText());
 					lblMensaje.setForeground(Color.RED);
 				}
@@ -173,9 +172,9 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		lblMensaje.setBounds(118, 318, 304, 28);
 		contentPane.add(lblMensaje);
 
-		lblTitulo = new JLabel("Añadir pacientes a cargo");
+		lblTitulo = new JLabel("Añadir pacientes a cargo a medico");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTitulo.setBounds(158, 23, 239, 21);
+		lblTitulo.setBounds(118, 24, 271, 21);
 		contentPane.add(lblTitulo);
 		btnAnadirCampo = new JButton("Añadir campo");
 		btnAnadirCampo.addActionListener(new ActionListener() {
@@ -199,10 +198,18 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	}
 
 	private void anadirCampo() {
-		JTextField campoNuevo = new JTextField();
-		campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
-		contentPane.add(campoNuevo);
-		textFields.add(campoNuevo);
+		try {
+			JFormattedTextField campoNuevo;
+			mascara = new MaskFormatter("########?");
+			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			campoNuevo  = new JFormattedTextField(mascara);
+			contentPane.add(formattedDni);
+			campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
+			contentPane.add(campoNuevo);
+			formattedTextFields.add(campoNuevo);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		textFieldYPosition += textFieldHeight + textFieldSpacing;
 
@@ -212,8 +219,8 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 	}
 
 	private void eliminarCampo() {
-		if (!textFields.isEmpty()) {
-			JTextField lastField = textFields.remove(textFields.size() - 1);
+		if (!formattedTextFields.isEmpty()) {
+			JFormattedTextField lastField = formattedTextFields.remove(formattedTextFields.size() - 1);
 			contentPane.remove(lastField);
 
 			textFieldYPosition -= textFieldHeight + textFieldSpacing;
