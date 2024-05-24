@@ -32,31 +32,47 @@ public class Controller_Interfaz {
 		}
 
 	}
-	
+
+	public Boolean eliminarDniMedico(String dniPaciente, String atributo) {
+		return pacienteRepositoryImpl.eliminarDniMedico(dniPaciente, atributo);
+	}
+
+	public Boolean eliminarNombreiMedico(String dniPaciente, String atributo) {
+		return pacienteRepositoryImpl.eliminarNombreMedico(dniPaciente, atributo);
+	}
+
+	public Boolean eliminarApellidosMedico(String dniPaciente, String atributo) {
+		return pacienteRepositoryImpl.eliminarApellidosMedico(dniPaciente, atributo);
+	}
+
+	public Boolean eliminarEspecialidadMedico(String dniPaciente, String atributo) {
+		return pacienteRepositoryImpl.eliminarEspecialidadMedico(dniPaciente, atributo);
+	}
+
 	public String[] alergenos(String dni) {
 		String[] dniPacientes = pacienteRepositoryImpl.guardarAlergenos(dni);
 		return dniPacientes;
 	}
-	
+
 	public Boolean eliminarAlergenos(Optional<Document> medicos, String valor) {
 		Boolean actualizado = pacienteRepositoryImpl.eliminarAlergenos(medicos, "Alergenos", valor);
 		return actualizado;
 	}
-	
+
 	public String[] medicamentos(String dni) {
 		String[] dniPacientes = pacienteRepositoryImpl.guardarMedicamentos(dni);
 		return dniPacientes;
 	}
-	
+
 	public Boolean eliminarMedicamentos(Optional<Document> medicos, String valor) {
 		Boolean actualizado = pacienteRepositoryImpl.eliminarAlergenos(medicos, "Medicamentos", valor);
 		return actualizado;
 	}
-	public Boolean updateData(String dni, Document newData) {
-    	Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
-    	return paciente.map(p -> pacienteRepositoryImpl.replaceDocument(paciente, newData)).orElse(false);
-    }
 
+	public Boolean updateData(String dni, Document newData) {
+		Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
+		return paciente.map(p -> pacienteRepositoryImpl.replaceDocument(paciente, newData)).orElse(false);
+	}
 
 	public String findDniPorNombre(String nombre) {
 		String medico = pacienteRepositoryImpl.findDniPorNombre(nombre);
@@ -102,6 +118,7 @@ public class Controller_Interfaz {
 		String medico = pacienteRepositoryImpl.findGrupoSanguineoPorNombre(nombre);
 		return medico;
 	}
+
 	public String findDniPorDni(String nombre) {
 		String medico = pacienteRepositoryImpl.findDniPorDni(nombre);
 		return medico;
@@ -146,13 +163,14 @@ public class Controller_Interfaz {
 		String medico = pacienteRepositoryImpl.findGrupoSanguineoPordni(nombre);
 		return medico;
 	}
+
 	public String findDniPorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findDniPorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findDniPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public String findNombrePorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findNombrePorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findNombrePorAtributo(atributo, valor);
 		return medico;
 	}
 
@@ -162,35 +180,35 @@ public class Controller_Interfaz {
 	}
 
 	public String findFechaNacimientoPorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findFechaNacimientoPorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findFechaNacimientoPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public String findSexoPorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findSexoPorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findSexoPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public String findLugarNacimientoPorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findLugarNacimientoPorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findLugarNacimientoPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public Integer findAlturaPorAtributo(String atributo, String valor) {
-		Integer medico = pacienteRepositoryImpl.findAlturaPorAtributo(atributo,valor);
+		Integer medico = pacienteRepositoryImpl.findAlturaPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public Integer findPesoPorAtributo(String atributo, String valor) {
-		Integer medico = pacienteRepositoryImpl.findPesoPorAtributo(atributo,valor);
+		Integer medico = pacienteRepositoryImpl.findPesoPorAtributo(atributo, valor);
 		return medico;
 	}
 
 	public String findGrupoSanguineoPorAtributo(String atributo, String valor) {
-		String medico = pacienteRepositoryImpl.findGrupoSanguineoPorAtributo(atributo,valor);
+		String medico = pacienteRepositoryImpl.findGrupoSanguineoPorAtributo(atributo, valor);
 		return medico;
 	}
-	
+
 	public Optional<Document> comprobarDni(String dni) {
 
 		Optional<Document> pacientes = pacienteRepositoryImpl.findById(dni);
@@ -228,6 +246,7 @@ public class Controller_Interfaz {
 		}
 		return "Todos los pacientes han sido actualizados correctamente";
 	}
+
 	public String anadirApellidosMedico(String[] dniPacientes, String dni) {
 		Boolean actualizado = false;
 		for (int i = 0; i < dniPacientes.length; i++) {
@@ -243,6 +262,7 @@ public class Controller_Interfaz {
 		}
 		return "Todos los pacientes han sido actualizados correctamente";
 	}
+
 	public String anadirEspecialidadMedico(String[] dniPacientes, String dni) {
 		Boolean actualizado = false;
 		for (int i = 0; i < dniPacientes.length; i++) {
@@ -258,6 +278,7 @@ public class Controller_Interfaz {
 		}
 		return "Todos los pacientes han sido actualizados correctamente";
 	}
+
 	public String valorAtributoNuevo(String dni, String atributo, String valor) {
 		Optional<Document> pacientes;
 
@@ -281,7 +302,6 @@ public class Controller_Interfaz {
 		return pacienteRepositoryImpl.save(paciente);
 	}
 
-
 	public String mostrar(Optional<Document> pacientes) {
 		String ensenar = pacienteView.mostrar(pacientes);
 		return ensenar;
@@ -291,8 +311,7 @@ public class Controller_Interfaz {
 		return mensaje;
 	}
 
-	public Boolean anadirVariables(Optional<Document> pacientes,
-			Document enfermedades) {
+	public Boolean anadirVariables(Optional<Document> pacientes, Document enfermedades) {
 		Document contenido = new Document();
 		contenido.append("Enfermedades", enfermedades);
 		return pacienteRepositoryImpl.updateHistorialMedico(pacientes, contenido);
@@ -302,14 +321,16 @@ public class Controller_Interfaz {
 		List<String> list = Arrays.asList(alergenos);
 		Boolean anadido = pacienteRepositoryImpl.updateAlergenos(pacientes, "Alergenos", list);
 		return anadido;
-		
+
 	}
+
 	public Boolean anadirMedicamentos(Optional<Document> pacientes, String[] medicamentos) {
 		List<String> list = Arrays.asList(medicamentos);
 		Boolean anadido = pacienteRepositoryImpl.updateMedicamentos(pacientes, "Medicamentos", list);
 		return anadido;
-		
+
 	}
+
 	public Document crearDocumentoEnfermedades(Optional<Document> pacientes, String enfermedad, String fecha,
 			String[] historialMedicoMedicamentos, String tratamiento, String informe) {
 		Document enfermedades = new Document();

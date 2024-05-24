@@ -47,7 +47,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 
 		return documentList;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public String[] guardarAlergenos(String paciente) {
 		Bson filter = eq(dni, paciente);
@@ -70,6 +70,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	public String[] guardarMedicamentos(String paciente) {
 		Bson filter = eq(dni, paciente);
@@ -92,28 +93,76 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
+	public Boolean eliminarDniMedico(String dniPaciente, String atributo) {
+		try {
+			Document filter = new Document("Dni", dniPaciente);
+
+			collection.updateOne(filter, Updates.unset(atributo));
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean eliminarNombreMedico(String dniPaciente, String atributo) {
+		try {
+			Document filter = new Document("Dni", dniPaciente);
+
+			collection.updateOne(filter, Updates.unset(atributo));
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean eliminarApellidosMedico(String dniPaciente, String atributo) {
+		try {
+			Document filter = new Document("Dni", dniPaciente);
+
+			collection.updateOne(filter, Updates.unset(atributo));
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public Boolean eliminarEspecialidadMedico(String dniPaciente, String atributo) {
+		try {
+			Document filter = new Document("Dni", dniPaciente);
+
+			collection.updateOne(filter, Updates.unset(atributo));
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean replaceDocument(Optional<Document> optionalOldDocument, Document newDocument) {
-	   	 try {
-	   		 if (optionalOldDocument.isPresent()) {
-	   			 Document oldDocument = optionalOldDocument.get();
+		try {
+			if (optionalOldDocument.isPresent()) {
+				Document oldDocument = optionalOldDocument.get();
 
-	   			 for (String key : newDocument.keySet()) {
-	   				 Object newValue = newDocument.get(key);
-	   				 if (oldDocument.containsKey(key)) {
-	   					 oldDocument.put(key, newValue);
-	   				 }
-	   			 }
-	   			 collection.replaceOne(eq("Dni", oldDocument.getString("Dni")), oldDocument);
-	   			 return true;
-	   		 } else {
-	   			 return false;
-	   		 }
-	   	 } catch (Exception e) {
-	   		 e.printStackTrace();
-	   		 return false;
-	   	 }
-	    }
-
+				for (String key : newDocument.keySet()) {
+					Object newValue = newDocument.get(key);
+					if (oldDocument.containsKey(key)) {
+						oldDocument.put(key, newValue);
+					}
+				}
+				collection.replaceOne(eq("Dni", oldDocument.getString("Dni")), oldDocument);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	@Override
 	public Boolean save(Document entity) {
@@ -384,7 +433,6 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		}
 	}
 
-
 	public Boolean updateAlergenos(Optional<Document> paciente, String atributo, List<String> alergenos) {
 		try {
 			if (paciente.isPresent()) {
@@ -399,6 +447,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean updateMedicamentos(Optional<Document> paciente, String atributo, List<String> medicamentos) {
 		try {
 			if (paciente.isPresent()) {
@@ -413,6 +462,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean update(Optional<Document> paciente, String atributo, List<String> valores) {
 		try {
 			if (paciente.isPresent()) {
@@ -445,6 +495,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean updateNombreMedico(Optional<Document> paciente, String atributo, String valor) {
 		try {
 
@@ -461,6 +512,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean updateApellidosMedico(Optional<Document> paciente, String atributo, String valor) {
 		try {
 
@@ -494,6 +546,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean update(Optional<Document> paciente, String atributo, String valor) {
 		try {
 
@@ -510,6 +563,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 			return false;
 		}
 	}
+
 	public Boolean update(Optional<Document> paciente, String atributo, Document valores) {
 		try {
 			if (paciente.isPresent()) {

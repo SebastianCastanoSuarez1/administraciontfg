@@ -22,6 +22,7 @@ import javax.swing.text.MaskFormatter;
 
 import org.bson.Document;
 
+import controller.Controller_Interfaz;
 import controller.MedicoController_Interfaz;
 
 public class EliminarPacientesCargo extends JFrame {
@@ -35,6 +36,7 @@ public class EliminarPacientesCargo extends JFrame {
 	JButton btnCancelar, btnEliminar;
 	VentanaPrincipalMedico principal;
 	MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
+	Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private JComboBox<String> comboBoxPacientes;
 	JLabel lblDNI;
 	JFormattedTextField formattedDni;
@@ -141,11 +143,16 @@ public class EliminarPacientesCargo extends JFrame {
 					if (paciente.isPresent()) {
 						selectedPacientesCargo = comboBoxPacientes.getSelectedItem().toString();
 						Boolean actualizado = controllerMedico.eliminarPacienteCargo(paciente, selectedPacientesCargo);
-						if (actualizado == true) {
-							lblMensaje.setText("Paciente a cargo eliminado de la tarjeta con exito");
+						Boolean actualizado1 = controllerInterfaz.eliminarDniMedico(selectedPacientesCargo, "Dni_Medico");
+						Boolean actualizado2 = controllerInterfaz.eliminarNombreiMedico(selectedPacientesCargo, "Nombre_Medico");
+						Boolean actualizado3 = controllerInterfaz.eliminarApellidosMedico(selectedPacientesCargo, "Apellidos_Medico");
+						Boolean actualizado4 = controllerInterfaz.eliminarEspecialidadMedico(selectedPacientesCargo, "Especialidad_Medico");
+
+						if (actualizado == true && actualizado1 && actualizado2 && actualizado3 && actualizado4) {
+							lblMensaje.setText("Paciente a cargo eliminado con exito");
 							lblMensaje.setForeground(Color.GREEN);
 						} else {
-							lblMensaje.setText("Paciente a cargo no eliminado de la tarjeta");
+							lblMensaje.setText("Paciente a cargo no eliminado");
 							lblMensaje.setForeground(Color.RED);
 						}
 					} else {
