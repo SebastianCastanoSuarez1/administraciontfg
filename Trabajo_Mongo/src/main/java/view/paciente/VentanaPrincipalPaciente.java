@@ -40,6 +40,10 @@ public class VentanaPrincipalPaciente extends JFrame {
 	VentanaEnfermedades enfermedades;
 	VentanaAnadirAlergenos alergenos;
 	VentanaAnadirMedicamentos medicamentos;
+	JMenuItem mntmEliminarAlergeno;
+	EliminarAlergenos eliminarAlergenos;
+	EliminarMedicamentos eliminarMedicamento;
+	private JMenuItem mntmEliminarMedicamento;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -153,6 +157,28 @@ public class VentanaPrincipalPaciente extends JFrame {
 			}
 		});
 		mnEliminarPaciente.add(mntmEliminarPaciente);
+		
+		mntmEliminarAlergeno = new JMenuItem("Eliminar alergeno");
+		mntmEliminarAlergeno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarAlergenos = new EliminarAlergenos();
+				eliminarAlergenos.setVisible(true);
+				dispose();
+			}
+		});
+		mntmEliminarAlergeno.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mnEliminarPaciente.add(mntmEliminarAlergeno);
+		
+		mntmEliminarMedicamento = new JMenuItem("Eliminar medicamento");
+		mntmEliminarMedicamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarMedicamento = new EliminarMedicamentos();
+				eliminarMedicamento.setVisible(true);
+				dispose();
+			}
+		});
+		mntmEliminarMedicamento.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mnEliminarPaciente.add(mntmEliminarMedicamento);
 
 		mnMostrar = new JMenu("Mostrar paciente");
 		mnMostrar.setBorder(new LineBorder(new Color(0, 0, 0)));

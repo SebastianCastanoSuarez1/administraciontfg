@@ -33,6 +33,25 @@ public class Controller_Interfaz {
 
 	}
 	
+	public String[] alergenos(String dni) {
+		String[] dniPacientes = pacienteRepositoryImpl.guardarAlergenos(dni);
+		return dniPacientes;
+	}
+	
+	public Boolean eliminarAlergenos(Optional<Document> medicos, String valor) {
+		Boolean actualizado = pacienteRepositoryImpl.eliminarAlergenos(medicos, "Alergenos", valor);
+		return actualizado;
+	}
+	
+	public String[] medicamentos(String dni) {
+		String[] dniPacientes = pacienteRepositoryImpl.guardarMedicamentos(dni);
+		return dniPacientes;
+	}
+	
+	public Boolean eliminarMedicamentos(Optional<Document> medicos, String valor) {
+		Boolean actualizado = pacienteRepositoryImpl.eliminarAlergenos(medicos, "Medicamentos", valor);
+		return actualizado;
+	}
 	public Boolean updateData(String dni, Document newData) {
     	Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
     	return paciente.map(p -> pacienteRepositoryImpl.replaceDocument(paciente, newData)).orElse(false);

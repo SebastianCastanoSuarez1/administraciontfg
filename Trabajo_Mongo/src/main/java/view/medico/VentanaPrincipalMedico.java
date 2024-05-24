@@ -36,6 +36,8 @@ public class VentanaPrincipalMedico extends JFrame {
 	JLabel lblNewLabel;
 	VentanaMostrarPorDni mostrarDni;
 	VentanaMostrarPorAtributo mostrarAtributo;
+	private JMenuItem mntmEliminarPacienteCargo;
+	EliminarPacientesCargo eliminarPaciente;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -127,6 +129,17 @@ public class VentanaPrincipalMedico extends JFrame {
 			}
 		});
 		mnEliminarMedico.add(mntmEliminarMedico);
+		
+		mntmEliminarPacienteCargo = new JMenuItem("Eliminar paciente a cargo");
+		mntmEliminarPacienteCargo.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mntmEliminarPacienteCargo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarPaciente = new EliminarPacientesCargo();
+				eliminarPaciente.setVisible(true);
+				dispose();
+			}
+		});
+		mnEliminarMedico.add(mntmEliminarPacienteCargo);
 
 		mnMostrar = new JMenu("Mostrar medico");
 		mnMostrar.setBorder(new LineBorder(new Color(0, 0, 0)));

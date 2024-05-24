@@ -18,6 +18,16 @@ public class MedicoController_Interfaz {
 		return medico;
 
 	}
+	
+	public String[] pacientesCargo(String dni) {
+		String[] dniPacientes = medicoRepositoryImpl.guardarPacientesCargo(dni);
+		return dniPacientes;
+	}
+	
+	public Boolean eliminarPacienteCargo(Optional<Document> medicos, String valor) {
+		Boolean actualizado = medicoRepositoryImpl.eliminarPacienteCargo(medicos, "Pacientes_Cargo", valor);
+		return actualizado;
+	}
 
 	public Boolean updateData(String dni, Document newData) {
     	Optional<Document> paciente = medicoRepositoryImpl.findById(dni);

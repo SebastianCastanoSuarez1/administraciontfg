@@ -48,6 +48,50 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		return documentList;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public String[] guardarAlergenos(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document document = collection.find(filter).first();
+		List<String> medicamentos = (List<String>) document.get("Alergenos");
+		return medicamentos.toArray(new String[0]);
+	}
+
+	public Boolean eliminarAlergenos(Optional<Document> paciente, String atributo, String valor) {
+		try {
+			if (paciente.isPresent()) {
+				Document filter = paciente.get();
+				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pull(atributo, valor));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	@SuppressWarnings("unchecked")
+	public String[] guardarMedicamentos(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document document = collection.find(filter).first();
+		List<String> medicamentos = (List<String>) document.get("Medicamentos");
+		return medicamentos.toArray(new String[0]);
+	}
+
+	public Boolean eliminarMedicamentos(Optional<Document> paciente, String atributo, String valor) {
+		try {
+			if (paciente.isPresent()) {
+				Document filter = paciente.get();
+				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pull(atributo, valor));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean replaceDocument(Optional<Document> optionalOldDocument, Document newDocument) {
 	   	 try {
 	   		 if (optionalOldDocument.isPresent()) {

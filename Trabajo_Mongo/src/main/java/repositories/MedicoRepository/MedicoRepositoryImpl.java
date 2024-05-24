@@ -49,7 +49,28 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 
 		return documentList;
 	}
+	@SuppressWarnings("unchecked")
+	public String[] guardarPacientesCargo(String paciente) {
+		Bson filter = eq(dni, paciente);
+		Document document = collection.find(filter).first();
+		List<String> medicamentos = (List<String>) document.get("Pacientes_Cargo");
+		return medicamentos.toArray(new String[0]);
+	}
 
+	public Boolean eliminarPacienteCargo(Optional<Document> paciente, String atributo, String valor) {
+		try {
+			if (paciente.isPresent()) {
+				Document filter = paciente.get();
+				collection.updateOne(eq("Dni", filter.getString("Dni")), Updates.pull(atributo, valor));
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean replaceDocument(Optional<Document> optionalOldDocument, Document newDocument) {
 	   	 try {
 	   		 if (optionalOldDocument.isPresent()) {
