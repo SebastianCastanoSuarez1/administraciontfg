@@ -3,13 +3,15 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import view.medico.VentanaPrincipalMedico;
@@ -22,8 +24,11 @@ public class VentanaPrincipalAdministrador extends JFrame {
 	VentanaPrincipalPaciente vpp;
 	VentanaPrincipalMedico vpm;
 	JLabel lblBienvenido, lblEligaLaOpcion;
-	JButton btnMedico, btnPaciente;
-	
+	JLabel lblLogo;
+	private JLabel lblIrMedicos;
+	private JLabel lblLogo_1;
+	private JLabel lblIrAPacientes;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,46 +48,76 @@ public class VentanaPrincipalAdministrador extends JFrame {
 	public VentanaPrincipalAdministrador() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 468, 329);
+		setBounds(100, 100, 468, 344);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblBienvenido.setBounds(170, 37, 108, 26);
+		lblBienvenido.setBounds(171, 22, 108, 26);
 		contentPane.add(lblBienvenido);
-		
+
 		lblEligaLaOpcion = new JLabel("Eliga la opcion de prefiera\r\n");
 		lblEligaLaOpcion.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblEligaLaOpcion.setBounds(103, 73, 241, 26);
+		lblEligaLaOpcion.setBounds(104, 58, 241, 26);
 		contentPane.add(lblEligaLaOpcion);
-		
-		btnMedico = new JButton("Ir a medicos");
-		btnMedico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+		lblLogo = new JLabel();
+		lblLogo.setBackground(new Color(230, 230, 250));
+		lblLogo.setBounds(20, 109, 198, 142);
+		contentPane.add(lblLogo);
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				vpm = new VentanaPrincipalMedico();
 				vpm.setVisible(true);
 				dispose();
 			}
 		});
-		btnMedico.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnMedico.setBounds(66, 157, 118, 43);
-		contentPane.add(btnMedico);
-		
-		btnPaciente = new JButton("Ir a pacientes");
-		btnPaciente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vpp  = new VentanaPrincipalPaciente();
+
+		ImageIcon logo = new ImageIcon("src\\main\\resources\\multimedia\\medico.png");
+		Image img = logo.getImage();
+		int labelWidth = lblLogo.getWidth();
+		int labelHeight = lblLogo.getHeight();
+		Image newImg = img.getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
+		logo = new ImageIcon(newImg);
+		lblLogo.setIcon(logo);
+
+		lblIrMedicos = new JLabel("Ir a medicos");
+		lblIrMedicos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIrMedicos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblIrMedicos.setBounds(32, 266, 198, 20);
+		contentPane.add(lblIrMedicos);
+
+		lblLogo_1 = new JLabel();
+		lblLogo_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vpp = new VentanaPrincipalPaciente();
 				vpp.setVisible(true);
 				dispose();
 			}
 		});
-		btnPaciente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnPaciente.setBounds(237, 157, 131, 43);
-		contentPane.add(btnPaciente);
+		lblLogo_1.setBackground(new Color(230, 230, 250));
+		lblLogo_1.setBounds(246, 127, 198, 142);
+		contentPane.add(lblLogo_1);
+		
+		ImageIcon logo1 = new ImageIcon("src\\main\\resources\\multimedia\\paciente.png");
+		Image img1 = logo1.getImage();
+		int labelWidth1 = lblLogo_1.getWidth();
+		int labelHeight1 = lblLogo_1.getHeight();
+		Image newImg1 = img1.getScaledInstance(labelWidth1, labelHeight1, Image.SCALE_SMOOTH);
+		logo1 = new ImageIcon(newImg1);
+		lblLogo_1.setIcon(logo1);
+
+		lblIrAPacientes = new JLabel("Ir a pacientes");
+		lblIrAPacientes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIrAPacientes.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblIrAPacientes.setBounds(240, 266, 198, 20);
+		contentPane.add(lblIrAPacientes);
 	}
 }

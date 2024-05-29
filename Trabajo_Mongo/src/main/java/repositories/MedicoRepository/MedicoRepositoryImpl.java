@@ -9,10 +9,6 @@ import java.util.Optional;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -93,80 +89,80 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 	   	 }
 	    }
 	
-	public String findDniPorNombre(String paciente) {
-		Bson filter = eq(nombre, paciente);
+	public String findDniPorNombre(String medico) {
+		Bson filter = eq(nombre, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(dni);
 		return (String) dniList;
 
 	}
 
-	public String findNombrePorNombre(String paciente) {
-		Bson filter = eq(nombre, paciente);
+	public String findNombrePorNombre(String medico) {
+		Bson filter = eq(nombre, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(nombre);
 		return (String) dniList;
 
 	}
 
-	public String findApellidosPorNombre(String paciente) {
-		Bson filter = eq(nombre, paciente);
+	public String findApellidosPorNombre(String medico) {
+		Bson filter = eq(nombre, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(apellidos);
 		return (String) dniList;
 
 	}
 
-	public String findEspecialidadPorNombre(String paciente) {
-		Bson filter = eq(nombre, paciente);
+	public String findEspecialidadPorNombre(String medico) {
+		Bson filter = eq(nombre, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(especialidad);
 		return (String) dniList;
 
 	}
 
-	public String findFechaIncorporacionPorNombre(String paciente) {
-		Bson filter = eq(nombre, paciente);
+	public String findFechaIncorporacionPorNombre(String medico) {
+		Bson filter = eq(nombre, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(fecha_incorporacion);
 		return (String) dniList;
 
 	}
 
-	public String findDniPorDni(String paciente) {
-		Bson filter = eq(dni, paciente);
+	public String findDniPorDni(String medico) {
+		Bson filter = eq(dni, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(dni);
 		return (String) dniList;
 
 	}
 
-	public String findNombrePordni(String paciente) {
-		Bson filter = eq(dni, paciente);
+	public String findNombrePordni(String medico) {
+		Bson filter = eq(dni, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(nombre);
 		return (String) dniList;
 
 	}
 
-	public String findApellidosPordni(String paciente) {
-		Bson filter = eq(dni, paciente);
+	public String findApellidosPordni(String medico) {
+		Bson filter = eq(dni, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(apellidos);
 		return (String) dniList;
 
 	}
 
-	public String findEspecialidadPordni(String paciente) {
-		Bson filter = eq(dni, paciente);
+	public String findEspecialidadPordni(String medico) {
+		Bson filter = eq(dni, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(especialidad);
 		return (String) dniList;
 
 	}
 
-	public String findFechaIncorporacionPordni(String paciente) {
-		Bson filter = eq(dni, paciente);
+	public String findFechaIncorporacionPordni(String medico) {
+		Bson filter = eq(dni, medico);
 		Document result = collection.find(filter).first();
 		Object dniList = result.get(fecha_incorporacion);
 		return (String) dniList;
@@ -214,41 +210,7 @@ public class MedicoRepositoryImpl implements MedicoRepository {
 		return (String) dniList;
 
 	}
-
-	public String pretty(String json) {
-		JsonElement je = JsonParser.parseString(json);
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(je);
-	}
-
-	public String mostrarMedicos(List<Document> medicos) {
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String pretty = "";
-		if (medicos.isEmpty()) {
-
-		} else {
-			for (Document doc : medicos) {
-				String json = gson.toJson(doc);
-
-				pretty += pretty(json) + "\n";
-			}
-		}
-		return pretty;
-	}
-
-	public String mostrar(Optional<Document> medicos) {
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String pretty = "";
-		if (medicos.isEmpty()) {
-
-		} else {
-			Document doc1 = medicos.get();
-			String json = gson.toJson(doc1);
-			pretty += pretty(json) + "\n";
-		}
-		return pretty;
-	}
-
+	
 	@Override
 	public Boolean save(Document entity) {
 		try {

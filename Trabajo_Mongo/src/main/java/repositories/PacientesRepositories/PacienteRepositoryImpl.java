@@ -420,7 +420,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 	public Boolean updateHistorialMedico(Optional<Document> paciente, Document historial) {
 		try {
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get();
 				Document update = new Document("$push", new Document(historial));
 				collection.updateOne(filter, update);
 				return true;
@@ -483,7 +483,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get();
 				Document update = new Document("$set", new Document(atributo, valor));
 				collection.updateOne(filter, update);
 				return true;
@@ -500,7 +500,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get();
 				Document update = new Document("$set", new Document(atributo, valor));
 				collection.updateOne(filter, update);
 				return true;
@@ -517,7 +517,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get();
 				Document update = new Document("$set", new Document(atributo, valor));
 				collection.updateOne(filter, update);
 				return true;
@@ -534,7 +534,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get(); 
 				Document update = new Document("$set", new Document(atributo, valor));
 				collection.updateOne(filter, update);
 				return true;
@@ -551,7 +551,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
 		try {
 
 			if (paciente.isPresent()) {
-				Document filter = paciente.get(); // filtro para seleccionar el documento a actualizar
+				Document filter = paciente.get();
 				Document update = new Document("$set", new Document(atributo, valor));
 				collection.updateOne(filter, update);
 				return true;

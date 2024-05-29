@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -356,51 +355,5 @@ public class Controller_Interfaz {
 		return pacienteRepositoryImpl.delete(dni);
 	}
 
-	public Boolean anadirLista(Optional<Document> pacientes, String atributo, String[] lista) {
-		List<String> alergenosList = Arrays.asList(lista); // Convertir array en lista
-		return pacienteRepositoryImpl.update(pacientes, atributo, alergenosList);
-	}
-
-	public Boolean anadirComponente(String dni, String atributoComponente, String[] atributo, String[] valores,
-			String[] atributoLista, ArrayList<String[]> listas) {
-		Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
-		Document componente = new Document();
-		anadirElementosComponente(atributo, valores, componente);
-		anadirListaComponente(atributoLista, listas, componente);
-		Boolean anadido = pacienteRepositoryImpl.update(paciente, atributoComponente, componente);
-		return anadido;
-	}
-
-	public Boolean anadirComponente(String dni, String atributoComponente, String[] atributo, String[] valores) {
-		Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
-		Document componente = new Document();
-		anadirElementosComponente(atributo, valores, componente);
-		Boolean anadido = pacienteRepositoryImpl.update(paciente, atributoComponente, componente);
-		return anadido;
-	}
-
-	public Boolean anadirComponente(String dni, String atributoComponente, String[] atributoLista,
-			ArrayList<String[]> listas) {
-		Optional<Document> paciente = pacienteRepositoryImpl.findById(dni);
-		Document componente = new Document();
-		anadirListaComponente(atributoLista, listas, componente);
-		Boolean anadido = pacienteRepositoryImpl.update(paciente, atributoComponente, componente);
-		return anadido;
-	}
-
-	private void anadirElementosComponente(String[] atributo, String[] valores, Document paciente) {
-		for (int i = 0; i < atributo.length; i++) {
-			paciente.append(atributo[i], valores[i]);
-		}
-	}
-
-	private void anadirListaComponente(String[] atributoLista, ArrayList<String[]> listas, Document paciente) {
-		for (int i = 0; i < listas.size(); i++) { // Corregir el límite del bucle
-			String[] listaActual = listas.get(i); // Obtener la lista actual del índice i
-			for (int j = 0; j < atributoLista.length && j < listaActual.length; j++) {
-				paciente.append(atributoLista[j], Arrays.asList(listaActual));
-			}
-		}
-	}
 
 }
