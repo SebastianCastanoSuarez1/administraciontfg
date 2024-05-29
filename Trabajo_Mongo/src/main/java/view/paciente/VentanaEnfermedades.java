@@ -138,10 +138,10 @@ public class VentanaEnfermedades extends JFrame {
 			        Document enfermedades = crearDocumentosEnfermedades();
 					Boolean anadido = controllerInterfaz.anadirVariables(pacientes,enfermedades);
 		            if(anadido == true) {
-						lblMensaje.setText("El paciente ha sido actualizado con exito");
+						lblMensaje.setText("Enfermedades añadidas con exito");
 						lblMensaje.setForeground(Color.GREEN);
 					}else {
-						lblMensaje.setText("El paciente no ha sido actualizado con exito");
+						lblMensaje.setText("Enfermedades no añadidas con exito");
 						lblMensaje.setForeground(Color.RED);
 					}
 

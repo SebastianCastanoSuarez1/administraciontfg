@@ -142,10 +142,10 @@ public class EliminarMedicamentos extends JFrame {
 						selectedMedicamento = comboBoxMedicamentos.getSelectedItem().toString();
 						Boolean actualizado = controller.eliminarMedicamentos(paciente, selectedMedicamento);
 						if (actualizado == true) {
-							lblMensaje.setText("Medicamento eliminado de la tarjeta con exito");
+							lblMensaje.setText("Medicamento eliminado con exito");
 							lblMensaje.setForeground(Color.GREEN);
 						} else {
-							lblMensaje.setText("Medicamento no eliminado de la tarjeta");
+							lblMensaje.setText("Medicamento no eliminado con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
 					} else {

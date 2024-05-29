@@ -149,10 +149,10 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 						Boolean anadido = medicoController.crearPacientesCargo(medico, dniPacientes);
 
 						if (anadido == true) {
-							lblMensaje.setText("Alergenos añadidos con exito");
+							lblMensaje.setText("Pacientes a cargo añadidos con exito");
 							lblMensaje.setForeground(Color.GREEN);
 						} else {
-							lblMensaje.setText("Alergenos no añadidos con exito");
+							lblMensaje.setText("Pacientes a cargo no añadidos con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
 					}

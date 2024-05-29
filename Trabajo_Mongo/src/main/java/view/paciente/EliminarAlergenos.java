@@ -142,10 +142,10 @@ public class EliminarAlergenos extends JFrame {
 						selectedAlergeno = comboBoxAlergenos.getSelectedItem().toString();
 						Boolean actualizado = controller.eliminarAlergenos(paciente, selectedAlergeno);
 						if (actualizado == true) {
-							lblMensaje.setText("Alergeno eliminado de la tarjeta con exito");
+							lblMensaje.setText("Alergeno eliminado con exito");
 							lblMensaje.setForeground(Color.GREEN);
 						} else {
-							lblMensaje.setText("Alergeno no eliminado de la tarjeta");
+							lblMensaje.setText("Alergeno no eliminado con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
 					} else {
