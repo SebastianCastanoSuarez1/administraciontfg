@@ -48,7 +48,7 @@ public class VentanaPrincipalAdministrador extends JFrame {
 	public VentanaPrincipalAdministrador() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 468, 344);
+		setBounds(100, 100, 497, 364);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,17 +58,17 @@ public class VentanaPrincipalAdministrador extends JFrame {
 
 		lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblBienvenido.setBounds(171, 22, 108, 26);
+		lblBienvenido.setBounds(191, 22, 108, 26);
 		contentPane.add(lblBienvenido);
 
 		lblEligaLaOpcion = new JLabel("Eliga la opcion de prefiera\r\n");
 		lblEligaLaOpcion.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblEligaLaOpcion.setBounds(104, 58, 241, 26);
+		lblEligaLaOpcion.setBounds(124, 58, 254, 26);
 		contentPane.add(lblEligaLaOpcion);
 
 		lblLogo = new JLabel();
 		lblLogo.setBackground(new Color(230, 230, 250));
-		lblLogo.setBounds(20, 109, 198, 142);
+		lblLogo.setBounds(39, 109, 179, 142);
 		contentPane.add(lblLogo);
 		lblLogo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -88,6 +88,14 @@ public class VentanaPrincipalAdministrador extends JFrame {
 		lblLogo.setIcon(logo);
 
 		lblIrMedicos = new JLabel("Ir a medicos");
+		lblIrMedicos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vpm = new VentanaPrincipalMedico();
+				vpm.setVisible(true);
+				dispose();
+			}
+		});
 		lblIrMedicos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIrMedicos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblIrMedicos.setBounds(32, 266, 198, 20);
@@ -103,7 +111,7 @@ public class VentanaPrincipalAdministrador extends JFrame {
 			}
 		});
 		lblLogo_1.setBackground(new Color(230, 230, 250));
-		lblLogo_1.setBounds(246, 127, 198, 142);
+		lblLogo_1.setBounds(268, 127, 188, 142);
 		contentPane.add(lblLogo_1);
 		
 		ImageIcon logo1 = new ImageIcon("src\\main\\resources\\multimedia\\paciente.png");
@@ -115,9 +123,17 @@ public class VentanaPrincipalAdministrador extends JFrame {
 		lblLogo_1.setIcon(logo1);
 
 		lblIrAPacientes = new JLabel("Ir a pacientes");
+		lblIrAPacientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vpp = new VentanaPrincipalPaciente();
+				vpp.setVisible(true);
+				dispose();
+			}
+		});
 		lblIrAPacientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIrAPacientes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblIrAPacientes.setBounds(240, 266, 198, 20);
+		lblIrAPacientes.setBounds(252, 266, 198, 20);
 		contentPane.add(lblIrAPacientes);
 	}
 }
