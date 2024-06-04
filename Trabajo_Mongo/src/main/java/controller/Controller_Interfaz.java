@@ -330,13 +330,14 @@ public class Controller_Interfaz {
 
 	}
 
-	public Document crearDocumentoEnfermedades(Optional<Document> pacientes, String enfermedad, String fecha,
+	public Document crearDocumentoEnfermedades(Optional<Document> pacientes, String enfermedad, String fecha_baja, String fecha_alta,
 			String[] historialMedicoMedicamentos, String tratamiento, String informe) {
 		Document enfermedades = new Document();
 		Document detalles = new Document();
 
 		enfermedades.append("Enfermedad", enfermedad);
-		enfermedades.append("Fecha", fecha);
+		enfermedades.append("Fecha_Baja", fecha_baja);
+		enfermedades.append("Fecha_Alta", fecha_alta);
 
 		List<String> medicamentosList = Arrays.asList(historialMedicoMedicamentos);
 

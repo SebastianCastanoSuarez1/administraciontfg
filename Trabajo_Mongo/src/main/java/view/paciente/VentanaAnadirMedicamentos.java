@@ -134,12 +134,15 @@ public class VentanaAnadirMedicamentos extends JFrame {
 				if (pacientes.isPresent()) {
 					List<String> medicamentosList = new ArrayList<>();
 					for (JTextField tf : textFields) {
-						medicamentosList.add(tf.getText());
+						if (!tf.getText().trim().isEmpty()) {  
+		                    medicamentosList.add(tf.getText().trim());
+		                }
+
 					}
-					String[] listaMedicamentos = medicamentosList.toArray(new String[0]);// Dividir en palabras, no en
-																							// caracteres
+					String[] listaMedicamentos = medicamentosList.toArray(new String[0]);
 
 					if (btnAceptar == e.getSource()) {
+
 						Boolean anadido = controllerInterfaz.anadirMedicamentos(pacientes, listaMedicamentos);
 
 						if (anadido == true) {
@@ -175,24 +178,24 @@ public class VentanaAnadirMedicamentos extends JFrame {
 		lblIntroduzcaMedicamentos.setBounds(20, 134, 293, 21);
 		contentPane.add(lblIntroduzcaMedicamentos);
 
-		btnAnadirCampo = new JButton("Añadir campo");
+		btnAnadirCampo = new JButton("Nuevo medicamento");
 		btnAnadirCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				anadirCampo();
 			}
 		});
 		btnAnadirCampo.setVisible(false);
-		btnAnadirCampo.setBounds(46, 166, 135, 23);
+		btnAnadirCampo.setBounds(13, 166, 196, 23);
 		contentPane.add(btnAnadirCampo);
 
-		btnEliminarCampo = new JButton("Eliminar campo");
+		btnEliminarCampo = new JButton("Eliminar ultimo medicamento");
 		btnEliminarCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eliminarCampo();
 			}
 		});
 		btnEliminarCampo.setVisible(false);
-		btnEliminarCampo.setBounds(46, 200, 135, 23);
+		btnEliminarCampo.setBounds(12, 200, 197, 23);
 		contentPane.add(btnEliminarCampo);
 	}
 

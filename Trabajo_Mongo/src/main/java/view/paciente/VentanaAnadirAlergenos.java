@@ -43,11 +43,12 @@ public class VentanaAnadirAlergenos extends JFrame {
 	JButton btnAnadirCampo;
 	JButton btnEliminarCampo;
 	private int textFieldXPosition = 288;
-	private int textFieldYPosition = 135; 
-    private final int textFieldHeight = 20; 
-    private final int textFieldSpacing = 10; 
-    private List<JTextField> textFields = new ArrayList<>();
-    JLabel lblIntroduzcaAlergenos;
+	private int textFieldYPosition = 135;
+	private final int textFieldHeight = 20;
+	private final int textFieldSpacing = 10;
+	private List<JTextField> textFields = new ArrayList<>();
+	JLabel lblIntroduzcaAlergenos;
+
 	/**
 	 * Launch the application.
 	 */
@@ -130,25 +131,27 @@ public class VentanaAnadirAlergenos extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Optional<Document> pacientes = controllerInterfaz.findByDni(formattedDni.getText());
-				if(pacientes.isPresent()) {
+				if (pacientes.isPresent()) {
 					List<String> medicamentosList = new ArrayList<>();
 					for (JTextField tf : textFields) {
-						medicamentosList.add(tf.getText());
+						if (!tf.getText().trim().isEmpty()) {
+		                    medicamentosList.add(tf.getText().trim());
+		                }
 					}
 					String[] listaAlergenos = medicamentosList.toArray(new String[0]);
-					if(btnAceptar == e.getSource()) {
+					if (btnAceptar == e.getSource()) {
 						Boolean anadido = controllerInterfaz.anadirAlergenos(pacientes, listaAlergenos);
-						
-						if(anadido== true) {
+
+						if (anadido == true) {
 							lblMensaje.setText("Alergenos añadidos con exito");
 							lblMensaje.setForeground(Color.GREEN);
-						}else {
+						} else {
 							lblMensaje.setText("Alergenos no añadidos con exito");
 							lblMensaje.setForeground(Color.RED);
 						}
 					}
-					
-				}else {
+
+				} else {
 					lblMensaje.setText("No existe el paciente con el DNI " + formattedDni.getText());
 					lblMensaje.setForeground(Color.RED);
 				}
@@ -161,62 +164,62 @@ public class VentanaAnadirAlergenos extends JFrame {
 		lblMensaje = new JLabel("");
 		lblMensaje.setBounds(124, 356, 259, 21);
 		contentPane.add(lblMensaje);
-		
+
 		lblAadirAlergenos = new JLabel("Añadir alergenos al paciente\r\n");
 		lblAadirAlergenos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblAadirAlergenos.setBounds(159, 20, 225, 22);
 		contentPane.add(lblAadirAlergenos);
-		
+
 		lblIntroduzcaAlergenos = new JLabel("Introduzca los alergenos al paciente");
 		lblIntroduzcaAlergenos.setVisible(false);
 		lblIntroduzcaAlergenos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblIntroduzcaAlergenos.setBounds(20, 134, 293, 21);
 		contentPane.add(lblIntroduzcaAlergenos);
-		
-		btnAnadirCampo = new JButton("Añadir campo");
+
+		btnAnadirCampo = new JButton("Nuevo alergeno");
 		btnAnadirCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				anadirCampo();
 			}
 		});
 		btnAnadirCampo.setVisible(false);
-		btnAnadirCampo.setBounds(46, 166, 135, 23);
+		btnAnadirCampo.setBounds(20, 166, 177, 23);
 		contentPane.add(btnAnadirCampo);
-		
-		btnEliminarCampo = new JButton("Eliminar campo");
+
+		btnEliminarCampo = new JButton("Eliminar ultimo alergeno\r\n");
 		btnEliminarCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eliminarCampo();
 			}
 		});
 		btnEliminarCampo.setVisible(false);
-		btnEliminarCampo.setBounds(46, 200, 135, 23);
+		btnEliminarCampo.setBounds(20, 200, 177, 23);
 		contentPane.add(btnEliminarCampo);
 	}
-	
-	private void anadirCampo() {
-        JTextField campoNuevo = new JTextField();
-        campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
-        contentPane.add(campoNuevo);
-        textFields.add(campoNuevo); 
 
-        textFieldYPosition += textFieldHeight + textFieldSpacing;
-        
-        contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
-        contentPane.revalidate();
-        contentPane.repaint();
-    }
+	private void anadirCampo() {
+		JTextField campoNuevo = new JTextField();
+		campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
+		contentPane.add(campoNuevo);
+		textFields.add(campoNuevo);
+
+		textFieldYPosition += textFieldHeight + textFieldSpacing;
+
+		contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+		contentPane.revalidate();
+		contentPane.repaint();
+	}
 
 	private void eliminarCampo() {
-        if (!textFields.isEmpty()) {
-            JTextField lastField = textFields.remove(textFields.size() - 1);
-            contentPane.remove(lastField);
+		if (!textFields.isEmpty()) {
+			JTextField lastField = textFields.remove(textFields.size() - 1);
+			contentPane.remove(lastField);
 
-            textFieldYPosition -= textFieldHeight + textFieldSpacing;
+			textFieldYPosition -= textFieldHeight + textFieldSpacing;
 
-            contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
-            contentPane.revalidate();
-            contentPane.repaint();
-        }
-    }
+			contentPane.setPreferredSize(new Dimension(400, textFieldYPosition + textFieldHeight));
+			contentPane.revalidate();
+			contentPane.repaint();
+		}
+	}
 }

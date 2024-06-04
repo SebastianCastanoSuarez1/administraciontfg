@@ -135,7 +135,9 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 				if (medico.isPresent()) {
 					List<String> textFieldList = new ArrayList<>();
 					for (JFormattedTextField tf : formattedTextFields) {
-						textFieldList.add(tf.getText());
+						if (!tf.getText().trim().isEmpty()) { 
+							textFieldList.add(tf.getText().trim());
+		                }
 					}
 					String[] dniPacientes = textFieldList.toArray(new String[0]);
 					pacienteController.anadirDniMedico(dniPacientes, dniMedico);
@@ -176,24 +178,24 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTitulo.setBounds(118, 24, 271, 21);
 		contentPane.add(lblTitulo);
-		btnAnadirCampo = new JButton("Añadir campo");
+		btnAnadirCampo = new JButton("Nuevo DNI paciente");
 		btnAnadirCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				anadirCampo();
 			}
 		});
 		btnAnadirCampo.setVisible(false);
-		btnAnadirCampo.setBounds(41, 158, 135, 23);
+		btnAnadirCampo.setBounds(10, 158, 198, 23);
 		contentPane.add(btnAnadirCampo);
 
-		btnEliminarCampo = new JButton("Eliminar campo");
+		btnEliminarCampo = new JButton("Eliminar ultimo DNI paciente\r\n");
 		btnEliminarCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eliminarCampo();
 			}
 		});
 		btnEliminarCampo.setVisible(false);
-		btnEliminarCampo.setBounds(41, 192, 135, 23);
+		btnEliminarCampo.setBounds(10, 192, 201, 23);
 		contentPane.add(btnEliminarCampo);
 	}
 
@@ -202,7 +204,7 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 			JFormattedTextField campoNuevo;
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-			campoNuevo  = new JFormattedTextField(mascara);
+			campoNuevo = new JFormattedTextField(mascara);
 			contentPane.add(formattedDni);
 			campoNuevo.setBounds(textFieldXPosition, textFieldYPosition, 205, textFieldHeight);
 			contentPane.add(campoNuevo);

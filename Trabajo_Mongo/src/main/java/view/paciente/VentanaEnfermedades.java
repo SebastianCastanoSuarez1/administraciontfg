@@ -30,9 +30,9 @@ public class VentanaEnfermedades extends JFrame {
 	private JPanel contentPane;
 	private JComboBox<String> comboBoxDetalles;
 	private MaskFormatter mascara;
-	private JFormattedTextField formattedFecha;
+	private JFormattedTextField formattedFechaBaja;
 	private JButton btnCancelar, btnAcepatr;
-	private JLabel lblEnfermedad, lblFecha, lblDetalles, lblTratamiento, lblMedicamentos, lblInforme;
+	private JLabel lblEnfermedad, lblFechaBaja, lblDetalles, lblTratamiento, lblMedicamentos, lblInforme;
 	private JTextField textFieldEnfermedad, textFieldTratamiento, textFieldMedicamentos, textFieldinforme;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	VentanaPrincipalPaciente paciente;
@@ -41,6 +41,8 @@ public class VentanaEnfermedades extends JFrame {
 	private JLabel lblMensaje;
 	JFormattedTextField formattedDni;
 	private JLabel lblAadirEnfermedadesAl;
+	JLabel lblFechaAlta;
+	JFormattedTextField formattedFechaAlta;
 	/**
 	 * Launch the application.
 	 */
@@ -83,16 +85,16 @@ public class VentanaEnfermedades extends JFrame {
 		textFieldEnfermedad.setBounds(200, 126, 143, 20);
 		contentPane.add(textFieldEnfermedad);
 
-		lblFecha = new JLabel("Fecha");
-		lblFecha.setVisible(false);
-		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblFecha.setBounds(78, 168, 77, 20);
-		contentPane.add(lblFecha);
+		lblFechaBaja = new JLabel("Fecha baja");
+		lblFechaBaja.setVisible(false);
+		lblFechaBaja.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblFechaBaja.setBounds(78, 167, 112, 20);
+		contentPane.add(lblFechaBaja);
 
 		lblDetalles = new JLabel("Detalles");
 		lblDetalles.setVisible(false);
 		lblDetalles.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDetalles.setBounds(78, 211, 77, 14);
+		lblDetalles.setBounds(78, 241, 77, 14);
 		contentPane.add(lblDetalles);
 
 		comboBoxDetalles = new JComboBox<String>();
@@ -115,8 +117,8 @@ public class VentanaEnfermedades extends JFrame {
 				}
 			}
 		});
-		comboBoxDetalles.setModel(new DefaultComboBoxModel<String>(new String[] { "Si", "No" }));
-		comboBoxDetalles.setBounds(194, 209, 53, 22);
+		comboBoxDetalles.setModel(new DefaultComboBoxModel<String>(new String[] { "No", "Si" }));
+		comboBoxDetalles.setBounds(194, 239, 53, 22);
 		contentPane.add(comboBoxDetalles);
 
 		btnCancelar = new JButton("Cancelar");
@@ -155,45 +157,45 @@ public class VentanaEnfermedades extends JFrame {
 		lblTratamiento = new JLabel("Tratamiento");
 		lblTratamiento.setVisible(false);
 		lblTratamiento.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTratamiento.setBounds(78, 254, 112, 14);
+		lblTratamiento.setBounds(78, 278, 112, 14);
 		contentPane.add(lblTratamiento);
 
 		textFieldTratamiento = new JTextField();
 		textFieldTratamiento.setVisible(false);
 		textFieldTratamiento.setColumns(10);
-		textFieldTratamiento.setBounds(200, 253, 134, 20);
+		textFieldTratamiento.setBounds(200, 277, 134, 20);
 		contentPane.add(textFieldTratamiento);
 
 		lblMedicamentos = new JLabel("Medicamentos");
 		lblMedicamentos.setVisible(false);
 		lblMedicamentos.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMedicamentos.setBounds(78, 285, 112, 14);
+		lblMedicamentos.setBounds(78, 309, 112, 14);
 		contentPane.add(lblMedicamentos);
 
 		textFieldMedicamentos = new JTextField();
 		textFieldMedicamentos.setVisible(false);
 		textFieldMedicamentos.setColumns(10);
-		textFieldMedicamentos.setBounds(200, 284, 134, 20);
+		textFieldMedicamentos.setBounds(200, 308, 134, 20);
 		contentPane.add(textFieldMedicamentos);
 
 		textFieldinforme = new JTextField();
 		textFieldinforme.setVisible(false);
 		textFieldinforme.setColumns(10);
-		textFieldinforme.setBounds(200, 315, 134, 20);
+		textFieldinforme.setBounds(200, 339, 134, 20);
 		contentPane.add(textFieldinforme);
 
 		lblInforme = new JLabel("Informe");
 		lblInforme.setVisible(false);
 		lblInforme.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblInforme.setBounds(78, 318, 94, 14);
+		lblInforme.setBounds(78, 342, 94, 14);
 		contentPane.add(lblInforme);
 		try {
 			mascara = new MaskFormatter("##/##/####");
 			mascara.setValidCharacters("0123456789");
-			formattedFecha = new JFormattedTextField(mascara);
-			formattedFecha.setVisible(false);
-			formattedFecha.setBounds(205, 170, 138, 19);
-			contentPane.add(formattedFecha);
+			formattedFechaBaja = new JFormattedTextField(mascara);
+			formattedFechaBaja.setVisible(false);
+			formattedFechaBaja.setBounds(200, 170, 143, 19);
+			contentPane.add(formattedFechaBaja);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -210,12 +212,14 @@ public class VentanaEnfermedades extends JFrame {
 					Optional<Document> pacientes = controllerInterfaz.findByDni(formattedDni.getText());
 
 					if (pacientes.isPresent()) {
-						lblFecha.setVisible(true);
+						lblFechaBaja.setVisible(true);
 						lblEnfermedad.setVisible(true);
 						lblDetalles.setVisible(true);
 						textFieldEnfermedad.setVisible(true);
-						formattedFecha.setVisible(true);
+						formattedFechaBaja.setVisible(true);
 						comboBoxDetalles.setVisible(true);
+						lblFechaAlta.setVisible(true);
+						formattedFechaAlta.setVisible(true);
 
 					} else {
 						String mensaje = "El paciente con DNI " + formattedDni.getText() + " no existe ";
@@ -233,33 +237,54 @@ public class VentanaEnfermedades extends JFrame {
 		contentPane.add(lblMensaje);
 		
 		try {
+			
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			formattedDni = new JFormattedTextField(mascara);
 			formattedDni.setBounds(129, 62, 177, 20);
 			contentPane.add(formattedDni);
 			
-			lblAadirEnfermedadesAl = new JLabel("Añadir enfermedades al historial medico");
-			lblAadirEnfermedadesAl.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblAadirEnfermedadesAl.setBounds(82, 10, 343, 22);
-			contentPane.add(lblAadirEnfermedadesAl);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
+		lblAadirEnfermedadesAl = new JLabel("Añadir enfermedades al historial medico");
+		lblAadirEnfermedadesAl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblAadirEnfermedadesAl.setBounds(82, 10, 343, 22);
+		contentPane.add(lblAadirEnfermedadesAl);
+		
+		lblFechaAlta = new JLabel("Fecha alta");
+		lblFechaAlta.setVisible(false);
+		lblFechaAlta.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblFechaAlta.setBounds(78, 201, 112, 20);
+		contentPane.add(lblFechaAlta);
+		
+		try {
+			mascara = new MaskFormatter("##/##/####");
+			mascara.setValidCharacters("0123456789");
+			formattedFechaAlta = new JFormattedTextField(mascara);
+			formattedFechaAlta.setVisible(false);
+			formattedFechaAlta.setBounds(200, 204, 143, 19);
+			contentPane.add(formattedFechaAlta);
+			
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public Document crearDocumentosEnfermedades() {
 		Optional<Document> pacientes = controllerInterfaz.findByDni(formattedDni.getText());
 
 		String enfermedad = textFieldEnfermedad.getText();
-		String fecha = formattedFecha.getText().toString();
-
+		String fecha_baja = formattedFechaBaja.getText().toString();
+		String fecha_alta = formattedFechaAlta.getText().toString();
 		String medicamentos = textFieldMedicamentos.getText();
 		String tratamiento = textFieldTratamiento.getText();
 		String informe = textFieldinforme.getText();
 		String[] historialMedicoMedicamentos = medicamentos.split(" ");
-		Document enfermedades = controllerInterfaz.crearDocumentoEnfermedades(pacientes, enfermedad, fecha,
+		Document enfermedades = controllerInterfaz.crearDocumentoEnfermedades(pacientes, enfermedad, fecha_baja,fecha_alta,
 				historialMedicoMedicamentos, tratamiento, informe);
 		return enfermedades;
 	}
