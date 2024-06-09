@@ -29,18 +29,18 @@ public class EliminarPacientesCargo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	JLabel lblTitulo, lblEligaElPaciente, lblPacienteElegido, lblMensaje;
-	String[] pacientesCargo;
-	String selectedDni, selectedPacientesCargo;
+	private JLabel lblTitulo, lblEligaElPaciente, lblPacienteElegido, lblMensaje;
+	private String[] pacientesCargo;
+	private String selectedPacientesCargo;
 	private JTextField textFieldPaciente;
-	JButton btnCancelar, btnEliminar;
-	VentanaPrincipalMedico principal;
-	MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
-	Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
+	private JButton btnCancelar, btnEliminar;
+	private VentanaPrincipalMedico principal;
+	private MedicoController_Interfaz controllerMedico = new MedicoController_Interfaz();
+	private Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private JComboBox<String> comboBoxPacientes;
-	JLabel lblDNI;
-	JFormattedTextField formattedDni;
-	JButton btnComprobar;
+	private JLabel lblDNI;
+	private JFormattedTextField formattedDni;
+	private JButton btnComprobar;
 	private MaskFormatter mascara;
 
 	/**

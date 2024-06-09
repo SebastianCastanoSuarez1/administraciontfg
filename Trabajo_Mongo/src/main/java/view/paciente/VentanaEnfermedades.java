@@ -35,14 +35,14 @@ public class VentanaEnfermedades extends JFrame {
 	private JLabel lblEnfermedad, lblFechaBaja, lblDetalles, lblTratamiento, lblMedicamentos, lblInforme;
 	private JTextField textFieldEnfermedad, textFieldTratamiento, textFieldMedicamentos, textFieldinforme;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	VentanaPrincipalPaciente paciente;
-	JLabel lblDNI;
-	JButton btnComprobar;
+	private VentanaPrincipalPaciente paciente;
+	private JLabel lblDNI;
+	private JButton btnComprobar;
 	private JLabel lblMensaje;
-	JFormattedTextField formattedDni;
+	private JFormattedTextField formattedDni;
 	private JLabel lblAadirEnfermedadesAl;
-	JLabel lblFechaAlta;
-	JFormattedTextField formattedFechaAlta;
+	private JLabel lblFechaAlta;
+	private JFormattedTextField formattedFechaAlta;
 	/**
 	 * Launch the application.
 	 */

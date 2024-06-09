@@ -24,7 +24,7 @@ public class VentanaMostrarPorNombre extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldEscribirNombre, textFieldDni, textFieldNombre, textFieldApellidos,
 			textFieldFechaNacimiento, textFieldSexo;
-	JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
 	private Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private JLabel lblLugarDeNacimiento;
 	private JTextField textFieldLugarNacimiento;
@@ -34,8 +34,8 @@ public class VentanaMostrarPorNombre extends JFrame {
 	private JTextField textFieldPeso;
 	private JLabel lblGrupoSanguineo;
 	private JTextField textFieldGrupoSanguineo;
-	JButton btnVolver;
-	VentanaPrincipalPaciente principal;
+	private JButton btnVolver;
+	private VentanaPrincipalPaciente principal;
 	private JLabel lblMostrarPacientePor;
 
 	/**

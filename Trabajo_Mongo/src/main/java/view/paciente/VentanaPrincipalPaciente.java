@@ -23,26 +23,26 @@ public class VentanaPrincipalPaciente extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnCancelar;
-	VentanaAgregarPaciente agregar;
+	private VentanaAgregarPaciente agregar;
 	private VentanaModificarPaciente modificar;
 	private VentanaEliminarPaciente eliminar;
 	private VentanaPrincipalAdministrador principal;
-	VentanaMostrarPorNombre mostrarNombre;
+	private VentanaMostrarPorNombre mostrarNombre;
 	private JMenuBar menuBar;
-	JMenu mnAnadirPacientes, mnEliminarPaciente, mnMostrar, mnModificar;
-	JMenuItem mntmAnadirNuevoPaciente, mntmAnadirEnfermedades, mntmEliminarPaciente,
+	private JMenu mnAnadirPacientes, mnEliminarPaciente, mnMostrar, mnModificar;
+	private JMenuItem mntmAnadirNuevoPaciente, mntmAnadirEnfermedades, mntmEliminarPaciente,
 			mntmModificarPaciente, mntmMostrarPorDNI, mntmMostrarPorNombre, mntmMostrarPorAtributo;
-	JLabel lblNewLabel;
-	VentanaMostrarPorDni mostrarDni;
-	VentanaMostrarPorAtributo mostrarAtributo;
-	JMenuItem mntmAnadirAlergenos;
-	JMenuItem mntmMedicamentos;
-	VentanaEnfermedades enfermedades;
-	VentanaAnadirAlergenos alergenos;
-	VentanaAnadirMedicamentos medicamentos;
-	JMenuItem mntmEliminarAlergeno;
-	EliminarAlergenos eliminarAlergenos;
-	EliminarMedicamentos eliminarMedicamento;
+	private JLabel lblNewLabel;
+	private VentanaMostrarPorDni mostrarDni;
+	private VentanaMostrarPorAtributo mostrarAtributo;
+	private JMenuItem mntmAnadirAlergenos;
+	private JMenuItem mntmMedicamentos;
+	private VentanaEnfermedades enfermedades;
+	private VentanaAnadirAlergenos alergenos;
+	private VentanaAnadirMedicamentos medicamentos;
+	private JMenuItem mntmEliminarAlergeno;
+	private EliminarAlergenos eliminarAlergenos;
+	private EliminarMedicamentos eliminarMedicamento;
 	private JMenuItem mntmEliminarMedicamento;
 
 	public static void main(String[] args) {

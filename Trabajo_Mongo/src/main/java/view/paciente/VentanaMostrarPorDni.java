@@ -24,7 +24,7 @@ public class VentanaMostrarPorDni extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldFechaNacimiento, textFieldSexo;
-	JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private JLabel lblSexo, lblFechaNacimiento, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
 	private Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
 	private JLabel lblLugarDeNacimiento;
 	private JTextField textFieldLugarNacimiento;
@@ -34,10 +34,10 @@ public class VentanaMostrarPorDni extends JFrame {
 	private JTextField textFieldPeso;
 	private JLabel lblGrupoSanguineo;
 	private JTextField textFieldGrupoSanguineo;
-	JFormattedTextField formattedTextFieldDni;
+	private JFormattedTextField formattedTextFieldDni;
 	private MaskFormatter mascara;
-	JButton btnVolver;
-	VentanaPrincipalPaciente principal;
+	private JButton btnVolver;
+	private VentanaPrincipalPaciente principal;
 	private JLabel lblMostrarPacientePor;
 
 	/**

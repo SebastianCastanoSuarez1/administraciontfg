@@ -29,16 +29,16 @@ public class VentanaAnadirPacientesCargo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	JFormattedTextField formattedDni;
-	JButton btnComprobar, btnCancelar, btnAceptar;
-	JLabel lblDNI, lblDniPacientes, lblMensaje;
-	MaskFormatter mascara;
-	VentanaPrincipalMedico principal;
-	MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
-	Controller_Interfaz pacienteController = new Controller_Interfaz();
+	private JFormattedTextField formattedDni;
+	private JButton btnComprobar, btnCancelar, btnAceptar;
+	private JLabel lblDNI, lblDniPacientes, lblMensaje;
+	private MaskFormatter mascara;
+	private VentanaPrincipalMedico principal;
+	private MedicoController_Interfaz medicoController = new MedicoController_Interfaz();
+	private Controller_Interfaz pacienteController = new Controller_Interfaz();
 	private JLabel lblTitulo;
-	JButton btnAnadirCampo;
-	JButton btnEliminarCampo;
+	private JButton btnAnadirCampo;
+	private JButton btnEliminarCampo;
 	private int textFieldXPosition = 288;
 	private int textFieldYPosition = 130;
 	private final int textFieldHeight = 20;

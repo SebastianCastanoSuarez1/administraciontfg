@@ -31,23 +31,23 @@ public class VentanaAnadirAlergenos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private MaskFormatter mascara;
-	JFormattedTextField formattedDni;
-	JLabel lblDNI;
-	JButton btnComprobar;
-	JButton btnCancelar;
-	JButton btnAceptar;
-	JLabel lblMensaje;
+	private JFormattedTextField formattedDni;
+	private JLabel lblDNI;
+	private JButton btnComprobar;
+	private JButton btnCancelar;
+	private JButton btnAceptar;
+	private JLabel lblMensaje;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	VentanaPrincipalPaciente vp;
+	private VentanaPrincipalPaciente vp;
 	private JLabel lblAadirAlergenos;
-	JButton btnAnadirCampo;
-	JButton btnEliminarCampo;
+	private JButton btnAnadirCampo;
+	private JButton btnEliminarCampo;
 	private int textFieldXPosition = 288;
 	private int textFieldYPosition = 135;
 	private final int textFieldHeight = 20;
 	private final int textFieldSpacing = 10;
 	private List<JTextField> textFields = new ArrayList<>();
-	JLabel lblIntroduzcaAlergenos;
+	private JLabel lblIntroduzcaAlergenos;
 
 	/**
 	 * Launch the application.

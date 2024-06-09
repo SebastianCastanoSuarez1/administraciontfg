@@ -33,9 +33,9 @@ public class VentanaAnadirMedico extends JFrame {
 	private JButton btnCancelar, btnAceptar;
 	private MaskFormatter mascara;
 	private MedicoController_Interfaz medico = new MedicoController_Interfaz();
-	JComboBox<String> comboBoxEspecialidades;
-	JFormattedTextField formattedFechaIncorporacion;
-	VentanaPrincipalMedico principal;
+	private JComboBox<String> comboBoxEspecialidades;
+	private JFormattedTextField formattedFechaIncorporacion;
+	private VentanaPrincipalMedico principal;
 	private JLabel lblTitulo;
 	/**
 	 * Launch the application.

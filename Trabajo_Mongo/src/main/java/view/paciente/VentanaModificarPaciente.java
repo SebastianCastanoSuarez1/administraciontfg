@@ -44,7 +44,7 @@ public class VentanaModificarPaciente extends JFrame {
 	private JButton saveButton;
 	private JComboBox<String> bloodComboBox;
 	private JComboBox<String> GendercomboBox;
-	JButton btnCancelar;
+	private JButton btnCancelar;
 	private JLabel lblTitulo;
 
 	/**

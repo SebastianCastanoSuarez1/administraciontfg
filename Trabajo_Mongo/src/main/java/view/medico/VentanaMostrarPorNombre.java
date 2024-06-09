@@ -22,10 +22,10 @@ public class VentanaMostrarPorNombre extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldEscribirNombre, textFieldDni, textFieldNombre, textFieldApellidos,
 			textFieldEspecialidad, textFieldFechaIncorporacion;
-	JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
 	private MedicoController_Interfaz controllerInterfaz = new MedicoController_Interfaz();
-	JButton btnVolver;
-	VentanaPrincipalMedico principal;
+	private JButton btnVolver;
+	private VentanaPrincipalMedico principal;
 	private JLabel lblMostrarMedicoPor;
 
 	/**

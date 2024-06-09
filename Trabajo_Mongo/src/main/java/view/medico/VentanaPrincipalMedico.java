@@ -23,21 +23,21 @@ public class VentanaPrincipalMedico extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnCancelar;
-	VentanaAnadirMedico agregar;
-	VentanaEliminarMedico eliminar;
-	VentanaModificarMedico modificar;
-	VentanaAnadirPacientesCargo pacientesCargo;
+	private VentanaAnadirMedico agregar;
+	private VentanaEliminarMedico eliminar;
+	private VentanaModificarMedico modificar;
+	private VentanaAnadirPacientesCargo pacientesCargo;
 	private VentanaPrincipalAdministrador principal;
-	VentanaMostrarPorNombre mostrarNombre;
+	private VentanaMostrarPorNombre mostrarNombre;
 	private JMenuBar menuBar;
-	JMenu mnAnadirMedicos, mnEliminarMedico, mnMostrar, mnModificar;
-	JMenuItem mntmAnadirNuevoMedico, mntmAnadirPacientesCargo, mntmEliminarMedico,
+	private JMenu mnAnadirMedicos, mnEliminarMedico, mnMostrar, mnModificar;
+	private JMenuItem mntmAnadirNuevoMedico, mntmAnadirPacientesCargo, mntmEliminarMedico,
 			mntmModificarPaciente, mntmMostrarPorDNI, mntmMostrarPorNombre, mntmMostrarPorAtributo;
-	JLabel lblNewLabel;
-	VentanaMostrarPorDni mostrarDni;
-	VentanaMostrarPorAtributo mostrarAtributo;
+	private JLabel lblNewLabel;
+	private VentanaMostrarPorDni mostrarDni;
+	private VentanaMostrarPorAtributo mostrarAtributo;
 	private JMenuItem mntmEliminarPacienteCargo;
-	EliminarPacientesCargo eliminarPaciente;
+	private EliminarPacientesCargo eliminarPaciente;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

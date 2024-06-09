@@ -28,17 +28,17 @@ public class EliminarAlergenos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	JLabel lblTitulo, lblEligaElAlergeno, lblAlergenoElegido, lblMensaje;
-	String[] alergeno;
-	String selectedDni, selectedAlergeno;
+	private JLabel lblTitulo, lblEligaElAlergeno, lblAlergenoElegido, lblMensaje;
+	private String[] alergeno;
+	private String selectedAlergeno;
 	private JTextField textFieldAlergeno;
-	JButton btnCancelar, btnEliminar;
-	VentanaPrincipalPaciente principal;
-	Controller_Interfaz controller = new Controller_Interfaz();
+	private JButton btnCancelar, btnEliminar;
+	private VentanaPrincipalPaciente principal;
+	private Controller_Interfaz controller = new Controller_Interfaz();
 	private JComboBox<String> comboBoxAlergenos;
-	JLabel lblDNI;
-	JFormattedTextField formattedDni;
-	JButton btnComprobar;
+	private JLabel lblDNI;
+	private JFormattedTextField formattedDni;
+	private JButton btnComprobar;
 	private MaskFormatter mascara;
 
 	/**

@@ -38,7 +38,7 @@ public class VentanaAgregarPaciente extends JFrame {
 	private JComboBox<String> comboBoxSexo, comboBoxGrupoSanguineo;
 	private JButton btnAceptar, btnCancelar;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	VentanaPrincipalPaciente vp;
+	private VentanaPrincipalPaciente vp;
 	private JLabel lblAadirPaciente;
 
 	/**

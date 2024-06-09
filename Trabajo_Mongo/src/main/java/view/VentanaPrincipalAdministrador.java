@@ -21,10 +21,10 @@ public class VentanaPrincipalAdministrador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	VentanaPrincipalPaciente vpp;
-	VentanaPrincipalMedico vpm;
-	JLabel lblBienvenido, lblEligaLaOpcion;
-	JLabel lblLogo;
+	private VentanaPrincipalPaciente vpp;
+	private VentanaPrincipalMedico vpm;
+	private JLabel lblBienvenido, lblEligaLaOpcion;
+	private JLabel lblLogo;
 	private JLabel lblIrMedicos;
 	private JLabel lblLogo_1;
 	private JLabel lblIrAPacientes;

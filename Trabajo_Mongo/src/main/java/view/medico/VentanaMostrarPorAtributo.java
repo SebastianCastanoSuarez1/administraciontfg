@@ -23,13 +23,13 @@ public class VentanaMostrarPorAtributo extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDni, textFieldNombre, textFieldApellidos, textFieldEspecialidad, textFieldFechaIncorporacion;
-	JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
+	private JLabel lblFechaIncorporacion, lblEspecialidad, lblApellidos, lblNombre, lblDNI, lblIntroduzcaNombre;
 	private MedicoController_Interfaz controllerInterfaz = new MedicoController_Interfaz();
 	private MaskFormatter mascara;
 	private JTextField textFieldAtributo;
 	private JTextField textFieldValor;
-	JButton btnVolver;
-	VentanaPrincipalMedico principal;
+	private JButton btnVolver;
+	private VentanaPrincipalMedico principal;
 	private JLabel lblTitulo;
 
 	/**
