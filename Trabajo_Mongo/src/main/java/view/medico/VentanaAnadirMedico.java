@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -37,6 +38,7 @@ public class VentanaAnadirMedico extends JFrame {
 	private JFormattedTextField formattedFechaIncorporacion;
 	private VentanaPrincipalMedico principal;
 	private JLabel lblTitulo;
+
 	/**
 	 * Launch the application.
 	 */
@@ -66,12 +68,12 @@ public class VentanaAnadirMedico extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDNI.setBounds(28, 68, 52, 24);
 		contentPane.add(lblDNI);
-		
+
 		try {
 			mascara = new MaskFormatter("########?");
 			mascara.setValidCharacters("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -82,41 +84,39 @@ public class VentanaAnadirMedico extends JFrame {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		lblNombre = new JLabel("Nombre\r\n");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNombre.setBounds(227, 68, 63, 24);
 		contentPane.add(lblNombre);
-		
+
 		textFieldNombre = new JTextField();
 		textFieldNombre.setBounds(300, 73, 127, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
-		
+
 		lblApellidos = new JLabel("Apellidos");
 		lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblApellidos.setBounds(28, 132, 63, 20);
 		contentPane.add(lblApellidos);
-		
+
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setBounds(101, 132, 111, 21);
 		contentPane.add(textFieldApellidos);
 		textFieldApellidos.setColumns(10);
-		
+
 		lblEspecialidad = new JLabel("Especialidad");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEspecialidad.setBounds(242, 137, 79, 15);
 		contentPane.add(lblEspecialidad);
-		
+
 		comboBoxEspecialidades = new JComboBox<String>();
-		comboBoxEspecialidades.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "", "Cirugia", "Medico Familia", "Traumatologia", "Dermatologia", "Oftalmologia", "Pediatria", "Reumatologia", "Neurologia"
-						, "Enfermeria", "Fisioterapia", "Gastroenterologia"}));
+		comboBoxEspecialidades.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Cirugia", "Medico Familia",
+				"Traumatologia", "Dermatologia", "Oftalmologia", "Pediatria", "Reumatologia", "Neurologia",
+				"Enfermeria", "Fisioterapia", "Gastroenterologia" }));
 		comboBoxEspecialidades.setBounds(330, 137, 119, 21);
 		contentPane.add(comboBoxEspecialidades);
-		
-		
-		
+
 		try {
 			mascara = new MaskFormatter("##/##/####");
 			mascara.setValidCharacters("0123456789");
@@ -127,13 +127,12 @@ public class VentanaAnadirMedico extends JFrame {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-	        
+
 		lblAnioExperiencia = new JLabel("Fecha de incorporacion");
 		lblAnioExperiencia.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblAnioExperiencia.setBounds(74, 199, 154, 24);
 		contentPane.add(lblAnioExperiencia);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,50 +144,76 @@ public class VentanaAnadirMedico extends JFrame {
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCancelar.setBounds(119, 279, 85, 21);
 		contentPane.add(btnCancelar);
-		
+
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String dni = formattedDni.getText();
 				String nombre = textFieldNombre.getText();
 				String apellidos = textFieldApellidos.getText();
 				String especialidad = comboBoxEspecialidades.getSelectedItem().toString();
 				String fecha_incorporcion = formattedFechaIncorporacion.getText();
 				Optional<Document> medicoDNI = medico.comprobarDni(dni);
-				if(medicoDNI.isPresent()) {
-					lblMensaje.setText("El medico con DNI " + dni+ " ya esta añadido");
+				if (medicoDNI.isPresent()) {
+					lblMensaje.setText("El medico con DNI " + dni + " ya esta añadido");
 					lblMensaje.setForeground(Color.RED);
-				}else {
-					Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad, fecha_incorporcion);
-					Boolean anadido = medico.salvarMedico(medicos);
-					if(anadido == true) {
-						lblMensaje.setText("El medico ha sido añadido con exito");
-						lblMensaje.setForeground(Color.GREEN);
-					}else {
-						lblMensaje.setText("El medico no ha sido añadido con exito");
-						lblMensaje.setForeground(Color.RED);
+				} else {
+					if (isValidDNI(formattedDni.getText())) {
+
+						Document medicos = medico.anadirMedicoNuevo(dni, nombre, apellidos, especialidad,
+								fecha_incorporcion);
+						Boolean anadido = medico.salvarMedico(medicos);
+						if (anadido == true) {
+							lblMensaje.setText("El medico ha sido añadido con exito");
+							lblMensaje.setForeground(Color.GREEN);
+						} else {
+							lblMensaje.setText("El medico no ha sido añadido con exito");
+							lblMensaje.setForeground(Color.RED);
+						}
+					} else {
+						JOptionPane.showMessageDialog(VentanaAnadirMedico.this, "El DNI " + formattedDni.getText() + " no es correcto");
+
 					}
-					
+
 				}
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAceptar.setBounds(280, 279, 85, 21);
 		contentPane.add(btnAceptar);
-		
+
 		lblMensaje = new JLabel("");
 		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblMensaje.setBounds(90, 327, 310, 24);
 		contentPane.add(lblMensaje);
-		
+
 		lblTitulo = new JLabel("Añadir medico");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTitulo.setBounds(170, 20, 154, 19);
 		contentPane.add(lblTitulo);
-		
-		
-		
-	
+
+	}
+
+	public static boolean isValidDNI(String dni) {
+		if (dni == null || dni.length() != 9) {
+			return false;
+		}
+
+		String numberPart = dni.substring(0, 8);
+		if (!numberPart.matches("\\d{8}")) {
+			return false;
+		}
+
+		char letter = dni.charAt(8);
+		if (!Character.isLetter(letter)) {
+			return false;
+		}
+
+		String validLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+		int number = Integer.parseInt(numberPart);
+		char correctLetter = validLetters.charAt(number % 23);
+
+		return Character.toUpperCase(letter) == correctLetter;
 	}
 }

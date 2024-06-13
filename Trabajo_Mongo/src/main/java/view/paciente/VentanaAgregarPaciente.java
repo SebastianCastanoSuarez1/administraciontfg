@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,7 @@ import javax.swing.text.MaskFormatter;
 import org.bson.Document;
 
 import controller.Controller_Interfaz;
+
 
 public class VentanaAgregarPaciente extends JFrame {
 
@@ -204,22 +206,28 @@ public class VentanaAgregarPaciente extends JFrame {
 						lblMensaje.setText("El medico con DNI " + formattedDni.getText() + " ya esta añadido");
 						lblMensaje.setForeground(Color.RED);
 					} else {
-						String alturaString = textFieldAltura.getText();
-						Integer altura = Integer.parseInt(alturaString);
-						String pesoString = textFieldPeso.getText();
-						Integer peso = Integer.parseInt(pesoString);
-						Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
-								textFieldNombre.getText(), textFieldApellidos.getText(),
-								formattedFechaNacimiento.getText(), comboBoxSexo.getSelectedItem().toString(),
-								textFieldLugarNacimiento.getText(), altura, peso,
-								comboBoxGrupoSanguineo.getSelectedItem().toString());
-						Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
-						if (anadido == true) {
-							lblMensaje.setText("El paciente ha sido añadido con exito");
-							lblMensaje.setForeground(Color.GREEN);
-						} else {
-							lblMensaje.setText("El paciente no ha sido añadido con exito");
-							lblMensaje.setForeground(Color.RED);
+						if(isValidDNI(formattedDni.getText())) {
+							String alturaString = textFieldAltura.getText();
+							Integer altura = Integer.parseInt(alturaString);
+							String pesoString = textFieldPeso.getText();
+							Integer peso = Integer.parseInt(pesoString);
+							Document paciente = controllerInterfaz.anadirPacientenuevo(formattedDni.getText(),
+									textFieldNombre.getText(), textFieldApellidos.getText(),
+									formattedFechaNacimiento.getText(), comboBoxSexo.getSelectedItem().toString(),
+									textFieldLugarNacimiento.getText(), altura, peso,
+									comboBoxGrupoSanguineo.getSelectedItem().toString());
+							Boolean anadido = controllerInterfaz.salvarPaciente(paciente);
+							if (anadido == true) {
+								lblMensaje.setText("El paciente ha sido añadido con exito");
+								lblMensaje.setForeground(Color.GREEN);
+							} else {
+								lblMensaje.setText("El paciente no ha sido añadido con exito");
+								lblMensaje.setForeground(Color.RED);
+							}
+							
+						}else {
+							JOptionPane.showMessageDialog(VentanaAgregarPaciente.this, "El DNI " + formattedDni.getText() + " no es correcto");
+
 						}
 
 					}
@@ -254,4 +262,25 @@ public class VentanaAgregarPaciente extends JFrame {
 		contentPane.add(lblAadirPaciente);
 
 	}
+	public static boolean isValidDNI(String dni) {
+        if (dni == null || dni.length() != 9) {
+            return false;
+        }
+
+        String numberPart = dni.substring(0, 8);
+        if (!numberPart.matches("\\d{8}")) {
+            return false;
+        }
+
+        char letter = dni.charAt(8);
+        if (!Character.isLetter(letter)) {
+            return false;
+        }
+
+        String validLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int number = Integer.parseInt(numberPart);
+        char correctLetter = validLetters.charAt(number % 23);
+
+        return Character.toUpperCase(letter) == correctLetter;
+    }
 }
