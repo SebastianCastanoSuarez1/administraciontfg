@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -151,6 +152,15 @@ public class EliminarPacientesCargo extends JFrame {
 						if (actualizado == true && actualizado1 && actualizado2 && actualizado3 && actualizado4) {
 							lblMensaje.setText("Paciente a cargo eliminado con exito");
 							lblMensaje.setForeground(Color.GREEN);
+							Timer timer = new Timer(1500, new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									principal = new VentanaPrincipalMedico();
+									principal.setVisible(true);
+									dispose();
+								}
+							});
+							timer.setRepeats(false);
+							timer.start();
 						} else {
 							lblMensaje.setText("Paciente a cargo no eliminado");
 							lblMensaje.setForeground(Color.RED);

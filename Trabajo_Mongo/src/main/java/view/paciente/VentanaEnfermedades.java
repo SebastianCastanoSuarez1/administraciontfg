@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -35,7 +36,7 @@ public class VentanaEnfermedades extends JFrame {
 	private JLabel lblEnfermedad, lblFechaBaja, lblDetalles, lblTratamiento, lblMedicamentos, lblInforme;
 	private JTextField textFieldEnfermedad, textFieldTratamiento, textFieldMedicamentos, textFieldinforme;
 	private final Controller_Interfaz controllerInterfaz = new Controller_Interfaz();
-	private VentanaPrincipalPaciente paciente;
+	private VentanaPrincipalPaciente principal;
 	private JLabel lblDNI;
 	private JButton btnComprobar;
 	private JLabel lblMensaje;
@@ -124,8 +125,8 @@ public class VentanaEnfermedades extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				paciente = new VentanaPrincipalPaciente();
-				paciente.setVisible(true);
+				principal = new VentanaPrincipalPaciente();
+				principal.setVisible(true);
 				dispose();
 			}
 		});
@@ -142,6 +143,15 @@ public class VentanaEnfermedades extends JFrame {
 		            if(anadido == true) {
 						lblMensaje.setText("Enfermedades añadidas con exito");
 						lblMensaje.setForeground(Color.GREEN);
+						Timer timer = new Timer(1500, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								principal = new VentanaPrincipalPaciente();
+								principal.setVisible(true);
+								dispose();
+							}
+						});
+						timer.setRepeats(false);
+						timer.start();
 					}else {
 						lblMensaje.setText("Enfermedades no añadidas con exito");
 						lblMensaje.setForeground(Color.RED);

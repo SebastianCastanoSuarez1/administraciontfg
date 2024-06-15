@@ -12,6 +12,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -83,6 +84,15 @@ public class VentanaEliminarPaciente extends JFrame {
 						if (eliminado.getDeletedCount() > 0) {
 							lblMensaje.setText("Paciente con dni: " + dni + " ha sido eliminado");
 							lblMensaje.setForeground(Color.GREEN);
+							Timer timer = new Timer(1500, new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									vp = new VentanaPrincipalPaciente();
+									vp.setVisible(true);
+									dispose();
+								}
+							});
+							timer.setRepeats(false);
+							timer.start();
 						} else {
 							lblMensaje.setText("Paciente con dni:" + dni + " no ha sido eliminado");
 							lblMensaje.setForeground(Color.RED);

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -167,6 +168,15 @@ public class VentanaAnadirMedico extends JFrame {
 						if (anadido == true) {
 							lblMensaje.setText("El medico ha sido añadido con exito");
 							lblMensaje.setForeground(Color.GREEN);
+							Timer timer = new Timer(1500, new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									principal = new VentanaPrincipalMedico();
+									principal.setVisible(true);
+									dispose();
+								}
+							});
+							timer.setRepeats(false);
+							timer.start();
 						} else {
 							lblMensaje.setText("El medico no ha sido añadido con exito");
 							lblMensaje.setForeground(Color.RED);
